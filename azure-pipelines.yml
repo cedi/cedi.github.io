@@ -6,7 +6,7 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)terraform'
   inputs:
-    TargetFolder: '$(build.artifactstagingdirectory)'
+    TargetFolder: '$(build.artifactstagingdirectory)/prod'
     CleanTargetFolder: true
 
 - task: PublishBuildArtifacts@1
