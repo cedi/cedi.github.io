@@ -1,12 +1,15 @@
 trigger:
-- master
-
+  branches:
+    include:
+    - '*'
+    exclude:
+      - master
 steps:
 
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)terraform'
   inputs:
-    TargetFolder: '$(build.artifactstagingdirectory)/prod'
+    TargetFolder: '$(build.artifactstagingdirectory)/test'
     CleanTargetFolder: true
 
 - task: PublishBuildArtifacts@1
