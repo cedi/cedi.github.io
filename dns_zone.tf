@@ -74,7 +74,7 @@ resource "azurerm_dns_mx_record" "outlook_mx" {
   ttl                 = 3600
 
   record {
-    preference = 10
+    preference = 0
     exchange   = "cedi-dev.mail.protection.outlook.com"
   }
 
