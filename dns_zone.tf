@@ -33,8 +33,8 @@ resource "azurerm_dns_txt_record" "spf_entry" {
 
 resource "azurerm_dns_cname_record" "autodiscover" {
   name                = "autodiscover"
-  zone_name           = "${azurerm_dns_zone.example.name}"
-  resource_group_name = "${azurerm_resource_group.example.name}"
+  zone_name           = "${azurerm_dns_zone.cedi_dev_dns.name}"
+  resource_group_name = "${azurerm_resource_group.cedi_rg.name}"
   ttl                 = 3600
   record              = "autodiscover.outlook.com"
 
@@ -45,8 +45,8 @@ resource "azurerm_dns_cname_record" "autodiscover" {
 
 resource "azurerm_dns_cname_record" "enterpriseenrollment" {
   name                = "enterpriseenrollment"
-  zone_name           = "${azurerm_dns_zone.example.name}"
-  resource_group_name = "${azurerm_resource_group.example.name}"
+  zone_name           = "${azurerm_dns_zone.cedi_dev_dns.name}"
+  resource_group_name = "${azurerm_resource_group.cedi_rg.name}"
   ttl                 = 3600
   record              = "enterpriseenrollment.manage.microsoft.com"
 
@@ -57,8 +57,8 @@ resource "azurerm_dns_cname_record" "enterpriseenrollment" {
 
 resource "azurerm_dns_cname_record" "enterpriseregistration" {
   name                = "enterpriseregistration"
-  zone_name           = "${azurerm_dns_zone.example.name}"
-  resource_group_name = "${azurerm_resource_group.example.name}"
+  zone_name           = "${azurerm_dns_zone.cedi_dev_dns.name}"
+  resource_group_name = "${azurerm_resource_group.cedi_rg.name}"
   ttl                 = 3600
   record              = "enterpriseregistration.windows.net"
 
@@ -69,8 +69,8 @@ resource "azurerm_dns_cname_record" "enterpriseregistration" {
 
 resource "azurerm_dns_mx_record" "outlook_mx" {
   name                = ""
-  zone_name           = "${azurerm_dns_zone.example.name}"
-  resource_group_name = "${azurerm_resource_group.example.name}"
+  zone_name           = "${azurerm_dns_zone.cedi_dev_dns.name}"
+  resource_group_name = "${azurerm_resource_group.cedi_rg.name}"
   ttl                 = 3600
 
   record {
