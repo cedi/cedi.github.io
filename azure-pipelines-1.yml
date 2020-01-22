@@ -1,0 +1,16 @@
+trigger:
+  branches:
+    include:
+    - '*'
+    exclude:
+      - master
+steps:
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)terraform'
+  inputs:
+    TargetFolder: '$(build.artifactstagingdirectory)/test'
+    CleanTargetFolder: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
