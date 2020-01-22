@@ -4,7 +4,7 @@ resource "azurerm_dns_zone" "cedi_dev_dns" {
 }
 
 resource "azurerm_dns_txt_record" "ms_verification_key" {
-  name                = "ms"
+  name                = "@"
   zone_name           = "${azurerm_dns_zone.cedi_dev_dns.name}"
   resource_group_name = "${azurerm_resource_group.cedi_rg.name}"
   ttl                 = 3600
@@ -18,7 +18,7 @@ resource "azurerm_dns_txt_record" "ms_verification_key" {
 }
 
 resource "azurerm_dns_txt_record" "spf_entry" {
-  name                = "spf"
+  name                = "@"
   zone_name           = "${azurerm_dns_zone.cedi_dev_dns.name}"
   resource_group_name = "${azurerm_resource_group.cedi_rg.name}"
   ttl                 = 3600
@@ -68,7 +68,7 @@ resource "azurerm_dns_cname_record" "enterpriseregistration" {
 }
 
 resource "azurerm_dns_mx_record" "outlook_mx" {
-  name                = ""
+  name                = "@"
   zone_name           = "${azurerm_dns_zone.cedi_dev_dns.name}"
   resource_group_name = "${azurerm_resource_group.cedi_rg.name}"
   ttl                 = 3600
