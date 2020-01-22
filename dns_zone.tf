@@ -4,7 +4,7 @@ resource "azurerm_dns_zone" "cedi_dev_dns" {
 }
 
 resource "azurerm_dns_txt_record" "ms_verification_key" {
-  name                = ""
+  name                = "ms"
   zone_name           = "${azurerm_dns_zone.cedi_dev_dns.name}"
   resource_group_name = "${azurerm_resource_group.cedi_rg.name}"
   ttl                 = 3600
@@ -18,7 +18,7 @@ resource "azurerm_dns_txt_record" "ms_verification_key" {
 }
 
 resource "azurerm_dns_txt_record" "spf_entry" {
-  name                = ""
+  name                = "spf"
   zone_name           = "${azurerm_dns_zone.cedi_dev_dns.name}"
   resource_group_name = "${azurerm_resource_group.cedi_rg.name}"
   ttl                 = 3600
