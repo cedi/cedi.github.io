@@ -4,13 +4,32 @@ trigger:
     - '*'
     exclude:
       - master
+
+variables:
+- group: az_subscription
+
 steps:
 
-- task: CopyFiles@2
-  displayName: 'Copy Files to: $(build.artifactstagingdirectory)terraform'
+- task: TerraformInstaller@0
+  displayName: 'Install terraform 0.12.20'
   inputs:
-    TargetFolder: '$(build.artifactstagingdirectory)/test'
-    CleanTargetFolder: true
+    terraformVersion: '0.12.20'
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
+- task: TerraformTaskV1@0
+  displayName: 'Terraform init'
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    commandOptions: '-no-color'
+    backendServiceArm: '$(subscription)'
+    backendAzureRmResourceGroupName: 'cedi_rg'
+    backendAzureRmStorageAccountName: '$(storrageaccount)'
+    backendAzureRmContainerName: 'terraformcontainer'
+    backendAzureRmKey: 'sharedstate.tfstate'
+
+- task: TerraformTaskV1@0
+  displayName: 'Terraform validate'
+  inputs:
+    provider: 'azurerm'
+    command: 'validate'
+    commandOptions: '-no-color'
