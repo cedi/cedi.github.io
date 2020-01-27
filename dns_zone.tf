@@ -71,7 +71,7 @@ resource "azurerm_dns_mx_record" "outlook_mx" {
   }
 }
 
-resource "azurerm_dns_cname_record" "DKIM_selector2" {
+resource "azurerm_dns_cname_record" "DKIM_selector1" {
   name                = "selector1-cedi-dev._domainkey"
   zone_name           = "${azurerm_dns_zone.cedi_dev_dns.name}"
   resource_group_name = "${azurerm_resource_group.cedi_rg.name}"
