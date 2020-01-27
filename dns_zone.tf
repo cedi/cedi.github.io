@@ -84,7 +84,7 @@ resource "azurerm_dns_cname_record" "dkim_selector1" {
 }
 
 resource "azurerm_dns_cname_record" "dkim_selector2" {
-  name                = "selector1._domainkey"
+  name                = "selector2._domainkey"
   zone_name           = "${azurerm_dns_zone.cedi_dev_dns.name}"
   resource_group_name = "${azurerm_resource_group.cedi_rg.name}"
   ttl                 = 3600
