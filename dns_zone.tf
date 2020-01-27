@@ -3,7 +3,7 @@ resource "azurerm_dns_zone" "cedi_dev_dns" {
   resource_group_name = "${azurerm_resource_group.cedi_rg.name}"
 }
 
-resource "azurerm_dns_txt_record" "txt" {
+resource "azurerm_dns_txt_record" "spf_and_ms_verification" {
   name                = "@"
   zone_name           = "${azurerm_dns_zone.cedi_dev_dns.name}"
   resource_group_name = "${azurerm_resource_group.cedi_rg.name}"
@@ -90,6 +90,20 @@ resource "azurerm_dns_cname_record" "dkim_selector2" {
   ttl                 = 3600
   record              = "selector2-cedi-dev._domainkey.cedidev.onmicrosoft.com"
 
+  tags = {
+    Environment = "Production"
+  }
+}
+
+resource "azurerm_dns_txt_record" "dmarc_record" {
+  name                = "_dmarc.cedi.dev"
+  zone_name           = "${azurerm_dns_zone.cedi_dev_dns.name}"
+  resource_group_name = "${azurerm_resource_group.cedi_rg.name}"
+  ttl                 = 3600
+  record {
+    value = "v=DMARC1; p=quarantine"
+  }
+  
   tags = {
     Environment = "Production"
   }
