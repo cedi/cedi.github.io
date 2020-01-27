@@ -70,3 +70,27 @@ resource "azurerm_dns_mx_record" "outlook_mx" {
     Environment = "Production"
   }
 }
+
+resource "azurerm_dns_cname_record" "DKIM_selector2" {
+  name                = "selector1-cedi-dev._domainkey"
+  zone_name           = "${azurerm_dns_zone.cedi_dev_dns.name}"
+  resource_group_name = "${azurerm_resource_group.cedi_rg.name}"
+  ttl                 = 3600
+  record              = "selector1-cedi-dev._domainkey.cedidev.onmicrosoft.com"
+
+  tags = {
+    Environment = "Production"
+  }
+}
+
+resource "azurerm_dns_cname_record" "DKIM_selector2" {
+  name                = "selector2-cedi-dev._domainkey"
+  zone_name           = "${azurerm_dns_zone.cedi_dev_dns.name}"
+  resource_group_name = "${azurerm_resource_group.cedi_rg.name}"
+  ttl                 = 3600
+  record              = "selector2-cedi-dev._domainkey.cedidev.onmicrosoft.com"
+
+  tags = {
+    Environment = "Production"
+  }
+}
