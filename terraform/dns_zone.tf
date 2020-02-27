@@ -1,6 +1,9 @@
 resource "azurerm_dns_zone" "cedi_dev_dns" {
   name                = "cedi.dev"
   resource_group_name = azurerm_resource_group.cedi_rg.name
+  tags = {
+    Environment = "Production"
+  }
 }
 
 # Verification that my Domain really belongs to me
