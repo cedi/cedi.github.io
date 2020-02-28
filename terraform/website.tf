@@ -19,7 +19,7 @@ resource "hcloud_rdns" "www_v6" {
 }
 
 resource "azurerm_dns_a_record" "www" {
-  name                = hcloud_server.www.name
+  name                = "@"
   zone_name           = azurerm_dns_zone.cedi_dev_dns.name
   resource_group_name = azurerm_resource_group.cedi_rg.name
   ttl                 = 300
@@ -27,41 +27,17 @@ resource "azurerm_dns_a_record" "www" {
 }
 
 resource "azurerm_dns_aaaa_record" "www" {
+  name                = "@"
+  zone_name           = azurerm_dns_zone.cedi_dev_dns.name
+  resource_group_name = azurerm_resource_group.cedi_rg.name
+  ttl                 = 300
+  records             = ["${hcloud_server.www.ipv6_address}1"]
+}
+
+resource "azurerm_dns_cname_record" "www_cname" {
   name                = hcloud_server.www.name
   zone_name           = azurerm_dns_zone.cedi_dev_dns.name
   resource_group_name = azurerm_resource_group.cedi_rg.name
   ttl                 = 300
-  records             = ["${hcloud_server.www.ipv6_address}1"]
-}
-
-resource "azurerm_dns_a_record" "www_default" {
-  name                = "@"
-  zone_name           = azurerm_dns_zone.cedi_dev_dns.name
-  resource_group_name = azurerm_resource_group.cedi_rg.name
-  ttl                 = 300
-  records             = [hcloud_server.www.ipv4_address]
-}
-
-resource "azurerm_dns_aaaa_record" "www_default" {
-  name                = "@"
-  zone_name           = azurerm_dns_zone.cedi_dev_dns.name
-  resource_group_name = azurerm_resource_group.cedi_rg.name
-  ttl                 = 300
-  records             = ["${hcloud_server.www.ipv6_address}1"]
-}
-
-resource "azurerm_dns_a_record" "www_default2" {
-  name                = "*"
-  zone_name           = azurerm_dns_zone.cedi_dev_dns.name
-  resource_group_name = azurerm_resource_group.cedi_rg.name
-  ttl                 = 300
-  records             = [hcloud_server.www.ipv4_address]
-}
-
-resource "azurerm_dns_aaaa_record" "www_default2" {
-  name                = "*"
-  zone_name           = azurerm_dns_zone.cedi_dev_dns.name
-  resource_group_name = azurerm_resource_group.cedi_rg.name
-  ttl                 = 300
-  records             = ["${hcloud_server.www.ipv6_address}1"]
+  record              = azurerm_dns_zone.cedi_dev_dns.name
 }
