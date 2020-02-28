@@ -10,7 +10,7 @@ pygmentsstyle = "bw"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
-disqusShortname = "cedi"
+#disqusShortname = "cedi"
 
 [params]
     author = "Cedric Kienzler"

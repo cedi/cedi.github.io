@@ -15,5 +15,5 @@ variable "az_tenant_id" {
 }
 
 variable "hcloud_token" {
-    description = "Hetzner Cloud API Token"
+  description = "Hetzner Cloud API Token"
 }

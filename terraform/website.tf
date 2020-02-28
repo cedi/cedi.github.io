@@ -3,6 +3,7 @@ resource "hcloud_server" "www" {
   image = "debian-10"
   server_type = "cx11"
   datacenter = "fsn1-dc14"
+  ssh_keys = local.ssh_defaultkeys
 }
 
 resource "hcloud_rdns" "www_v4" {
