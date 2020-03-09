@@ -10,7 +10,7 @@ steps:
   inputs:
     source: './'
     destination: './public'
-    baseURL: 'https://dev.cedi.dev/'
+    baseURL: 'https://cedi.dev/'
     buildDrafts: true
     buildFuture: true
 
