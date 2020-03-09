@@ -1,9 +1,14 @@
-#  Local .terraform directories
-**/.terraform/*
+# Created by https://www.gitignore.io/api/hugo
+# Edit at https://www.gitignore.io/?templates=hugo
 
-# .tfstate files
-*.tfstate
-*.tfstate.*
+### Hugo ###
+# Generated files by hugo
+/public/
+/resources/_gen/
 
-# .tfvars files
-*.tfvars
+# Executable may be added to repository
+hugo.exe
+hugo.darwin
+hugo.linux
+
+# End of https://www.gitignore.io/api/hugo

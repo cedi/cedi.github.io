@@ -1,3 +1,15 @@
 [submodule "website/themes/hugo-coder"]
 	path = website/themes/hugo-coder
 	url = https://github.com/luizdepra/hugo-coder.git
+[submodule "ansible/roles/ansible-role-nginx"]
+	path = ansible/roles/ansible-role-nginx
+	url = https://github.com/geerlingguy/ansible-role-nginx.git
+[submodule "ansible/roles/ansible-letsencrypt"]
+	path = ansible/roles/ansible-letsencrypt
+	url = https://github.com/thefinn93/ansible-letsencrypt.git
+[submodule "ansible/roles/base"]
+	path = ansible/roles/base
+	url = git@ssh.dev.azure.com:v3/cekienzl/Ansible%20Registry/base
+[submodule "ansible/roles/sshd"]
+	path = ansible/roles/sshd
+	url = git@ssh.dev.azure.com:v3/cekienzl/Ansible%20Registry/sshd

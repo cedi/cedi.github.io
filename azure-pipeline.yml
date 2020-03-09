@@ -1,0 +1,36 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: HugoTask@1
+  displayName: 'Build'
+  inputs:
+    source: './'
+    destination: './public'
+    baseURL: 'https://dev.cedi.dev/'
+    buildDrafts: true
+    buildFuture: true
+
+- task: CopyFiles@2
+  displayName: 'Copy Blog'
+  inputs:
+    SourceFolder: './public'
+    Contents: "**"
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: CopyFiles@2
+  displayName: 'Copy Avatar'
+  inputs:
+    SourceFolder: './resources'
+    Contents: "avatar.jpg"
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Blog
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: Drop
+    publishLocation: 'Container'
