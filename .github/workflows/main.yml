@@ -34,4 +34,4 @@ jobs:
           user_name: cedi
           user_email: cedi@users.noreply.github.com
           publish_branch: master
-          cname: www.cedi.dev
+          cname: cedi.dev
