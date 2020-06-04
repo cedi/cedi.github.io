@@ -24,7 +24,7 @@ pygmentscodefencesguesssyntax = true
 
 [[params.social]]
     name = "open-infrastructure.de"
-    icon = "fad fa-atom-alt fa-2x"
+    icon = "fab fa-atom-alt fa-2x"
     weight = 2
     url = "https://open-infrastructure.de/"
 
