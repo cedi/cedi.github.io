@@ -23,7 +23,7 @@ jobs:
         # remove --minify tag if you do not need it
         # docs: https://gohugo.io/hugo-pipes/minification/
         run: hugo #--minify
-        
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -34,3 +34,4 @@ jobs:
           user_name: cedi
           user_email: cedi@users.noreply.github.com
           publish_branch: master
+          cname: cedi.dev
