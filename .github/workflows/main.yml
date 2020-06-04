@@ -22,7 +22,7 @@ jobs:
       - name: Build
         # remove --minify tag if you do not need it
         # docs: https://gohugo.io/hugo-pipes/minification/
-        run: hugo --minify
+        run: hugo #--minify
         
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -30,7 +30,7 @@ jobs:
           personal_token: ${{ secrets.deploy_token }}
           external_repository: cedi/cedi.github.io
           publish_dir: ./public
-          #   keep_files: true
+          keep_files: true
           user_name: cedi
           user_email: cedi@users.noreply.github.com
           publish_branch: master
