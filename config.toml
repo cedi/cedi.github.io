@@ -23,11 +23,16 @@ pygmentscodefencesguesssyntax = true
 # Social links
 
 [[params.social]]
+    name = "500px"
+    icon = "fab fa-500px fa-2x"
+    weight = 2
+    url = "https://500px.com/c_kienzler_photograpy"
+
+[[params.social]]
     name = "open-infrastructure.de"
     icon = "fas fa-globe fa-2x"
     weight = 2
     url = "https://open-infrastructure.de/"
-
 
 [[params.social]]
     name = "git.open-infrastructure.de"
