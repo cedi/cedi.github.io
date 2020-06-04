@@ -21,6 +21,13 @@ pygmentscodefencesguesssyntax = true
     hidecopyright = false
 
 # Social links
+
+[[params.social]]
+    name = "open-infrastructure.de"
+    icon = "fad fa-atom-alt fa-2x"
+    weight = 2
+    url = "https://open-infrastructure.de/"
+
 [[params.social]]
     name = "Github"
     icon = "fab fa-github fa-2x"
