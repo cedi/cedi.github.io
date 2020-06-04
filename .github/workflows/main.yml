@@ -31,7 +31,6 @@ jobs:
           external_repository: cedi/cedi.github.io
           publish_dir: ./public
           #   keep_files: true
-          user_name: <username>
-          user_email: <username@email.com>
+          user_name: cedi
+          user_email: cedi@users.noreply.github.com
           publish_branch: master
-          cname: cedi.dev
