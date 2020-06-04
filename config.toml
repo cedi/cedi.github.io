@@ -1,4 +1,4 @@
-baseURL = "https://www.cedi.dev/"
+baseURL = "https://cedi.dev/"
 languageCode = "en-us"
 title = "cedi.dev"
 theme = "hugo-coder"
