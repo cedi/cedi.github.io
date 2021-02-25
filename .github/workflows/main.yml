@@ -15,7 +15,7 @@ jobs:
         run: git submodule update --init --recursive
 
       - name: Fix Theme version
-        run: cd themes/toha && git checkout v1.4.0
+        run: cd themes/toha && git checkout cedi_theme
 
       - name: Setup hugo
         uses: peaceiris/actions-hugo@v2
