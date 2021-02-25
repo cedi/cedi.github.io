@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
   deploy:
     runs-on: ubuntu-18.04
@@ -33,5 +33,5 @@ jobs:
           keep_files: true
           user_name: cedi
           user_email: cedi@users.noreply.github.com
-          publish_branch: master
+          publish_branch: main
           cname: cedi.dev
