@@ -24,6 +24,9 @@ summary: 'I’ve done everything wrong the first time so you don’t have to. Tr
 # your social links
 # give as many as you want. use font-awesome for the icons.
 socialLinks:
+- name: LinkedIn
+  icon: "fab fa-linkedin fa-2x"
+  url: "http://linkedin.com/in/cekienzl/"
 - name: GitHub
   icon: "fab fa-github fa-2x"
   url: "https://www.github.com/cedi"
