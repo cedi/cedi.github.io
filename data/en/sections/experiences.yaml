@@ -1,0 +1,106 @@
+# section information
+section:
+  name: Experiences
+  id: experiences
+  enable: true
+  weight: 4
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+# Your experiences
+experiences:
+- company:
+    name: German Edge Cloud
+    url: "https://gec.io"
+    location: Remote, Berlin, Frankfurt, Germany
+    # company overview
+    overview: German Edge Cloud is a Start-up, belonging to the Friedhelm Loh Group. Delivering the first KI-Edge-Cloud for realtime industrial usage.
+  positions:
+  - designation: Team Lead Kubernetes SRE & Senior Kubernetes SRE
+    start: Jul 2020
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    # end: Dec 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - Building a strong and diverse Kubernetes SRE Team. Taking over the ownership of an existing managed Kubernetes platform, improving it's reliability, implementing new features, and fostering a culture of mutual trust and respect.
+    - Establishing a culture of open-source within the Team, contributing improvements back to the open-source Community, establishing brand knowledge even within the community
+    - Working as a representative of the company with the Cloud Native Computing Foundation as well as the Linux Foundation in order to certify and list our managed Kubernetes platform on the CNCFs Website, as well as working with various other teams within the company with the ultimate goal of becoming a CNCF certified "Kubernetes Certified Service Professional"
+    - Collaboration with service management and sales teams in order to increase our customers satisfaction by providing targeted and highly effective Kubernetes training
+    - Close collaboration with our service partner "Kubermatic" including regularly meetings with their CEO, establishing a good collaboration to improve our satisfaction with the Kubermatic producs
+
+- company:
+    name: Adjoe
+    url: "https://adjoe.io"
+    location: Hamburg, Germany
+    overview: adjoe.io/monetize adjoe offers the first mobile ad unit that increases engagement not only for the advertiser, but also for the publisher! adjoe.io/advertise adjoe’s UA platform provides quality traffic on scale, leveraging our growing SDK network.
+  positions:
+  - designation: Senior Software Engineer
+    start: Apr 2020
+    end: Jun 2020
+    responsibilities:
+    - Write lots of go code.
+    - Read lots of AWS Athena queries.
+
+- company:
+    name: Microsoft
+    url: "https://microsoft.com"
+    location: Dublin, Ireland
+  positions:
+  - designation: Site Reliability Engineer 2
+    start: Jan 2019
+    end: Mar 2020
+    responsibilities:
+    - Re-Designing the project management process using agile project management methods for the SharePoint Online SRE Business Unit, driving a cultural change to implement modern SRE methods
+    - Reviewing and refining service level indicators and objectives on a regular basis to make sure we meet the 99.99% service level agreement towards our customers • Migrating the development environment towards state of the art tooling like Git, Azure DevOps, and Jupyter Notebooks
+    - Improving the service reliability by working closely together with various teams across multiple business units
+    - Leading the development of multiple internal tools to increase efficiency of on-call engineers, resulting in a improved time to mitigate of incidents and outages
+    - Planning and hosting of meetups for the Microsoft Ireland Open Source Club, as well as participating in multiple open source projects
+    - Onboarding a new SRE Team in China to move towards a "follow the sun" schedule by implementing proven SRE processes and delivering high quality training while being partly on site in China
+    - Working with the Red- and Blue Team on site in Redmond to increase the corporate security
+
+- company:
+    name: Sophos
+    url: "https://sophos.com"
+    location: Karlsruhe, Germany
+  positions:
+  - designation: Software Engineer, Network Security
+    start: Jan 2017
+    end: Dec 2018
+    responsibilities:
+    - Worked on the "Synchronized Application Classification Engine" product to substantially improve detection rates compared to competing vendors
+    - Delivered unit-tests with high branch coverage
+    - Leading the design phase of a new authentication-, authorization-, and accountingservice using a microservice-based approach to increase the scalability and maintainability of the code
+    - Leading the design and development of a new single sign on service on the firewall to apply user based policies on chrome books without the need of captive portals
+    - Replacing the IPsec library used on the firewall appliance in order to support IPsec IKEv2, contributed improvements back to the open source community
+    - Extending and improved the integration test suite for our Firewall product leading to faster release cycles
+
+- company:
+    name: MARKANT Handels- und Service GmbH
+    url: "https://markant.de"
+    location: Offenburg, Germany
+  positions:
+  - designation: Software Engineer, EDI Process Integration
+    start: Aug 2015
+    end: Dec 2016
+    responsibilities:
+    - Extended, maintained, and created new real time file conversions to convert complex message types for B2B communication
+    - Lead a project to modernize the departments development infrastructure, including a migration from CVS to Git, a major version upgrade for the IDE, and the establishment of a continuous integration pipeline
+    - Evaluated various unit testing frameworks and refactored legacy code to enable unit testing in the existing product code
+    - Wrote software to support operation teams and implemented real-time monitoring to improve response times during incidents in a time-critical trading system
+    - Trained apprentices in the company on topics of software architecture, clean code, and common design patterns, enabling them to work on larger projects
+
+- company:
+    name: Streit Datentechnik
+    url: "https://streit-datec.de"
+    location: Haslach im Kinzigtal, Germany
+  positions:
+  - designation: Junior Software Engineer - Apprenticeship
+    start: Aug 2012
+    end: July 2015
+    responsibilities:
+    - Learned MS Visual C++, C# .NET, MS T-SQL, MFC and the Win32-API, broadening my problem solving capabilities across a wide range of technologies
+    - Extended existing UI controls to match modern UI standards
+    - Designed and implemented new UI controls for enhanced customer experience with the software
+    - Designed and implemented monitoring services, improving reliability of the company's network and build infrastructure
+    - Wrote a disassembler to read dependencies from Windows-PE and C# executables
