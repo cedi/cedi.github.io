@@ -1,26 +1,33 @@
-name: CI
+name: GitHub Pages
 
 on:
   push:
     branches: [ main ]
+
 jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
-
-       # (Optional) If you have the theme added as submodule, you can pull it and use the most updated version
-      - name: Update theme
-        run: git submodule update --init --recursive
+        with:
+          submodules: recursive # fetch Hugo themes
+          fetch-depth: 0
 
       - name: Fix Theme version
         run: cd themes/toha && git checkout v1.4.0
 
+      - uses: actions/cache@v2
+        with:
+          path: /tmp/hugo_cache
+          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-hugomod-
+
       - name: Setup hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: "0.77.0"
+          hugo-version: "latest"
 
       - name: Build
         # remove --minify tag if you do not need it
@@ -37,4 +44,13 @@ jobs:
           user_name: cedi
           user_email: cedi@users.noreply.github.com
           publish_branch: main
+          cname: cedi.dev
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          keep_files: true
+          publish_branch: site
           cname: cedi.dev
