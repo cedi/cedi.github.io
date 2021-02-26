@@ -37,18 +37,6 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.deploy_token }}
-          external_repository: cedi/cedi.github.io
-          publish_dir: ./public
-          keep_files: true
-          user_name: cedi
-          user_email: cedi@users.noreply.github.com
-          publish_branch: main
-          cname: cedi.dev
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           keep_files: true

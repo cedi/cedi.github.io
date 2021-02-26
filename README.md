@@ -11,4 +11,4 @@ Checkout this repository and run `hugo server -t toha -w` for development
 
 ## CI/CD
 
-This Repository is build via a [github action](.github/workflows/main.yml) that renders the HTML code and then commits this to [cedi/cedi.github.io](https://github.com/cedi/cedi.github.io)
+This Repository is build via a [github action](.github/workflows/main.yml) that renders the HTML code and then commits this to the [site branch](https://github.com/cedi/cedi.github.io/tree/site)
