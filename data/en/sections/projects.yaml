@@ -29,7 +29,7 @@ projects:
   role: "Developer"
   timeline: "Mar 2021 - Present"
   repo: https://github.com/cedi/kkpctl # If your project is a public repo on GitHub, then provide this link. it will show star count.
-  summary: "Use the Kubermatic Kubernetes Plattform at your favourite CLI and not just from the Browser"
+  summary: "Use the Kubermatic Kubernetes Plattform at your favourite CLI"
   tags: ["all", "coding", "hobby", "professional"]
 
 - name: Open Infrastructure
