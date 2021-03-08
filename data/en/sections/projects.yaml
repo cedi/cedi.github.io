@@ -25,6 +25,13 @@ buttons:
 
 # your projects
 projects:
+- name: kkpctl
+  role: "Developer"
+  timeline: "Mar 2021 - Present"
+  repo: https://github.com/cedi/kkpctl # If your project is a public repo on GitHub, then provide this link. it will show star count.
+  summary: "A CLI tool for KKP"
+  tags: ["all", "coding", "hobby", "professional"]
+
 - name: Open Infrastructure
   logo: "/images/sections/projects/openinfrastructure.jpg"
   role: "Founding Member of the Board"
