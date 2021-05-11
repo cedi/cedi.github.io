@@ -35,7 +35,7 @@ socialLinks:
   url: "https://open-infrastructure.de/"
 - name: GitLab
   icon: "fab fa-gitlab fa-2x"
-  url: "git.open-infrastructure.de"
+  url: "https://git.open-infrastructure.de"
 - name: 500px
   icon: "fab fa-500px fa-2x"
   url: "https://500px.com/c_kienzler_photograpy"
