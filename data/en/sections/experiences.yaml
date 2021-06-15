@@ -17,7 +17,7 @@ experiences:
     # company overview
     overview: German Edge Cloud is a Start-up, belonging to the Friedhelm Loh Group. Delivering the first KI-Edge-Cloud for realtime industrial usage.
   positions:
-  - designation: Team Lead Kubernetes SRE & Senior Kubernetes SRE
+  - designation: Team Lead Kubernetes SRE
     start: Jul 2020
     # don't provide end date if you are currently working there. It will be replaced by "Present"
     # end: Dec 2020
