@@ -23,11 +23,17 @@ experiences:
     # end: Dec 2020
     # give some points about what was your responsibilities at the company.
     responsibilities:
-    - Building a strong and diverse Kubernetes SRE Team. Taking over the ownership of an existing managed Kubernetes platform, improving it's reliability, implementing new features, and fostering a culture of mutual trust and respect.
-    - Establishing a culture of open-source within the Team, contributing improvements back to the open-source Community, establishing brand knowledge even within the community
-    - Working as a representative of the company with the Cloud Native Computing Foundation as well as the Linux Foundation in order to certify and list our managed Kubernetes platform on the CNCFs Website, as well as working with various other teams within the company with the ultimate goal of becoming a CNCF certified "Kubernetes Certified Service Professional"
-    - Collaboration with service management and sales teams in order to increase our customers satisfaction by providing targeted and highly effective Kubernetes training
-    - Close collaboration with our service partner "Kubermatic" including regularly meetings with their CEO, establishing a good collaboration to improve our satisfaction with the Kubermatic producs
+    - Working closely with the Senior Management, specifically the CTO to shape the companies strategy, ensuring high quality products and services to our customers
+    - Building a remote team of highly skilled Site Reliability engineers, taking over the ownership of the companies managed Kubernetes platform. 
+    - Overseeing the Budget for the managed Kubernetes Service, including but not limited to forecasting of infrastructure costs and reviewing budgets on a regular base with accounting
+    - Keeping the Team focused and challenged by taking the Product and Platform Owner Role, masking a certain level of business complexity
+    - Hands on maintaining the Kubernetes Infrastructure, reviewing code and design documents on a daily base, ensuring only highest-quality changes land in production
+    - Working closely with the service management team, establishing new incident management, change management, and problem management processes.
+    - Working with the Head of Sales and accounting to create a competitive pricing structure for our offerings
+    - Leading a company wide initiative fostering a culture of mutual trust and respect, tearing down silos between business units and improving on diversity.
+    - Establishing a culture of open-source within the Company, contributing improvements back to the open-source Community, establishing brand knowledge even within the community.
+    - Working as a representative of the company with the Cloud Native Computing Foundation in order to certify and enlist our offering on the CNCFs Website, as well as working with various other teams within the company with the ultimate goal of becoming a CNCF certified "Kubernetes Certified Service Professional"
+
 
 - company:
     name: Adjoe
@@ -39,8 +45,7 @@ experiences:
     start: Apr 2020
     end: Jun 2020
     responsibilities:
-    - Write lots of go code.
-    - Read lots of AWS Athena queries.
+    - Write lots of Go Code and AWS Athena queries.
 
 - company:
     name: Microsoft
