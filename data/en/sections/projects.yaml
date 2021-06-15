@@ -14,10 +14,6 @@ buttons:
   filter: "all"
 - name: Volunteer
   filter: "volunteer"
-- name: Infrastructure
-  filter: "infrastructure"
-- name: Hobby
-  filter: "hobby"
 - name: Coding
   filter: "coding"
 - name: Professional
