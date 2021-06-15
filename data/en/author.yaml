@@ -1,6 +1,6 @@
 # some information about you
 name: "Cedric Kienzler"
-nickname: "cedi"
+nickname: "Cedric"
 
 # greeting message before your name. it will default to "Hi! I am" if not provided
 greeting: "Hi, I am"
@@ -15,5 +15,4 @@ contactInfo:
 summary:
   - I've done everything wrong the first time so you don't have to
   - Trust me, I'm an engineer
-  - I do fun stuff with K8s
-  - I love Go
+  - Hope is not a strategy
