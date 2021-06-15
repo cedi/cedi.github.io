@@ -53,6 +53,15 @@ projects:
   url: "https://gec.io/cloud-automation/gec-kubernetes-service/"
   summary: GEC Kubernetes Services - The first choice for Industrial and Finance clients Kubernetes.
   tags: ["all", "professional", "coding"]
+  
+- name: GEC Documentation
+  logo: "/images/sections/projects/german-edge-cloud.svg"
+  role: "Project Lead"
+  timeline: "November 2020 - Present"
+  repo: "https://github.com/gecio/gecio.github.io"
+  url: "https://docs.gec.io"
+  summary: GEC Customer Documentation.
+  tags: ["all", "professional", "coding"]
 
 - name: KubeOne
   logo: "/images/sections/projects/kubeone.png"
