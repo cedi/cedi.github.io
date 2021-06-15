@@ -26,20 +26,20 @@ buttons:
 # your projects
 projects:
 - name: kkpctl
-  role: "Developer"
+  role: "Developer / Project Lead"
   timeline: "Mar 2021 - Present"
   repo: https://github.com/cedi/kkpctl # If your project is a public repo on GitHub, then provide this link. it will show star count.
   summary: "Use the Kubermatic Kubernetes Plattform at your favourite CLI"
-  tags: ["all", "coding", "hobby", "professional"]
+  tags: ["all", "coding", "professional", "volunteer"]
 
 - name: Open Infrastructure
   logo: "/images/sections/projects/openinfrastructure.jpg"
-  role: "Founding Member of the Board"
+  role: "(Founding) Member of the Board"
   timeline: "May 2020 - Present"
   repo: https://github.com/open-infrastructure # If your project is a public repo on GitHub, then provide this link. it will show star count.
   url: "open-infrastructure.de"  # If your project is not a public repo but it has a website or any external details url then provide it here. don't provide "repo" and "url" simultaneously.
   summary: "Infrastructure should be accessible for everyone."
-  tags: ["all", "volunteer", "infrastructure", "hobby"]
+  tags: ["all", "volunteer", "hobby"]
 
 - name: BIO Routing
   logo: "/images/sections/projects/biorouting.png"
@@ -47,24 +47,16 @@ projects:
   timeline: "April 2018 - Present"
   repo: "https://github.com/bio-routing/bio-rd"
   summary: "bio routing is a project to create a versatile, fast and reliable routing daemon in Golang."
-  tags: ["all", "hobby", "infrastructure", "coding"]
+  tags: ["all", "volunteer", "coding"]
 
-- name: iMKE
+- name: GEC Kubernetes Services
   logo: "/images/sections/projects/german-edge-cloud.svg"
   role: "Team Lead"
   timeline: "July 2020 - Present"
   repo: "https://github.com/gecio/gecio.github.io"
   url: "https://gec.io/cloud-automation/gec-kubernetes-service/"
-  summary: iMKE - The first choice for Industrial and Finance clients Kubernetes.
-  tags: ["all", "professional", "coding", "infrastructure"]
-
-- name: SRE Notebook
-  logo: ""
-  role: "Editor"
-  timeline: "February 2021 - Present"
-  summary: "My random collection of Notes regarding Site Reliability Engineering"
-  repo: "https://github.com/cedi/srenotebook.git"
-  tags: ["all", "professional", "hobby"]
+  summary: GEC Kubernetes Services - The first choice for Industrial and Finance clients Kubernetes.
+  tags: ["all", "professional", "coding"]
 
 - name: KubeOne
   logo: "/images/sections/projects/kubeone.png"
@@ -72,4 +64,4 @@ projects:
   timeline: "February 2021 - Present"
   summary: "Contributing Bugfixes and Improvements back to the community"
   repo: "https://github.com/kubermatic/kubeone"
-  tags: ["all", "professional", "coding"]
+  tags: ["all", "volunteer", "coding"]
