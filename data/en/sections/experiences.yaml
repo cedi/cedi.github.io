@@ -11,6 +11,19 @@ section:
 # Your experiences
 experiences:
 - company:
+    name: Microsoft
+    url: "https://microsoft.com"
+    location: Hamburg, Germany
+  positions:
+  - designation: Senior Software Engineer - Azure Resiliency Engineering
+    start: Feb 2022
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    # end: Dec 2020
+    responsibilities:
+      #- Actively participated in various open-source projects, accomplished 99.99% service level agreements, and increased corporate security by working with onsite Red- and Blue team in Redmond. Planned and organised meetups for the Microsoft Ireland Open-Source Club.
+
+
+- company:
     name: German Edge Cloud
     url: "https://gec.io"
     location: Remote, Berlin, Frankfurt, Germany
@@ -19,9 +32,7 @@ experiences:
   positions:
   - designation: Team Lead Kubernetes SRE
     start: Jul 2020
-    # don't provide end date if you are currently working there. It will be replaced by "Present"
-    # end: Dec 2020
-    # give some points about what was your responsibilities at the company.
+    end: Jan 2022
     responsibilities:
     - Offer professional support to organisation by overseeing day-to-day activities, such as administering budgets allocated to managed Kubernetes Service, maintaining Kubernetes Infrastructure, reviewing code and design documents, and making optimal pricing structure with Head of Sales and accounting.
     - Liaised and worked in close collaboration with C-level Management for designing effective strategies and delivering high quality products and services towards customers.

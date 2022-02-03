@@ -8,12 +8,12 @@ section:
   template: sections/about.html
 
 # your designation
-designation: Team Lead Kubernetes Site Reliability Engineering
+designation: Senior Software Engineer - Resiliency Engineering
 
 # your company information
 company:
-  name: German Edge Cloud
-  url: "https://gec.io"
+  name: Microsoft
+  url: "https://microsoft.com"
 
 # your resume. this file path should be relative to you "static" directory
 resume: "files/Cedric-Kienzler-cv-revision-2.pdf"
