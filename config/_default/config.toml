@@ -1,0 +1,48 @@
+# Configuration of Academia
+# Documentation: https://sourcethemes.com/academic/
+
+title = "cedi.dev"
+baseURL = "https://cedi.dev/"
+copyright = "Copyright &copy; {year}"
+
+############################
+## Advanced options below ##
+############################
+
+# Name of Academia theme folder in `themes/`.
+theme = "academia-hugo"
+
+# Get last modified date for content from Git?
+enableGitInfo = true
+
+defaultContentLanguage = "en"
+removePathAccents = true  # Workaround for https://github.com/gohugoio/hugo/issues/5687
+
+paginate = 10  # Number of items per page in paginated lists.
+enableEmoji = true
+footnotereturnlinkcontents = "<sup>^</sup>"
+ignoreFiles = ["\\.ipynb$", ".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+[outputs]
+  home = [ "HTML", "RSS", "JSON" ]
+  section = [ "HTML", "RSS" ]
+
+# Configure BlackFriday Markdown rendering.
+#   See: https://gohugo.io/getting-started/configuration/#configure-blackfriday
+[blackfriday]
+  hrefTargetBlank = true  # `true` opens external links in a new tab. See https://github.com/gohugoio/hugo/issues/2424
+	angledQuotes = false
+	latexDashes = true
+  extensions = ["backslashLineBreak"]
+
+[imaging]
+  resampleFilter = "lanczos"
+  quality = 90
+  anchor = "smart"  # Anchor for cropping. Options include Smart and Center.
+
+# Taxonomies.
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  publication_type = "publication_types"
+  author = "authors"

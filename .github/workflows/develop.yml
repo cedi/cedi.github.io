@@ -1,8 +1,8 @@
-name: GitHub Pages
+name: GitHub Pages [DEV]
 
 on:
   push:
-    branches: [ main ]
+    branches: [ develop ]
 
 jobs:
   deploy:
@@ -40,4 +40,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           keep_files: true
-          publish_branch: site
+          publish_branch: site_develop
