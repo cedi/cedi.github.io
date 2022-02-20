@@ -1,7 +1,7 @@
 ---
 # Display name
 name: Cedric Kienzler
-avatar_image: "user-full.png"
+avatar_image: "user-2.png"
 # Username (this should match the folder name)
 authors:
 - cedi
@@ -59,11 +59,9 @@ social:
 - icon: linkedin
   icon_pack: fab
   link: https://www.linkedin.com/in/cekienzl/
-# Link to a PDF of your resume/CV from the About widget.
-# To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.  
-# - icon: cv
-#   icon_pack: ai
-#   link: files/cv.pdf
+- icon: cv
+  icon_pack: ai
+  link: /files/Cedric_Kienzler_CV.pdf
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
 email: ""
@@ -74,5 +72,11 @@ user_groups:
 - Engineers
 ---
 
-Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+Hi!
 
+I'm Cedric and I am a Senior Software Engineer from Germany, working at Microsoft on Azure.
+I am interested in distributed systems, edge computing, site reliability engineering, and working at scale. I am involved in somme stuff at the [Chaos Computer Club](https://ccc.de) where I lead the Network Operations Team at [GPN](https://de.wikipedia.org/wiki/Gulaschprogrammiernacht) for two years andhelp with the builtup and planning at various other events, like the [Chaos Communication Congress](https://en.wikipedia.org/wiki/Chaos_Communication_Congress).
+
+In my sparetime I love thinkering around with Raspberry Pis. I have a small Cluster of Pis at home running [K3s](https://k3s.io) and a [KubeOne](https://github.com/kubermatic/kubeone) cluster running in the Cloud, which I use to [contribute bugfixes to KubeOne](/project/kubeone/) and generally explore more about Kubernetes.
+
+I'm also a passionate photographer and have a small collection of analog cameras in 35mm as well as 120 medium format.
