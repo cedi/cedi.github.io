@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 0
 
       - name: Init submodules
-        run: git submodule init --update --recursive
+        run: git submodule update --init --recursive
 
       - uses: actions/cache@v2
         with:

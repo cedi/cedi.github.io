@@ -14,8 +14,8 @@ jobs:
           submodules: recursive # fetch Hugo themes
           fetch-depth: 0
 
-      - name: Fix Theme version
-        run: cd themes/toha && git checkout v1.4.0
+      - name: Init submodules
+        run: git submodule update --init --recursive
 
       - uses: actions/cache@v2
         with:
