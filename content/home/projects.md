@@ -40,9 +40,13 @@ subtitle = "ALL THINGS ARE DIFFICULT BEFORE THEY ARE EASY"
     name = "Kubernetes"
     tag = "kubernetes"
 
+  [[content.filter_button]]
+    name = "Chaos Computer Club"
+    tag = "ccc"
+
 [design]
   # Choose how many columns the section has. Valid values: 1 or 2.
-  columns = "2"
+  columns = 2
 
   # Toggle between the various page layout types.
   #   1 = List

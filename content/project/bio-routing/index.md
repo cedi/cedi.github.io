@@ -2,7 +2,6 @@
 title: BIO Routing
 summary: bio routing is a project to create a versatile, fast and reliable routing daemon in Golang.
 tags:
-- volunteer
 - coding
 
 date: "2018-04-01"

@@ -30,7 +30,7 @@ subtitle = "I AM REALLY GOOD AT"
   name = "Incident Response"
 
 [[feature]]
-  icon = "camera-retro"
-  icon_pack = "fas"
-  name = "Photography"
+  icon = "cloudscale"
+  icon_pack = "fab"
+  name = "Working at scale"
 +++

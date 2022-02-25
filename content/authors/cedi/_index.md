@@ -7,7 +7,7 @@ authors:
 - cedi
 # resume download button
 btn:
-- url : "files/Cedric_Kienzler_CV.pdf"
+- url : "/files/Cedric_Kienzler_CV.pdf"
   label : "Download CV"
 
 # Is this the primary user of the site?
@@ -22,7 +22,7 @@ organizations:
   url: "https://microsoft.com"
 
 # Short bio (displayed in user profile at end of posts)
-bio: My work focuses on resiliency engineering by leveraging monitoring and in depth reliability analysis.
+bio: My work primarily focuses on building, designing, and maintaining highly distributed systems at large scale
 
 # Should the user's education and interests be displayed?
 display_education: false
@@ -75,7 +75,7 @@ user_groups:
 Hi!
 
 I'm Cedric and I am a Senior Software Engineer from Germany, working at Microsoft on Azure.
-I am interested in distributed systems, edge computing, site reliability engineering, and working at scale. I am involved in somme stuff at the [Chaos Computer Club](https://ccc.de) where I lead the Network Operations Team at [GPN](https://de.wikipedia.org/wiki/Gulaschprogrammiernacht) for two years andhelp with the builtup and planning at various other events, like the [Chaos Communication Congress](https://en.wikipedia.org/wiki/Chaos_Communication_Congress).
+I am interested in distributed systems, edge computing, site reliability engineering, and working at scale. I am involved in somme stuff at the [Chaos Computer Club](https://ccc.de) where I led the Network Team at [GPN](https://de.wikipedia.org/wiki/Gulaschprogrammiernacht) for two years and I help with the builtup, planning, and a million other things at various events trough the year, like the [Chaos Communication Congress](https://en.wikipedia.org/wiki/Chaos_Communication_Congress).
 
 In my sparetime I love thinkering around with Raspberry Pis. I have a small Cluster of Pis at home running [K3s](https://k3s.io) and a [KubeOne](https://github.com/kubermatic/kubeone) cluster running in the Cloud, which I use to [contribute bugfixes to KubeOne](/project/kubeone/) and generally explore more about Kubernetes.
 

@@ -3,7 +3,7 @@
 
 title = "cedi.dev"
 baseURL = "https://cedi.dev/"
-copyright = "Copyright &copy; {year}"
+copyright = "Copyright &copy; {year} by Cedric Kienzler"
 
 ############################
 ## Advanced options below ##
