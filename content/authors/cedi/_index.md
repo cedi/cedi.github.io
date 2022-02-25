@@ -50,18 +50,21 @@ education:
 #   For an email link, use "fas" icon pack, "envelope" icon, and a link in the
 #   form "mailto:your-email@example.com" or "#contact" for contact widget.
 social:
-- icon: twitter
-  icon_pack: fab
-  link: https://twitter.com/c3di1
 - icon: github
   icon_pack: fab
   link: https://github.com/cedi
+- icon: twitter
+  icon_pack: fab
+  link: https://twitter.com/c3di1
 - icon: linkedin
   icon_pack: fab
   link: https://www.linkedin.com/in/cekienzl/
-- icon: cv
-  icon_pack: ai
-  link: /files/Cedric_Kienzler_CV.pdf
+- icon: instagram
+  icon_pack: fab
+  link: https://www.instagram.com/c3di1
+- icon: 500px
+  icon_pack: fab
+  link: https://500px.com/p/c_kienzler_photograpy?view=photos
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
 email: ""
