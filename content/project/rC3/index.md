@@ -16,12 +16,12 @@ image:
   focal_point: smart
 ---
 
-Offered professional support to the [rc3.world](https://rc3.world/2021/world) backend team as part of the [rC3 infrastructure team](https://infra.rc3.world), overseeing and maintaining a Kubernetes Cluster as well as the corresponding multi-staged Elixir deployment required for the remote congress experience.
+Supported the [rc3.world](https://rc3.world/2021/world) backend team as part of the [rC3 infrastructure team](https://infra.rc3.world), building and maintaining a Kubernetes Cluster as well as the corresponding multi-staged Elixir deployment required for the remote congress experience.
 
 • Orchestrated a highly available Elixir Application using Kubernetes with Kustomize, Helm, and ArgoCD
 
-• Built a multi-stage GitLab CI Pipeline to compile, verify, and deploy documentation for the Elexir application that powered the world backend to the congress 2D world
+• Built a multi-staged GitLab CI Pipeline to compile, verify, an Elexir application, as well as the documentation, that powered the 2D world backend to the congress 2D world
 
-• Coordination of deployments in close collaboration with the leadership team (PL) of the event ensuring minimal disruption during peak hours
+• Coordinated deployments in close collaboration with the leadership team (PL) of the event ensuring minimal disruption during for all users
 
-• 24h on-call responsibility during the whole event to resolve issues with deployments quickly
+• Took 24h on-call responsibility during the whole event to resolve incidents as well as smaller issues

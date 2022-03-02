@@ -12,7 +12,7 @@ date: "2021-03-01"
 external_link:
 image:
   caption: Kubermatic Logo
-  focal_point: ""
+  focal_point: "smart"
 ---
 
 [Kubermatic](https://www.kubermatic.com) Kubernetes Platform] is in an [Kubermatic Kubernetes Platform](https://github.com/kubermatic/kubermatic) to centrally manage the global automation of thousands of Kubernetes clusters across multicloud, on-prem and edge with unparalleled density and resilience.

@@ -78,8 +78,10 @@ user_groups:
 Hi!
 
 I'm Cedric and I am a Senior Software Engineer from Germany, working at Microsoft on Azure.
-I am interested in distributed systems, edge computing, site reliability engineering, and working at scale. I am involved in somme stuff at the [Chaos Computer Club](https://ccc.de) where I led the Network Team at [GPN](https://de.wikipedia.org/wiki/Gulaschprogrammiernacht) for two years and I help with the builtup, planning, and a million other things at various events trough the year, like the [Chaos Communication Congress](https://en.wikipedia.org/wiki/Chaos_Communication_Congress).
+I am interested in distributed systems, edge computing, site reliability engineering, and working at scale. I am involved in somme stuff at the [Chaos Computer Club](https://ccc.de) where I led the Network Team at [GPN](https://de.wikipedia.org/wiki/Gulaschprogrammiernacht) for two years or I help with the builtup, planning, and a million other things at various events trough the year, most notably the [Chaos Communication Congress](https://en.wikipedia.org/wiki/Chaos_Communication_Congress) at the end of every year.
+During the pandemic - when the in-person events where unable to happen - I helped to build online services like [jitsi.rocks](https://jitsi.rocks), [open-infrastructure](https://open-infrastructure.de), or the [rC3 - NOW HERE](https://rc3.world/2021/).
 
-In my sparetime I love thinkering around with Raspberry Pis. I have a small Cluster of Pis at home running [K3s](https://k3s.io) and a [KubeOne](https://github.com/kubermatic/kubeone) cluster running in the Cloud, which I use to [contribute bugfixes to KubeOne](/project/kubeone/) and generally explore more about Kubernetes.
+In my sparetime I love playing around with Kubernetes, Raspberry Pis, and various other technologies. I have a small Cluster of Pis at home, running [K3s](https://k3s.io). I also have [KubeOne](https://github.com/kubermatic/kubeone) cluster running in the Cloud, which I use to [contribute bugfixes to KubeOne](/project/kubeone/) and generally explore more about Kubernetes.
 
-I'm also a passionate photographer and have a small collection of analog cameras in 35mm as well as 120 medium format.
+I'm also a passionate photographer and have a small collection of analog cameras in 35mm as well as 120 medium format which include a Leica M6 and a Hasselblad 500 c/m.
+What makes my analoge photography even more fun is, that I develop my film myself at home where I have a small dark-room and even a enlarger for 35mm film.
