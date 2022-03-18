@@ -114,7 +114,7 @@ Now, lets get to it. We have to change the code blocks in lines [95-99][14], lin
 
 {{% expand "Before" %}}
 
-```
+```tf
 resource "hcloud_server_network" "control_plane" {
   count     = var.control_plane_replicas
   server_id = element(hcloud_server.control_plane.*.id, count.index)
@@ -161,7 +161,7 @@ We have to remove the `count` meta-argument, get rid of the `element(..., count.
 
 {{% expand "After" %}}
 
-```
+```tf
 resource "hcloud_server" "control_plane_1" {
   name               = "api-1"
   server_type        = "cx21"
@@ -298,7 +298,7 @@ If you're just starting with KubeOne, you might find a KubeOne.yaml that looks l
 
 {{% expand "a basic kubeone.yaml" %}}
 
-```
+```yaml
 apiVersion: kubeone.io/v1beta1
 kind: KubeOneCluster
 
@@ -329,7 +329,7 @@ I also ensure I set the MTU for canal correctly, as things tend to get a bit ick
 
 {{% expand "final kubeone.yaml" %}}
 
-```
+```yaml
 apiVersion: kubeone.io/v1beta1
 kind: KubeOneCluster
 
@@ -437,7 +437,7 @@ Finally, we can use a template of our machinedeployment and make use of `envsubs
 
 {{% expand "machinedeployment.yaml.tpl" %}}
 
-```
+```yaml
 apiVersion: "cluster.k8s.io/v1alpha1"
 kind: MachineDeployment
 metadata:
