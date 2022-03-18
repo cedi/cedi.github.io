@@ -35,10 +35,7 @@ projects:
 - kubeone
 
 # Set captions for image gallery.
-gallery_item:
-- album: gallery
-  caption: Default
-  image: theme-default.png
+gallery_item: []
 ---
 
 ## Introduction
