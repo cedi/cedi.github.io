@@ -79,7 +79,7 @@ Therefore, the scope of this blog post is narrowed down to bootstrapping a Kuber
 ## Reliability Tip 1: Use an odd number of API servers
 
 To get started we need to have some virtual servers running on Hetzner Cloud to install the Kubernetes API Server, etcd database and the cluster's control-plane on.
-You should stick to odd numbers of your API servers because etcd needs a majority of notes to agree on updates to the cluster state.
+You should stick to odd numbers of your API servers because etcd needs a majority of nodes to agree on updates to the cluster state.
 
 
 This majority (quorum) required for etcd is `(n/2)+1` [^1].
