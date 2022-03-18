@@ -315,7 +315,7 @@ cloudProvider:
 {{% /expand %}}
 <br/>
 
-But unfortunately on the KubeOne documentation website there isn't a great deal of information available on how to configure your KubeOne cluster in more depth.
+But unfortunately - on the KubeOne documentation website - there isn't a great deal of information available on how to configure your KubeOne cluster in more depth.
 
 But thankfully, the kubeone-cli comes with a nifty command: 
 
