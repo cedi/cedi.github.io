@@ -49,9 +49,9 @@ I know what you are thinking right now "Oh no! Not another blogpost about settin
 And yeah, I get it! There are a lot of blog-posts, tutorials, and articles already written about this topic.
 For example [shibumi][1] wrote an amazing blog-post about [Kubernetes on Hetzner in 2021][2], and there is a even a [Hetzner example terraform][3] in the [KubeOne GitHub][4].
 
-But here is the deal: while those posts and examples give you an _easy_ quick-start, they don't cover the aspects of bootstrapping a KubeOne cluster that is supposed to run in produciton some day.
+But here is the deal: while those posts and examples give you an _easy_ quick-start, they don't cover the aspects of bootstrapping a KubeOne cluster that is supposed to run in production some day.
 
-To scope the this blog-post a little bit down, I have to make a few assumptions:
+To scope this blog-post a bit down, I have to make a few assumptions:
 
 - You already have KubeOne installed on your local machine
 - You have a project on Hetzner Cloud
@@ -65,7 +65,7 @@ This is not a "definitive guide" nor should you take everything you read too ser
 
 Actually running Kubernetes in production is way harder than just reading this article. I intentionally leave out **many** details of how to actually run Kubernetes in production.
 
-Specifially, in this post I will not talk about:
+Specifically, in this post I will not talk about:
 
 - Security
 - GitOps
@@ -74,12 +74,13 @@ Specifially, in this post I will not talk about:
 
 I might dedicate future blog-posts to those topics (and hopefully remember to link them back here).
 
-Therefore the scope of this blog post is narrowed down to bootstrapping a Kubernetes Cluster using KubeOne - with somewhat sane defaults and measures taken - that will get you started on your journey to a production ready Kubernetes Cluster.
+Therefore, the scope of this blog post is narrowed down to bootstrapping a Kubernetes Cluster using KubeOne - with somewhat sane defaults and measures taken - that will get you started on your journey to a production ready Kubernetes Cluster.
 
-## Reliability Tip 1: Use a odd number of API servers
+## Reliability Tip 1: Use an odd number of API servers
 
 To get started we need to have some virtual servers running on Hetzner Cloud to install the Kubernetes API Server, etcd database and the cluster's control-plane on.
-You should stick to odd numbers of your API servers because etcd needs a mojority of notes to agree on updates to the cluster state.
+You should stick to odd numbers of your API servers because etcd needs a majority of notes to agree on updates to the cluster state.
+
 
 This majority (quorum) required for etcd is `(n/2)+1` [^1].
 
@@ -157,7 +158,7 @@ resource "hcloud_load_balancer_target" "load_balancer_target" {
 {{% /expand %}}
 <br/>
 
-We have to remove the `count` meta-argument, get rid of the `element(..., count.index)` syntax and replace everyting with actual references to explicit objects, so it looks like this:
+We have to remove the `count` meta-argument, get rid of the `element(..., count.index)` syntax and replace everything with actual references to explicit objects, so it looks like this:
 
 {{% expand "After" %}}
 
@@ -270,7 +271,8 @@ resource "hcloud_load_balancer_target" "load_balancer_target_cp3" {
 
 ## Reliability Tip 3: Use terraform remote backends
 
-I'm almost certain, every single one of you ran `terraform apply` at least once on it's local machine. I mean, after all, that is how terraform is supposed to be used, right?
+
+I'm almost certain, every single one of you ran `terraform apply` at least once on their local machine. I mean, after all, that is how terraform is supposed to be used, right?
 
 And the sad truth is, I've seen a lot of production environments that where built exactly like that: Someone ran `terraform apply` on their local machine. And hey, now we can advertise our infrastructure as "infrastructure as code". _Technically_ this migt be correct but it is certainly not what you would expect.
 
@@ -282,15 +284,18 @@ GitLab released [GitLab managed Terraform state][17] a while back [^2], adding a
 But there is still a problem with this approach: Many don't use GitLab. I use GitHub for the overwhelming majority of my work.
 And if the pipeline executes terraform for me, I can't easily run `terraform plan` on my local machine to validate changes before pushing them. Or at least not without manually downloading the tfstate first.
 
-But there is a solution that works from any CI/CD platform as well as the CLI, regardles of platform level integrations that allows for safe storage of the tfstate.
+But there is a solution that works from any CI/CD platform as well as the CLI, regardless of platform level integrations that allows for safe storage of the tfstate.
+
 And that's where the terraform [remote backend][20] comes in to play.
 
 [Backends][21] in terraform defines where the [state][18] snapshots are stored.
 
 This particular backend uses [the terraform cloud][22] to actually run terraform for you.
-Remote backends give you the greatest level of flexibility and ease as it's possible to use terraform from any (or even multiple) CI/CD pipeline plattform(s) and even your local machines without worrying about keeping tfstates, and variables in sync. All Variables (and for that matter secrets as well) are stored on the terraform cloud.
 
-You can find a tutorial on how to setup the remote backend [here][23].
+Remote backends give you the greatest level of flexibility and ease as it's possible to use terraform from any (or even multiple) CI/CD pipeline platform(s) and even your local machines without worrying about keeping tfstates, and variables in sync. All Variables (and for that matter secrets as well) are stored on the terraform cloud.
+
+You can find a tutorial on how to set up the remote backend [here][23].
+
 
 ## Reliability Tip 4: Configure your KubeOne.yaml correctly
 
@@ -324,7 +329,9 @@ kubeone config print --full
 This will show you all available config options with the defaults used.
 KubeOne does a good job with those defaults and not much configuration is needed.
 
-My kubeone.yaml now looks like this, as I want to deploy the "cluster-autoscaler" addon which comes right out of the box with KubeOne and is particularily usefull for production-ready clusters.
+
+My kubeone.yaml now looks like this, as I want to deploy the "cluster-autoscaler" addon which comes right out of the box with KubeOne and is particularly useful for production-ready clusters.
+
 I also ensure I set the MTU for canal correctly, as things tend to get a bit icky if the MTU is wrong.
 
 {{% expand "final kubeone.yaml" %}}
@@ -383,7 +390,7 @@ daemonset.apps/canal patched
 
 ## Reliability Tip 6: Deploy your worker nodes programatically
 
-KubeOne comes with a [machine-controller][30] that can programatically deploy worker-nodes to hetzner online using the cluster-api[^5].
+KubeOne comes with a [machine-controller][30] that can programmatically deploy worker-nodes to hetzner online using the cluster-api[^5].
 
 [^5]: [Kubernetes Cluster API][31]
 
@@ -414,7 +421,8 @@ In order for the machinedeployment to work correctly, we therefore need to know 
 - the cluster-version as defined in our kubeone.yaml
 - the datacenter location (ideally the same as the API servers)
 
-Luckily terraform already provides us all informations and we can obtain the terraform output in JSON format.
+
+Luckily terraform already provides us all information and we can obtain the terraform output in JSON format.
 
 ```bash
 $ terraform output -json > output.json
