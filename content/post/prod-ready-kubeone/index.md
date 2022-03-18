@@ -412,11 +412,11 @@ When we create our worker-nodes, we want to ensure:
 
 In order for the machinedeployment to work correctly, we therefore need to know a few variables:
 
-- the min and max count of worker-nodes
-- the cluster-name which is added as a label
-- the network-id to place the worker-nodes in the correct virtual network
-- the cluster-version as defined in our kubeone.yaml
-- the datacenter location (ideally the same as the API servers)
+- The min and max count of worker-nodes
+- The cluster-name which is added as a label
+- The network-id to place the worker-nodes in the correct virtual network
+- The cluster-version as defined in our kubeone.yaml
+- The datacenter location (ideally the same as the API servers)
 
 
 Luckily terraform already provides us all information and we can obtain the terraform output in JSON format.
