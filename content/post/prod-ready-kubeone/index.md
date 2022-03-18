@@ -327,7 +327,7 @@ This will show you all available config options with the defaults used.
 KubeOne does a good job with those defaults and not much configuration is needed.
 
 
-My kubeone.yaml now looks like this, as I want to deploy the "cluster-autoscaler" addon which comes right out of the box with KubeOne and is particularly useful for production-ready clusters.
+I want to deploy the "cluster-autoscaler" addon which comes right out of the box with KubeOne and is particularly useful for production-ready clusters.
 
 I also ensure I set the MTU for canal correctly, as things tend to get a bit icky if the MTU is wrong.
 
