@@ -1,7 +1,7 @@
 ---
 title: 'Bootstrapping a production ready Kubernetes on Hetzner Cloud'
 subtitle: '6 tips for creating a production ready Kubernetes cluster using KubeOne with Canal CNI on Hetzner Cloud'
-summary: Yet another blog post about bootstrapping production ready Kubernetes cluster using KubeOne on Hetzner Cloud
+summary: Bootstrapping a production ready Kubernetes cluster using Terraform and KubeOne on Hetzner Cloud running Canal CNI
 authors:
 - cedi
 tags:
@@ -13,8 +13,8 @@ tags:
 - bash
 categories:
 - kubernetes
-date: "2022-03-06T00:00:00Z"
-lastmod: "2019-04-17T00:00:00Z"
+date: "2022-03-21T00:00:00Z"
+lastmod: "2022-03-21T00:00:00Z"
 featured: true
 draft: false
 
@@ -110,7 +110,7 @@ But it allows us to upgrade one server at a time. And after every server update,
 
 Now, lets get to it. We have to change the code blocks in lines [95-99][14], lines [110-126][15], and lines [144-154][16].
 
-{{% expand "Before" %}}
+{{% expand "main.tf before" %}}
 
 ```
 resource "hcloud_server_network" "control_plane" {
@@ -157,7 +157,7 @@ resource "hcloud_load_balancer_target" "load_balancer_target" {
 
 We have to remove the `count` meta-argument, get rid of the `element(..., count.index)` syntax and replace everything with actual references to explicit objects, so it looks like this:
 
-{{% expand "After" %}}
+{{% expand "main.tf after" %}}
 
 ```
 resource "hcloud_server" "control_plane_1" {
