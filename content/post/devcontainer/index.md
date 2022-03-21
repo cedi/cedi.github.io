@@ -1,6 +1,6 @@
 ---
 title: 'Devcontainer and VScode'
-subtitle: 'Let's talk about what devcontainers are, why they are cool, and why you should start using them today'
+subtitle: 'Lets talk about what devcontainers are, why they are cool, and why you should start using them today'
 summary: 'Devcontainers are dope and you should use them in VScode today!'
 authors:
 - cedi
@@ -35,6 +35,8 @@ projects: []
 # Set captions for image gallery.
 gallery_item: []
 ---
+
+
 
 ## Introduction
 
