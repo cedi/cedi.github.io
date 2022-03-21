@@ -1,3 +1,408 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cloud on cedi.dev</title><link>https://cedi.dev/tags/cloud/</link><description>Recent content in cloud on cedi.dev</description><generator>Source Themes academia (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright &amp;copy; {year} by Cedric Kienzler</copyright><lastBuildDate>Mon, 01 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://cedi.dev/tags/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>KubeOne</title><link>https://cedi.dev/project/kubeone/</link><pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate><guid>https://cedi.dev/project/kubeone/</guid><description>&lt;p>&lt;a href="https://www.kubermatic.com">Kubermatic&lt;/a> &lt;a href="https://github.com/kubermatic/kubeone">KubeOne&lt;/a> automates cluster operations on all your cloud, on-prem, edge, and IoT environments. KubeOne can install high-available (HA) master clusters as well single master clusters.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cloud on cedi.dev</title><link>https://cedi.dev/tags/cloud/</link><description>Recent content in cloud on cedi.dev</description><generator>Source Themes academia (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright &amp;copy; {year} by Cedric Kienzler</copyright><lastBuildDate>Mon, 21 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://cedi.dev/tags/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Bootstrapping a production ready Kubernetes on Hetzner Cloud</title><link>https://cedi.dev/post/prod-ready-kubeone/</link><pubDate>Mon, 21 Mar 2022 00:00:00 +0000</pubDate><guid>https://cedi.dev/post/prod-ready-kubeone/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Hi and welcome to my first blog post on my new website.&lt;/p>
+&lt;p>I know what you are thinking right now &amp;ldquo;Oh no! Not another blogpost about setting up a Kubernetes Cluster!&amp;rdquo;.
+And yeah, I get it! There are a lot of blog-posts, tutorials, and articles already written about this topic.
+For example &lt;a href="https://shibumi.dev">shibumi&lt;/a> wrote an amazing blog-post about &lt;a href="https://shibumi.dev/posts/kubernetes-on-hetzner-in-2021">Kubernetes on Hetzner in 2021&lt;/a>, and there is a even a &lt;a href="https://github.com/kubermatic/kubeone/tree/master/examples/terraform/hetzner">Hetzner example terraform&lt;/a> in the &lt;a href="https://github.com/kubermatic/kubeone">KubeOne GitHub&lt;/a>.&lt;/p>
+&lt;p>But here is the deal: while those posts and examples give you an &lt;em>easy&lt;/em> quick-start, they don&amp;rsquo;t cover the aspects of bootstrapping a KubeOne cluster that is supposed to run in production some day.&lt;/p>
+&lt;p>To scope this blog-post a bit down, I have to make a few assumptions:&lt;/p>
+&lt;ul>
+&lt;li>You already have KubeOne installed on your local machine&lt;/li>
+&lt;li>You have a project on Hetzner Cloud&lt;/li>
+&lt;li>You have already created a Hetzner API Token for your Project with read+write permissions, or you are able to do so&lt;/li>
+&lt;li>You want to use &lt;strong>Canal&lt;/strong> as your CNI of choice and not Cilium which was recently added in &lt;a href="https://github.com/kubermatic/kubeone/releases/tag/v1.4.0">KubeOne 1.4&lt;/a>.&lt;/li>
+&lt;li>You are familiar with &lt;a href="https://www.terraform.io">terraform&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="preface-and-acknowledgements">Preface and Acknowledgements&lt;/h2>
+&lt;p>This is not a &amp;ldquo;definitive guide&amp;rdquo; nor should you take everything you read too serious. I might be wrong or too opinionated about stuff.&lt;/p>
+&lt;p>Actually running Kubernetes in production is way harder than just reading this article. I intentionally leave out &lt;strong>many&lt;/strong> details of how to actually run Kubernetes in production.&lt;/p>
+&lt;p>Specifically, in this post I will not talk about:&lt;/p>
+&lt;ul>
+&lt;li>Security&lt;/li>
+&lt;li>GitOps&lt;/li>
+&lt;li>Disaster recovery&lt;/li>
+&lt;li>Monitoring here&lt;/li>
+&lt;/ul>
+&lt;p>I might dedicate future blog-posts to those topics (and hopefully remember to link them back here).&lt;/p>
+&lt;p>Therefore, the scope of this blog post is narrowed down to bootstrapping a Kubernetes Cluster using KubeOne - with somewhat sane defaults and measures taken - that will get you started on your journey to a production ready Kubernetes Cluster.&lt;/p>
+&lt;h2 id="reliability-tip-1-use-an-odd-number-of-api-servers">Reliability Tip 1: Use an odd number of API servers&lt;/h2>
+&lt;p>To get started we need to have some virtual servers running on Hetzner Cloud to install the Kubernetes API Server, etcd database and the cluster&amp;rsquo;s control-plane on.
+You should stick to odd numbers of your API servers because etcd needs a majority of nodes to agree on updates to the cluster state.&lt;/p>
+&lt;p>This majority (quorum) required for etcd is &lt;code>(n/2)+1&lt;/code> &lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>.&lt;/p>
+&lt;p>The &lt;a href="https://etcd.io/docs/v3.3/faq/#why-an-odd-number-of-cluster-members">etcd FAQ&lt;/a> page describes it:&lt;/p>
+&lt;blockquote>
+&lt;p>For any odd-sized cluster, adding one node will always increase the number of nodes necessary for quorum. Although adding a node to an odd-sized cluster appears better since there are more machines, the fault tolerance is worse since exactly the same number of nodes may fail without losing quorum but there are more nodes that can fail. If the cluster is in a state where it can’t tolerate any more failures, adding a node before removing nodes is dangerous because if the new node fails to register with the cluster (e.g., the address is misconfigured), quorum will be permanently lost.&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="reliability-tip-2-dont-use-the-count-meta-argument-of-terraform">Reliability Tip 2: Don&amp;rsquo;t use the &lt;code>count&lt;/code> meta-argument of terraform&lt;/h2>
+&lt;p>Fortunate for us, KubeOne comes with a great set of &lt;a href="https://github.com/kubermatic/kubeone/tree/master/examples/terraform/">examples&lt;/a> for using terraform to set up your infrastructure. We will use the &lt;a href="https://github.com/kubermatic/kubeone/tree/master/examples/terraform/hetzner">hetzner example&lt;/a> as a base and customize it a bit.
+It comes with mostly sane defaults and best practices out of the box, including a firewall and a &lt;a href="https://docs.hetzner.com/cloud/placement-groups/overview">placement group&lt;/a> for our control-plane nodes to ensure higher reliability.&lt;/p>
+&lt;p>But there is a problem with this example: The usage of the &lt;a href="https://www.terraform.io/language/meta-arguments/count">&lt;code>count&lt;/code> meta-argument&lt;/a> for the &lt;a href="https://github.com/kubermatic/kubeone/blob/bbdceaff5ab1d3360f7455ab5f81dbfde73bf161/examples/terraform/hetzner/main.tf#L111">hcloud_server&lt;/a> definition.&lt;/p>
+&lt;p>At first this seems absolutely valid and an easy fix for avoiding duplicate code. But the devil lies within the details as you&amp;rsquo;re about to find out.&lt;/p>
+&lt;p>Let&amp;rsquo;s say we want to change the location of our servers, update the base images of our servers, or add/remove an SSH key.
+All those changes got something in common:
+They will absolutely destroy and re-create the server.&lt;/p>
+&lt;p>But because we are using the &lt;code>count&lt;/code> meta-argument, we cannot update (re-create) only one server at a time. We can only replace all servers simultanously.&lt;/p>
+&lt;p>KubeOne deploys the &lt;a href="https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/">etcd&lt;/a> database on the API servers, which means if we loose all three API server nodes at the same time, we will loose all three etcd database replicas as well. And if we loose etcd, we loose our entire cluster.&lt;/p>
+&lt;p>Therefore, we need to replace everything with a &lt;code>count&lt;/code> meta-argument with an explicit object.
+Yes, this causes code duplication.
+But it allows us to upgrade one server at a time. And after every server update, we can re-run &lt;code>kubeone&lt;/code> to repair (or &lt;em>reconcile&lt;/em>) our cluster. By doing so, we perform a &lt;em>rolling update&lt;/em> of our control plane without loosing any data.&lt;/p>
+&lt;p>Now, lets get to it. We have to change the code blocks in lines &lt;a href="https://github.com/kubermatic/kubeone/blob/56f84d7c6c98760042a37aea2614fac3c783812c/examples/terraform/hetzner/main.tf#L95-L99">95-99&lt;/a>, lines &lt;a href="https://github.com/kubermatic/kubeone/blob/56f84d7c6c98760042a37aea2614fac3c783812c/examples/terraform/hetzner/main.tf#L110-L126">110-126&lt;/a>, and lines &lt;a href="https://github.com/kubermatic/kubeone/blob/56f84d7c6c98760042a37aea2614fac3c783812c/examples/terraform/hetzner/main.tf#L144-L154">144-154&lt;/a>.&lt;/p>
+&lt;p>
+&lt;div class="expand">
+&lt;div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+&lt;i style="font-size:x-small;" class="fas fa-chevron-right">&lt;/i>
+&lt;span>
+main.tf before
+&lt;/span>
+&lt;/div>
+&lt;div class="expand-content" style="display: none;">
+&lt;pre tabindex="0">&lt;code>resource &amp;#34;hcloud_server_network&amp;#34; &amp;#34;control_plane&amp;#34; {
+count = var.control_plane_replicas
+server_id = element(hcloud_server.control_plane.*.id, count.index)
+subnet_id = hcloud_network_subnet.kubeone.id
+}
+resource &amp;#34;hcloud_server&amp;#34; &amp;#34;control_plane&amp;#34; {
+count = var.control_plane_replicas
+name = &amp;#34;${var.cluster_name}-control-plane-${count.index + 1}&amp;#34;
+server_type = var.control_plane_type
+image = var.image
+location = var.datacenter
+placement_group_id = hcloud_placement_group.control_plane.id
+ssh_keys = [
+hcloud_ssh_key.kubeone.id,
+]
+labels = {
+&amp;#34;kubeone_cluster_name&amp;#34; = var.cluster_name
+&amp;#34;role&amp;#34; = &amp;#34;api&amp;#34;
+}
+}
+resource &amp;#34;hcloud_load_balancer_target&amp;#34; &amp;#34;load_balancer_target&amp;#34; {
+count = var.control_plane_replicas
+type = &amp;#34;server&amp;#34;
+load_balancer_id = hcloud_load_balancer.load_balancer.id
+server_id = element(hcloud_server.control_plane.*.id, count.index)
+use_private_ip = true
+depends_on = [
+hcloud_server_network.control_plane,
+hcloud_load_balancer_network.load_balancer
+]
+}
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/div>
+&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;p>We have to remove the &lt;code>count&lt;/code> meta-argument, get rid of the &lt;code>element(..., count.index)&lt;/code> syntax and replace everything with actual references to explicit objects, so it looks like this:&lt;/p>
+&lt;p>
+&lt;div class="expand">
+&lt;div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+&lt;i style="font-size:x-small;" class="fas fa-chevron-right">&lt;/i>
+&lt;span>
+main.tf after
+&lt;/span>
+&lt;/div>
+&lt;div class="expand-content" style="display: none;">
+&lt;pre tabindex="0">&lt;code>resource &amp;#34;hcloud_server&amp;#34; &amp;#34;control_plane_1&amp;#34; {
+name = &amp;#34;api-1&amp;#34;
+server_type = &amp;#34;cx21&amp;#34;
+image = &amp;#34;ubuntu-20.04&amp;#34;
+location = &amp;#34;nbg1&amp;#34;
+placement_group_id = hcloud_placement_group.control_plane_placement.id
+ssh_keys = [
+hcloud_ssh_key.cedi_mae.name
+]
+labels = {
+&amp;#34;cluster&amp;#34; = &amp;#34;k1&amp;#34;
+&amp;#34;role&amp;#34; = &amp;#34;api&amp;#34;
+}
+}
+resource &amp;#34;hcloud_server_network&amp;#34; &amp;#34;control_plane_1&amp;#34; {
+server_id = hcloud_server.control_plane_1.id
+subnet_id = hcloud_network_subnet.kubeone.id
+}
+resource &amp;#34;hcloud_load_balancer_target&amp;#34; &amp;#34;load_balancer_target_cp1&amp;#34; {
+type = &amp;#34;server&amp;#34;
+load_balancer_id = hcloud_load_balancer.load_balancer.id
+server_id = hcloud_server.control_plane_1.id
+use_private_ip = true
+depends_on = [
+hcloud_server_network.control_plane_1,
+hcloud_load_balancer_network.load_balancer,
+hcloud_server.control_plane_1
+]
+}
+resource &amp;#34;hcloud_server&amp;#34; &amp;#34;control_plane_2&amp;#34; {
+name = &amp;#34;api-2&amp;#34;
+server_type = &amp;#34;cx21&amp;#34;
+image = &amp;#34;ubuntu-20.04&amp;#34;
+location = &amp;#34;nbg1&amp;#34;
+placement_group_id = hcloud_placement_group.control_plane_placement.id
+ssh_keys = [
+hcloud_ssh_key.cedi_mae.name
+]
+labels = {
+&amp;#34;cluster&amp;#34; = &amp;#34;k1&amp;#34;
+&amp;#34;role&amp;#34; = &amp;#34;api&amp;#34;
+}
+}
+resource &amp;#34;hcloud_server_network&amp;#34; &amp;#34;control_plane_2&amp;#34; {
+server_id = hcloud_server.control_plane_2.id
+subnet_id = hcloud_network_subnet.kubeone.id
+}
+resource &amp;#34;hcloud_load_balancer_target&amp;#34; &amp;#34;load_balancer_target_cp2&amp;#34; {
+type = &amp;#34;server&amp;#34;
+load_balancer_id = hcloud_load_balancer.load_balancer.id
+server_id = hcloud_server.control_plane_2.id
+use_private_ip = true
+depends_on = [
+hcloud_server_network.control_plane_2,
+hcloud_load_balancer_network.load_balancer,
+hcloud_server.control_plane_2
+]
+}
+resource &amp;#34;hcloud_server&amp;#34; &amp;#34;control_plane_3&amp;#34; {
+name = &amp;#34;api-3&amp;#34;
+server_type = &amp;#34;cx21&amp;#34;
+image = &amp;#34;ubuntu-20.04&amp;#34;
+location = &amp;#34;nbg1&amp;#34;
+placement_group_id = hcloud_placement_group.control_plane_placement.id
+ssh_keys = [
+hcloud_ssh_key.cedi_mae.name
+]
+labels = {
+&amp;#34;cluster&amp;#34; = &amp;#34;k1&amp;#34;
+&amp;#34;role&amp;#34; = &amp;#34;api&amp;#34;
+}
+}
+resource &amp;#34;hcloud_server_network&amp;#34; &amp;#34;control_plane_3&amp;#34; {
+server_id = hcloud_server.control_plane_3.id
+subnet_id = hcloud_network_subnet.kubeone.id
+}
+resource &amp;#34;hcloud_load_balancer_target&amp;#34; &amp;#34;load_balancer_target_cp3&amp;#34; {
+type = &amp;#34;server&amp;#34;
+load_balancer_id = hcloud_load_balancer.load_balancer.id
+server_id = hcloud_server.control_plane_3.id
+use_private_ip = true
+depends_on = [
+hcloud_server_network.control_plane_3,
+hcloud_load_balancer_network.load_balancer,
+hcloud_server.control_plane_3
+]
+}
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/div>
+&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;h2 id="reliability-tip-3-use-terraform-remote-backends">Reliability Tip 3: Use terraform remote backends&lt;/h2>
+&lt;p>I&amp;rsquo;m almost certain, every single one of you ran &lt;code>terraform apply&lt;/code> at least once on their local machine. I mean, after all, that is how terraform is supposed to be used, right?&lt;/p>
+&lt;p>And the sad truth is, I&amp;rsquo;ve seen a lot of production environments that where built exactly like that: Someone ran &lt;code>terraform apply&lt;/code> on their local machine. And hey, now we can advertise our infrastructure as &amp;ldquo;infrastructure as code&amp;rdquo;. &lt;em>Technically&lt;/em> this migt be correct but it is certainly not what you would expect.&lt;/p>
+&lt;p>To us &amp;ldquo;DevOps&amp;rdquo; or &amp;ldquo;SRE&amp;rdquo; folks it is obvious to run terraform from a CI/CD pipeline.&lt;/p>
+&lt;p>GitLab released &lt;a href="https://docs.gitlab.com/ee/user/infrastructure/iac/terraform_state.html">GitLab managed Terraform state&lt;/a> a while back &lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>, adding a feature allowing you to securely store your &lt;a href="https://www.terraform.io/language/state">tfstate&lt;/a> within GitLab.&lt;/p>
+&lt;p>But there is still a problem with this approach: Many don&amp;rsquo;t use GitLab. I use GitHub for the overwhelming majority of my work.
+And if the pipeline executes terraform for me, I can&amp;rsquo;t easily run &lt;code>terraform plan&lt;/code> on my local machine to validate changes before pushing them. Or at least not without manually downloading the tfstate first.&lt;/p>
+&lt;p>But there is a solution that works from any CI/CD platform as well as the CLI, regardless of platform level integrations that allows for safe storage of the tfstate.&lt;/p>
+&lt;p>And that&amp;rsquo;s where the terraform &lt;a href="https://www.terraform.io/language/settings/backends/remote">remote backend&lt;/a> comes in to play.&lt;/p>
+&lt;p>&lt;a href="https://www.terraform.io/language/settings/backends">Backends&lt;/a> in terraform defines where the &lt;a href="https://www.terraform.io/language/state">state&lt;/a> snapshots are stored.&lt;/p>
+&lt;p>This particular backend uses &lt;a href="https://app.terraform.io">the terraform cloud&lt;/a> to actually run terraform for you.&lt;/p>
+&lt;p>Remote backends give you the greatest level of flexibility and ease as it&amp;rsquo;s possible to use terraform from any (or even multiple) CI/CD pipeline platform(s) and even your local machines without worrying about keeping tfstates, and variables in sync. All Variables (and for that matter secrets as well) are stored on the terraform cloud.&lt;/p>
+&lt;p>You can find a tutorial on how to set up the remote backend &lt;a href="https://learn.hashicorp.com/tutorials/terraform/github-actions">here&lt;/a>.&lt;/p>
+&lt;h2 id="reliability-tip-4-configure-your-kubeoneyaml-correctly">Reliability Tip 4: Configure your KubeOne.yaml correctly&lt;/h2>
+&lt;p>If you&amp;rsquo;re just starting with KubeOne, you might find a KubeOne.yaml that looks like this:&lt;/p>
+&lt;p>
+&lt;div class="expand">
+&lt;div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+&lt;i style="font-size:x-small;" class="fas fa-chevron-right">&lt;/i>
+&lt;span>
+a basic kubeone.yaml
+&lt;/span>
+&lt;/div>
+&lt;div class="expand-content" style="display: none;">
+&lt;pre tabindex="0">&lt;code>apiVersion: kubeone.io/v1beta1
+kind: KubeOneCluster
+versions:
+kubernetes: &amp;#39;1.19.3&amp;#39;
+cloudProvider:
+hetzner: {}
+external: true
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/div>
+&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;p>But unfortunately - on the KubeOne documentation website - there isn&amp;rsquo;t a great deal of information available on how to configure your KubeOne cluster in more depth.&lt;/p>
+&lt;p>But thankfully, the kubeone-cli comes with a nifty command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>kubeone config print --full
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will show you all available config options with the defaults used.
+KubeOne does a good job with those defaults and not much configuration is needed.&lt;/p>
+&lt;p>I want to deploy the &amp;ldquo;cluster-autoscaler&amp;rdquo; addon which comes right out of the box with KubeOne and is particularly useful for production-ready clusters.&lt;/p>
+&lt;p>I also ensure I set the MTU for canal correctly, as things tend to get a bit icky if the MTU is wrong.&lt;/p>
+&lt;div class="expand">
+&lt;div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+&lt;i style="font-size:x-small;" class="fas fa-chevron-right">&lt;/i>
+&lt;span>
+final kubeone.yaml
+&lt;/span>
+&lt;/div>
+&lt;div class="expand-content" style="display: none;">
+&lt;pre tabindex="0">&lt;code>apiVersion: kubeone.io/v1beta1
+kind: KubeOneCluster
+versions:
+kubernetes: &amp;#39;1.23.1&amp;#39;
+clusterNetwork:
+cni:
+canal:
+mtu: 1400 # Hetzner specific 1450 bytes - 50 VXLAN bytes
+cloudProvider:
+hetzner: {}
+external: true
+addons:
+enable: true
+path: &amp;#34;./addons&amp;#34;
+addons:
+- name: cluster-autoscaler
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/div>
+&lt;h2 id="reliability-tip-5-configure-canal-to-not-listen-on-the-public-network-interface">Reliability Tip 5: Configure Canal to not listen on the public network interface&lt;/h2>
+&lt;p>Well, technically not &lt;code>canal&lt;/code> itself but &lt;code>flanel&lt;/code> which is a part of &lt;code>canal&lt;/code>. Remember: &lt;code>canal&lt;/code> is just a combination of &lt;code>calico&lt;/code> and &lt;code>flanel&lt;/code> &lt;sup id="fnref:3">&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref">3&lt;/a>&lt;/sup>&lt;/p>
+&lt;p>The flanel backend which is shipped as part of your canal CNI installation is by default binding on your internet facing &lt;code>eth0&lt;/code> port&lt;sup id="fnref:4">&lt;a href="#fn:4" class="footnote-ref" role="doc-noteref">4&lt;/a>&lt;/sup>. This is absolutely not what you want!&lt;/p>
+&lt;p>I was made aware of the problem by this GitHub issue: &lt;a href="https://github.com/hetznercloud/csi-driver/issues/204#issuecomment-849429229">hetznercloud/csi-driver#204&lt;/a>&lt;/p>
+&lt;blockquote>
+&lt;p>Is it possible that your Kubernetes nodes use their public IPs (and interfaces) instead of a private network for communication between the nodes?
+&amp;ndash; &lt;em>&lt;a href="https://github.com/ekeih">Max Rosin (@ekeih)&lt;/a>&lt;/em>&lt;/p>
+&lt;/blockquote>
+&lt;p>and a solution for the problem was pointed out in &lt;a href="https://github.com/hetznercloud/csi-driver/issues/204#issuecomment-849567869">this comment&lt;/a>:&lt;/p>
+&lt;blockquote>
+&lt;p>In my setup I use -iface-regex=10.0.&lt;em>.&lt;/em> in flannel daemonset
+&amp;ndash; &lt;em>&lt;a href="https://github.com/jekakm">Evgeniy Gurinovich (@jekakm)&lt;/a>&lt;/em>&lt;/p>
+&lt;/blockquote>
+&lt;p>The fix can be applied relatively easy via &lt;code>kubectl patch&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl patch daemonset --namespace kube-system canal --type&lt;span style="color:#f92672">=&lt;/span>json -p&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;[{&amp;#34;op&amp;#34;: &amp;#34;add&amp;#34;, &amp;#34;path&amp;#34;: &amp;#34;/spec/template/spec/containers/1/command/-&amp;#34;, &amp;#34;value&amp;#34;: &amp;#34;-iface-regex=10\\.0\\.*\\.*&amp;#34;}]&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>daemonset.apps/canal patched
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>(It is totally possible to add a step to your CI/CD pipeline that applies the mitigation for you, after you created (or reconciled) your KubeOne cluster)&lt;/p>
+&lt;h2 id="reliability-tip-6-deploy-your-worker-nodes-programatically">Reliability Tip 6: Deploy your worker nodes programatically&lt;/h2>
+&lt;p>KubeOne comes with a &lt;a href="https://github.com/kubermatic/machine-controller">machine-controller&lt;/a> that can programmatically deploy worker-nodes to hetzner online using the cluster-api&lt;sup id="fnref:5">&lt;a href="#fn:5" class="footnote-ref" role="doc-noteref">5&lt;/a>&lt;/sup>.&lt;/p>
+&lt;p>KubeOne automagically creates a default &lt;a href="https://cluster-api.sigs.k8s.io/developer/architecture/controllers/machine-deployment.html">machine-deployment&lt;/a> for you.&lt;/p>
+&lt;p>It&amp;rsquo;s a good start, but we can do better.
+Honestly, I just wouldn&amp;rsquo;t bother modifying the existing machine deployment and just get rid of it:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl --namespace kube-system delete machinedeployment prod-ready-pool1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>machinedeployments.cluster.k8s.io/prod-ready-pool1 deleted
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Better create a new machinedeployment.yaml which you should add to your Git-Repo to keep your config in sync.&lt;/p>
+&lt;p>When we create our worker-nodes, we want to ensure:&lt;/p>
+&lt;ul>
+&lt;li>To set annotations for cluster-autoscaler correctly to dynamically scale our worker-nodes&lt;/li>
+&lt;li>Deploy our SSH keys to the worker-nodes, allowing easier troubleshooting&lt;/li>
+&lt;li>Our worker-nodes are placed in our virtual network&lt;/li>
+&lt;li>Labels are added to our worker-nodes, so the hetzner firewall can filter traffic to the worker-nodes as well&lt;/li>
+&lt;/ul>
+&lt;p>In order for the machinedeployment to work correctly, we therefore need to know a few variables:&lt;/p>
+&lt;ul>
+&lt;li>The min and max count of worker-nodes&lt;/li>
+&lt;li>The cluster-name which is added as a label&lt;/li>
+&lt;li>The network-id to place the worker-nodes in the correct virtual network&lt;/li>
+&lt;li>The cluster-version as defined in our kubeone.yaml&lt;/li>
+&lt;li>The datacenter location (ideally the same as the API servers)&lt;/li>
+&lt;/ul>
+&lt;p>Luckily terraform already provides us all information and we can obtain the terraform output in JSON format.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ terraform output -json &amp;gt; output.json
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>And now we can determine most of the variables by using a little &lt;code>jq&lt;/code> magic:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>export AUTOSCALER_MIN&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export AUTOSCALER_MAX&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">3&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export NETWORK_ID&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">`&lt;/span>jq -r &lt;span style="color:#e6db74">&amp;#39;.kubeone_hosts.value.control_plane.network_id&amp;#39;&lt;/span> output.json&lt;span style="color:#e6db74">`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export CLUSTER_NAME&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">`&lt;/span>jq -r &lt;span style="color:#e6db74">&amp;#39;.kubeone_hosts.value.control_plane.cluster_name&amp;#39;&lt;/span> output.json&lt;span style="color:#e6db74">`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export CLUSTER_VERSION&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">`&lt;/span>yq e -j &amp;lt; kubeone.yaml | jq -r &lt;span style="color:#e6db74">&amp;#39;.versions.kubernetes&amp;#39;&lt;/span>&lt;span style="color:#e6db74">`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export DATACENTER_LOCATION&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">`&lt;/span>jq -r &lt;span style="color:#e6db74">&amp;#39;.control_plane_info.value.location&amp;#39;&lt;/span> output.json&lt;span style="color:#e6db74">`&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Finally, we can use a template of our machinedeployment and make use of &lt;code>envsubst&lt;/code> to render our template&lt;sup id="fnref:6">&lt;a href="#fn:6" class="footnote-ref" role="doc-noteref">6&lt;/a>&lt;/sup>:&lt;/p>
+&lt;p>
+&lt;div class="expand">
+&lt;div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+&lt;i style="font-size:x-small;" class="fas fa-chevron-right">&lt;/i>
+&lt;span>
+machinedeployment.yaml.tpl
+&lt;/span>
+&lt;/div>
+&lt;div class="expand-content" style="display: none;">
+&lt;pre tabindex="0">&lt;code>apiVersion: &amp;#34;cluster.k8s.io/v1alpha1&amp;#34;
+kind: MachineDeployment
+metadata:
+name: &amp;#34;${CLUSTER_NAME}-node-pool&amp;#34;
+namespace: &amp;#34;kube-system&amp;#34;
+annotations:
+cluster.k8s.io/cluster-api-autoscaler-node-group-min-size: &amp;#34;${AUTOSCALER_MIN}&amp;#34;
+cluster.k8s.io/cluster-api-autoscaler-node-group-max-size: &amp;#34;${AUTOSCALER_MAX}&amp;#34;
+spec:
+paused: false
+replicas: ${AUTOSCALER_MIN}
+strategy:
+type: RollingUpdate
+rollingUpdate:
+maxSurge: 20%
+maxUnavailable: 10%
+minReadySeconds: 60
+selector:
+matchLabels:
+node: &amp;#34;${CLUSTER_NAME}&amp;#34;
+template:
+metadata:
+labels:
+node: &amp;#34;${CLUSTER_NAME}&amp;#34;
+spec:
+providerSpec:
+value:
+cloudProvider: &amp;#34;hetzner&amp;#34;
+cloudProviderSpec:
+token:
+secretKeyRef:
+namespace: kube-system
+name: cloud-provider-credentials
+key: HZ_TOKEN
+labels:
+role: worker
+cluster: &amp;#34;${CLUSTER_NAME}&amp;#34;
+serverType: &amp;#34;cpx31&amp;#34;
+location: &amp;#34;${DATACENTER_LOCATION}&amp;#34;
+image: &amp;#34;ubuntu-20.04&amp;#34;
+networks:
+- &amp;#34;${NETWORK_ID}&amp;#34;
+operatingSystem: &amp;#34;ubuntu&amp;#34;
+operatingSystemSpec:
+distUpgradeOnBoot: false
+sshPublicKeys:
+- ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOO9DMiwRjCCWvMA9TKYxRApgQx3g+owxkq9jy1YyjGN cedi@mae
+versions:
+kubelet: &amp;#34;${CLUSTER_VERSION}&amp;#34;
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/div>
+&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>envsubst &amp;lt; ./machinedeployment.yaml.tpl &amp;gt; ./machinedeployment.yaml
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="further-reads--additional-links-and-ressources">Further Reads / Additional links and ressources&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://www.terraform.io/language/meta-arguments/count">terraform.io/language/meta-arguments/count&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://tomharrisonjr.com/terraform-count-is-a-miserable-hack-d58a6ffbf422">tomharrisonjr.com - Terraform count is a Miserable Hack&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/hetznercloud/csi-driver/issues/204#issuecomment-849429229">GitHub.com - [hashicorp/terraform#3885] Changing count of instances destroys all of them&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.weave.works/blog/the-definitive-guide-to-kubernetes-in-production">The Definitive Guide to Kubernetes in Production&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://kasunindrasiri.medium.com/understanding-raft-distributed-consensus-242ec1d2f521">Understanding Distributed Consensus with Raft&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;section class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1" role="doc-endnote">
+&lt;p>&lt;a href="https://kasunindrasiri.medium.com/understanding-raft-distributed-consensus-242ec1d2f521">Diego Ongaro and John Ousterhout, In Search of an Understandable Consensus Algorithm (Extended Version), Stanford University&lt;/a>&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:2" role="doc-endnote">
+&lt;p>&lt;a href="https://about.gitlab.com/releases/2020/05/22/gitlab-13-0-released/">GitLab 13.0 released with Gitaly Clusters, Epic Hierarchy on Roadmaps, and Auto Deploy to ECS&lt;/a>&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:3" role="doc-endnote">
+&lt;p>&lt;a href="https://www.suse.com/c/rancher_blog/comparing-kubernetes-cni-providers-flannel-calico-canal-and-weave/">Comparing Kubernetes CNI Providers: Flannel, Calico, Canal, and Weave, Rancher Blog, Suse&lt;/a>&amp;#160;&lt;a href="#fnref:3" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:4" role="doc-endnote">
+&lt;p>&lt;a href="https://github.com/flannel-io/flannel/blob/master/Documentation/configuration.md#key-command-line-options">flanel configuration, flanel documentation, GitHub&lt;/a>&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:5" role="doc-endnote">
+&lt;p>&lt;a href="https://cluster-api.sigs.k8s.io">Kubernetes Cluster API&lt;/a>&amp;#160;&lt;a href="#fnref:5" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:6" role="doc-endnote">
+&lt;p>&lt;a href="https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html">Invoking the envsubst program&lt;/a>&amp;#160;&lt;a href="#fnref:6" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/section></description></item><item><title>KubeOne</title><link>https://cedi.dev/project/kubeone/</link><pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate><guid>https://cedi.dev/project/kubeone/</guid><description>&lt;p>&lt;a href="https://www.kubermatic.com">Kubermatic&lt;/a> &lt;a href="https://github.com/kubermatic/kubeone">KubeOne&lt;/a> automates cluster operations on all your cloud, on-prem, edge, and IoT environments. KubeOne can install high-available (HA) master clusters as well single master clusters.&lt;/p>
 &lt;p>All user documentation for the latest stable version is available at the &lt;a href="https://docs.kubermatic.com/kubeone/master/">KubeOne docs website&lt;/a>.&lt;/p></description></item><item><title>Kubermatic Kubernetes Platform</title><link>https://cedi.dev/project/kkp/</link><pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate><guid>https://cedi.dev/project/kkp/</guid><description>&lt;p>&lt;a href="https://www.kubermatic.com">Kubermatic&lt;/a> Kubernetes Platform] is in an &lt;a href="https://github.com/kubermatic/kubermatic">Kubermatic Kubernetes Platform&lt;/a> to centrally manage the global automation of thousands of Kubernetes clusters across multicloud, on-prem and edge with unparalleled density and resilience.&lt;/p>
 &lt;p>All user documentation is available at the &lt;a href="https://docs.kubermatic.com/kubermatic/master/">Kubermatic Kubernetes Platform docs website&lt;/a>.&lt;/p></description></item></channel></rss>

@@ -1,0 +1,279 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Source Themes Academia 4.3.1"><meta name=generator content="Hugo 0.94.2"><meta name=author content="Cedric Kienzler"><meta name=description content="Bootstrapping a production ready Kubernetes cluster using Terraform and KubeOne on Hetzner Cloud running Canal CNI"><link rel=alternate hreflang=en-us href=https://cedi.dev/post/prod-ready-kubeone/><meta name=theme-color content="hsl(339, 90%, 68%)"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.6.0/css/all.css integrity=sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css crossorigin=anonymous title=hl-light><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css crossorigin=anonymous title=hl-dark disabled><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap"><link rel=stylesheet href=/css/academia.min.f061a21f63bf4b7a5a9dd13669fcb02e.css><link rel=manifest href=/site.webmanifest><link rel=icon type=image/png href=/img/icon.png><link rel=apple-touch-icon type=image/png href=/img/icon-192.png><link rel=canonical href=https://cedi.dev/post/prod-ready-kubeone/><meta property="twitter:card" content="summary"><meta property="twitter:site" content="@c3di1"><meta property="twitter:creator" content="@c3di1"><meta property="og:site_name" content="cedi.dev"><meta property="og:url" content="https://cedi.dev/post/prod-ready-kubeone/"><meta property="og:title" content="Bootstrapping a production ready Kubernetes on Hetzner Cloud | cedi.dev"><meta property="og:description" content="Bootstrapping a production ready Kubernetes cluster using Terraform and KubeOne on Hetzner Cloud running Canal CNI"><meta property="og:image" content="https://cedi.dev/img/icon-192.png"><meta property="twitter:image" content="https://cedi.dev/img/icon-192.png"><meta property="og:locale" content="en-us"><meta property="article:published_time" content="2022-03-21T00:00:00+00:00"><meta property="article:modified_time" content="2022-03-21T10:04:36+01:00"><title>Bootstrapping a production ready Kubernetes on Hetzner Cloud | cedi.dev</title></head><body id=top data-spy=scroll data-target=#TableOfContents data-offset=71 class=dark><aside class=search-results id=search><div class=container><section class=search-header><div class="row no-gutters justify-content-between mb-3"><div class=col-6><h1>Search</h1></div><div class="col-6 col-search-close"><a class=js-search href=#><i class="fas fa-times-circle text-muted" aria-hidden=true></i></a></div></div><div id=search-box><input name=q id=search-query placeholder=Search... autocapitalize=off autocomplete=off autocorrect=off role=textbox spellcheck=false type=search></div></section><section class=section-search-results><div id=search-hits></div></section></div></aside><nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id=navbar-main><div class=container><a class=navbar-brand href=/>cedi.dev</a>
+<button type=button class=navbar-toggler data-toggle=collapse data-target=#navbar aria-controls=navbar aria-expanded=false aria-label="Toggle navigation"><span><i class="fas fa-bars"></i></span></button><div class="collapse navbar-collapse" id=navbar><ul class="navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/#hero><span>Home</span></a></li><li class=nav-item><a class=nav-link href=/#skills><span>Skills</span></a></li><li class=nav-item><a class=nav-link href=/#accomplishments><span>Accomplishments</span></a></li><li class=nav-item><a class=nav-link href=/#posts><span>Posts</span></a></li><li class=nav-item><a class=nav-link href=/#projects><span>Projects</span></a></li><li class=nav-item><a class=nav-link href=/#featured><span>Publications</span></a></li><li class=nav-item><a class=nav-link href=/#experience><span>Experience</span></a></li><li class=nav-item><a class="nav-link js-search" href=#><i class="fas fa-search" aria-hidden=true></i></a></li><li class=nav-item><a class="nav-link js-dark-toggle" href=#><i class="fas fa-moon" aria-hidden=true></i></a></li></ul></div></div></nav><article class="article py-5" itemscope itemtype=http://schema.org/Article><div class="article-container py-3"><h1 itemprop=name>Bootstrapping a production ready Kubernetes on Hetzner Cloud</h1><p class=page-subtitle>6 tips for creating a production ready Kubernetes cluster using KubeOne with Canal CNI on Hetzner Cloud</p><meta content="2022-03-21 00:00:00 +0000 UTC" itemprop=datePublished><meta content="2022-03-21 10:04:36 +0100 +0100" itemprop=dateModified><div class=article-metadata><div><span itemprop="author name" itemtype=http://schema.org/Person><a href=/authors/cedi/>Cedric Kienzler</a></span></div><span class=article-date>Last updated on
+<time>Mar 21, 2022</time></span>
+<span class=middot-divider></span>
+<span class=article-categories><i class="fas fa-folder"></i>
+<a href=/categories/kubernetes/>kubernetes</a></span><div class=share-box aria-hidden=true><ul class=share><li><a href="https://twitter.com/intent/tweet?url=https://cedi.dev/post/prod-ready-kubeone/&text=Bootstrapping%20a%20production%20ready%20Kubernetes%20on%20Hetzner%20Cloud" target=_blank rel=noopener class=share-btn-twitter><i class="fab fa-twitter"></i></a></li><li><a href="https://www.facebook.com/sharer.php?u=https://cedi.dev/post/prod-ready-kubeone/&t=Bootstrapping%20a%20production%20ready%20Kubernetes%20on%20Hetzner%20Cloud" target=_blank rel=noopener class=share-btn-facebook><i class="fab fa-facebook-f"></i></a></li><li><a href="mailto:?subject=Bootstrapping%20a%20production%20ready%20Kubernetes%20on%20Hetzner%20Cloud&body=https://cedi.dev/post/prod-ready-kubeone/" target=_blank rel=noopener class=share-btn-email><i class="fas fa-envelope"></i></a></li><li><a href="https://www.linkedin.com/shareArticle?url=https://cedi.dev/post/prod-ready-kubeone/&title=Bootstrapping%20a%20production%20ready%20Kubernetes%20on%20Hetzner%20Cloud" target=_blank rel=noopener class=share-btn-linkedin><i class="fab fa-linkedin-in"></i></a></li><li><a href="https://web.whatsapp.com/send?text=Bootstrapping%20a%20production%20ready%20Kubernetes%20on%20Hetzner%20Cloud%20https://cedi.dev/post/prod-ready-kubeone/" target=_blank rel=noopener class=share-btn-whatsapp><i class="fab fa-whatsapp"></i></a></li><li><a href="https://service.weibo.com/share/share.php?url=https://cedi.dev/post/prod-ready-kubeone/&title=Bootstrapping%20a%20production%20ready%20Kubernetes%20on%20Hetzner%20Cloud" target=_blank rel=noopener class=share-btn-weibo><i class="fab fa-weibo"></i></a></li></ul></div></div><div class="btn-links mb-3"><a class="btn btn-outline-primary my-1 mr-1" href=/project/kubeone/>Project</a></div></div></div></div><div class=article-container><div class=article-style itemprop=articleBody><h2 id=introduction>Introduction</h2><p>Hi and welcome to my first blog post on my new website.</p><p>I know what you are thinking right now &ldquo;Oh no! Not another blogpost about setting up a Kubernetes Cluster!&rdquo;.
+And yeah, I get it! There are a lot of blog-posts, tutorials, and articles already written about this topic.
+For example <a href=https://shibumi.dev>shibumi</a> wrote an amazing blog-post about <a href=https://shibumi.dev/posts/kubernetes-on-hetzner-in-2021>Kubernetes on Hetzner in 2021</a>, and there is a even a <a href=https://github.com/kubermatic/kubeone/tree/master/examples/terraform/hetzner>Hetzner example terraform</a> in the <a href=https://github.com/kubermatic/kubeone>KubeOne GitHub</a>.</p><p>But here is the deal: while those posts and examples give you an <em>easy</em> quick-start, they don&rsquo;t cover the aspects of bootstrapping a KubeOne cluster that is supposed to run in production some day.</p><p>To scope this blog-post a bit down, I have to make a few assumptions:</p><ul><li>You already have KubeOne installed on your local machine</li><li>You have a project on Hetzner Cloud</li><li>You have already created a Hetzner API Token for your Project with read+write permissions, or you are able to do so</li><li>You want to use <strong>Canal</strong> as your CNI of choice and not Cilium which was recently added in <a href=https://github.com/kubermatic/kubeone/releases/tag/v1.4.0>KubeOne 1.4</a>.</li><li>You are familiar with <a href=https://www.terraform.io>terraform</a></li></ul><h2 id=preface-and-acknowledgements>Preface and Acknowledgements</h2><p>This is not a &ldquo;definitive guide&rdquo; nor should you take everything you read too serious. I might be wrong or too opinionated about stuff.</p><p>Actually running Kubernetes in production is way harder than just reading this article. I intentionally leave out <strong>many</strong> details of how to actually run Kubernetes in production.</p><p>Specifically, in this post I will not talk about:</p><ul><li>Security</li><li>GitOps</li><li>Disaster recovery</li><li>Monitoring here</li></ul><p>I might dedicate future blog-posts to those topics (and hopefully remember to link them back here).</p><p>Therefore, the scope of this blog post is narrowed down to bootstrapping a Kubernetes Cluster using KubeOne - with somewhat sane defaults and measures taken - that will get you started on your journey to a production ready Kubernetes Cluster.</p><h2 id=reliability-tip-1-use-an-odd-number-of-api-servers>Reliability Tip 1: Use an odd number of API servers</h2><p>To get started we need to have some virtual servers running on Hetzner Cloud to install the Kubernetes API Server, etcd database and the cluster&rsquo;s control-plane on.
+You should stick to odd numbers of your API servers because etcd needs a majority of nodes to agree on updates to the cluster state.</p><p>This majority (quorum) required for etcd is <code>(n/2)+1</code> <sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>.</p><p>The <a href=https://etcd.io/docs/v3.3/faq/#why-an-odd-number-of-cluster-members>etcd FAQ</a> page describes it:</p><blockquote><p>For any odd-sized cluster, adding one node will always increase the number of nodes necessary for quorum. Although adding a node to an odd-sized cluster appears better since there are more machines, the fault tolerance is worse since exactly the same number of nodes may fail without losing quorum but there are more nodes that can fail. If the cluster is in a state where it can’t tolerate any more failures, adding a node before removing nodes is dangerous because if the new node fails to register with the cluster (e.g., the address is misconfigured), quorum will be permanently lost.</p></blockquote><h2 id=reliability-tip-2-dont-use-the-count-meta-argument-of-terraform>Reliability Tip 2: Don&rsquo;t use the <code>count</code> meta-argument of terraform</h2><p>Fortunate for us, KubeOne comes with a great set of <a href=https://github.com/kubermatic/kubeone/tree/master/examples/terraform/>examples</a> for using terraform to set up your infrastructure. We will use the <a href=https://github.com/kubermatic/kubeone/tree/master/examples/terraform/hetzner>hetzner example</a> as a base and customize it a bit.
+It comes with mostly sane defaults and best practices out of the box, including a firewall and a <a href=https://docs.hetzner.com/cloud/placement-groups/overview>placement group</a> for our control-plane nodes to ensure higher reliability.</p><p>But there is a problem with this example: The usage of the <a href=https://www.terraform.io/language/meta-arguments/count><code>count</code> meta-argument</a> for the <a href=https://github.com/kubermatic/kubeone/blob/bbdceaff5ab1d3360f7455ab5f81dbfde73bf161/examples/terraform/hetzner/main.tf#L111>hcloud_server</a> definition.</p><p>At first this seems absolutely valid and an easy fix for avoiding duplicate code. But the devil lies within the details as you&rsquo;re about to find out.</p><p>Let&rsquo;s say we want to change the location of our servers, update the base images of our servers, or add/remove an SSH key.
+All those changes got something in common:
+They will absolutely destroy and re-create the server.</p><p>But because we are using the <code>count</code> meta-argument, we cannot update (re-create) only one server at a time. We can only replace all servers simultanously.</p><p>KubeOne deploys the <a href=https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/>etcd</a> database on the API servers, which means if we loose all three API server nodes at the same time, we will loose all three etcd database replicas as well. And if we loose etcd, we loose our entire cluster.</p><p>Therefore, we need to replace everything with a <code>count</code> meta-argument with an explicit object.
+Yes, this causes code duplication.
+But it allows us to upgrade one server at a time. And after every server update, we can re-run <code>kubeone</code> to repair (or <em>reconcile</em>) our cluster. By doing so, we perform a <em>rolling update</em> of our control plane without loosing any data.</p><p>Now, lets get to it. We have to change the code blocks in lines <a href=https://github.com/kubermatic/kubeone/blob/56f84d7c6c98760042a37aea2614fac3c783812c/examples/terraform/hetzner/main.tf#L95-L99>95-99</a>, lines <a href=https://github.com/kubermatic/kubeone/blob/56f84d7c6c98760042a37aea2614fac3c783812c/examples/terraform/hetzner/main.tf#L110-L126>110-126</a>, and lines <a href=https://github.com/kubermatic/kubeone/blob/56f84d7c6c98760042a37aea2614fac3c783812c/examples/terraform/hetzner/main.tf#L144-L154>144-154</a>.</p><p><div class=expand><div class=expand-label style=cursor:pointer onclick='$h=$(this),$h.next("div").slideToggle(100,function(){$h.children("i").attr("class",function(){return $h.next("div").is(":visible")?"fas fa-chevron-down":"fas fa-chevron-right"})})'><i style=font-size:x-small class="fas fa-chevron-right"></i>
+<span>main.tf before</span></div><div class=expand-content style=display:none><pre tabindex=0><code>resource &#34;hcloud_server_network&#34; &#34;control_plane&#34; {
+  count     = var.control_plane_replicas
+  server_id = element(hcloud_server.control_plane.*.id, count.index)
+  subnet_id = hcloud_network_subnet.kubeone.id
+}
+
+resource &#34;hcloud_server&#34; &#34;control_plane&#34; {
+  count              = var.control_plane_replicas
+  name               = &#34;${var.cluster_name}-control-plane-${count.index + 1}&#34;
+  server_type        = var.control_plane_type
+  image              = var.image
+  location           = var.datacenter
+  placement_group_id = hcloud_placement_group.control_plane.id
+
+
+  ssh_keys = [
+    hcloud_ssh_key.kubeone.id,
+  ]
+
+
+  labels = {
+    &#34;kubeone_cluster_name&#34; = var.cluster_name
+    &#34;role&#34;                 = &#34;api&#34;
+  }
+}
+
+resource &#34;hcloud_load_balancer_target&#34; &#34;load_balancer_target&#34; {
+  count            = var.control_plane_replicas
+  type             = &#34;server&#34;
+  load_balancer_id = hcloud_load_balancer.load_balancer.id
+  server_id        = element(hcloud_server.control_plane.*.id, count.index)
+  use_private_ip   = true
+  depends_on = [
+    hcloud_server_network.control_plane,
+    hcloud_load_balancer_network.load_balancer
+  ]
+}
+</code></pre></div></div></p><p>We have to remove the <code>count</code> meta-argument, get rid of the <code>element(..., count.index)</code> syntax and replace everything with actual references to explicit objects, so it looks like this:</p><p><div class=expand><div class=expand-label style=cursor:pointer onclick='$h=$(this),$h.next("div").slideToggle(100,function(){$h.children("i").attr("class",function(){return $h.next("div").is(":visible")?"fas fa-chevron-down":"fas fa-chevron-right"})})'><i style=font-size:x-small class="fas fa-chevron-right"></i>
+<span>main.tf after</span></div><div class=expand-content style=display:none><pre tabindex=0><code>resource &#34;hcloud_server&#34; &#34;control_plane_1&#34; {
+  name               = &#34;api-1&#34;
+  server_type        = &#34;cx21&#34;
+  image              = &#34;ubuntu-20.04&#34;
+  location           = &#34;nbg1&#34;
+  placement_group_id = hcloud_placement_group.control_plane_placement.id
+
+  ssh_keys = [
+    hcloud_ssh_key.cedi_mae.name
+  ]
+
+  labels = {
+    &#34;cluster&#34; = &#34;k1&#34;
+    &#34;role&#34;    = &#34;api&#34;
+  }
+}
+
+resource &#34;hcloud_server_network&#34; &#34;control_plane_1&#34; {
+  server_id = hcloud_server.control_plane_1.id
+  subnet_id = hcloud_network_subnet.kubeone.id
+}
+
+resource &#34;hcloud_load_balancer_target&#34; &#34;load_balancer_target_cp1&#34; {
+  type             = &#34;server&#34;
+  load_balancer_id = hcloud_load_balancer.load_balancer.id
+  server_id        = hcloud_server.control_plane_1.id
+  use_private_ip   = true
+  depends_on = [
+    hcloud_server_network.control_plane_1,
+    hcloud_load_balancer_network.load_balancer,
+    hcloud_server.control_plane_1
+  ]
+}
+
+resource &#34;hcloud_server&#34; &#34;control_plane_2&#34; {
+  name               = &#34;api-2&#34;
+  server_type        = &#34;cx21&#34;
+  image              = &#34;ubuntu-20.04&#34;
+  location           = &#34;nbg1&#34;
+  placement_group_id = hcloud_placement_group.control_plane_placement.id
+
+  ssh_keys = [
+    hcloud_ssh_key.cedi_mae.name
+  ]
+
+  labels = {
+    &#34;cluster&#34; = &#34;k1&#34;
+    &#34;role&#34;    = &#34;api&#34;
+  }
+}
+
+resource &#34;hcloud_server_network&#34; &#34;control_plane_2&#34; {
+  server_id = hcloud_server.control_plane_2.id
+  subnet_id = hcloud_network_subnet.kubeone.id
+}
+
+resource &#34;hcloud_load_balancer_target&#34; &#34;load_balancer_target_cp2&#34; {
+  type             = &#34;server&#34;
+  load_balancer_id = hcloud_load_balancer.load_balancer.id
+  server_id        = hcloud_server.control_plane_2.id
+  use_private_ip   = true
+  depends_on = [
+    hcloud_server_network.control_plane_2,
+    hcloud_load_balancer_network.load_balancer,
+    hcloud_server.control_plane_2
+  ]
+}
+
+resource &#34;hcloud_server&#34; &#34;control_plane_3&#34; {
+  name               = &#34;api-3&#34;
+  server_type        = &#34;cx21&#34;
+  image              = &#34;ubuntu-20.04&#34;
+  location           = &#34;nbg1&#34;
+  placement_group_id = hcloud_placement_group.control_plane_placement.id
+
+  ssh_keys = [
+    hcloud_ssh_key.cedi_mae.name
+  ]
+
+  labels = {
+    &#34;cluster&#34; = &#34;k1&#34;
+    &#34;role&#34;    = &#34;api&#34;
+  }
+}
+
+resource &#34;hcloud_server_network&#34; &#34;control_plane_3&#34; {
+  server_id = hcloud_server.control_plane_3.id
+  subnet_id = hcloud_network_subnet.kubeone.id
+}
+
+resource &#34;hcloud_load_balancer_target&#34; &#34;load_balancer_target_cp3&#34; {
+  type             = &#34;server&#34;
+  load_balancer_id = hcloud_load_balancer.load_balancer.id
+  server_id        = hcloud_server.control_plane_3.id
+  use_private_ip   = true
+  depends_on = [
+    hcloud_server_network.control_plane_3,
+    hcloud_load_balancer_network.load_balancer,
+    hcloud_server.control_plane_3
+  ]
+}
+</code></pre></div></div></p><h2 id=reliability-tip-3-use-terraform-remote-backends>Reliability Tip 3: Use terraform remote backends</h2><p>I&rsquo;m almost certain, every single one of you ran <code>terraform apply</code> at least once on their local machine. I mean, after all, that is how terraform is supposed to be used, right?</p><p>And the sad truth is, I&rsquo;ve seen a lot of production environments that where built exactly like that: Someone ran <code>terraform apply</code> on their local machine. And hey, now we can advertise our infrastructure as &ldquo;infrastructure as code&rdquo;. <em>Technically</em> this migt be correct but it is certainly not what you would expect.</p><p>To us &ldquo;DevOps&rdquo; or &ldquo;SRE&rdquo; folks it is obvious to run terraform from a CI/CD pipeline.</p><p>GitLab released <a href=https://docs.gitlab.com/ee/user/infrastructure/iac/terraform_state.html>GitLab managed Terraform state</a> a while back <sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>, adding a feature allowing you to securely store your <a href=https://www.terraform.io/language/state>tfstate</a> within GitLab.</p><p>But there is still a problem with this approach: Many don&rsquo;t use GitLab. I use GitHub for the overwhelming majority of my work.
+And if the pipeline executes terraform for me, I can&rsquo;t easily run <code>terraform plan</code> on my local machine to validate changes before pushing them. Or at least not without manually downloading the tfstate first.</p><p>But there is a solution that works from any CI/CD platform as well as the CLI, regardless of platform level integrations that allows for safe storage of the tfstate.</p><p>And that&rsquo;s where the terraform <a href=https://www.terraform.io/language/settings/backends/remote>remote backend</a> comes in to play.</p><p><a href=https://www.terraform.io/language/settings/backends>Backends</a> in terraform defines where the <a href=https://www.terraform.io/language/state>state</a> snapshots are stored.</p><p>This particular backend uses <a href=https://app.terraform.io>the terraform cloud</a> to actually run terraform for you.</p><p>Remote backends give you the greatest level of flexibility and ease as it&rsquo;s possible to use terraform from any (or even multiple) CI/CD pipeline platform(s) and even your local machines without worrying about keeping tfstates, and variables in sync. All Variables (and for that matter secrets as well) are stored on the terraform cloud.</p><p>You can find a tutorial on how to set up the remote backend <a href=https://learn.hashicorp.com/tutorials/terraform/github-actions>here</a>.</p><h2 id=reliability-tip-4-configure-your-kubeoneyaml-correctly>Reliability Tip 4: Configure your KubeOne.yaml correctly</h2><p>If you&rsquo;re just starting with KubeOne, you might find a KubeOne.yaml that looks like this:</p><p><div class=expand><div class=expand-label style=cursor:pointer onclick='$h=$(this),$h.next("div").slideToggle(100,function(){$h.children("i").attr("class",function(){return $h.next("div").is(":visible")?"fas fa-chevron-down":"fas fa-chevron-right"})})'><i style=font-size:x-small class="fas fa-chevron-right"></i>
+<span>a basic kubeone.yaml</span></div><div class=expand-content style=display:none><pre tabindex=0><code>apiVersion: kubeone.io/v1beta1
+kind: KubeOneCluster
+
+versions:
+  kubernetes: &#39;1.19.3&#39;
+
+cloudProvider:
+  hetzner: {}
+  external: true
+</code></pre></div></div></p><p>But unfortunately - on the KubeOne documentation website - there isn&rsquo;t a great deal of information available on how to configure your KubeOne cluster in more depth.</p><p>But thankfully, the kubeone-cli comes with a nifty command:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>kubeone config print --full
+</span></span></code></pre></div><p>This will show you all available config options with the defaults used.
+KubeOne does a good job with those defaults and not much configuration is needed.</p><p>I want to deploy the &ldquo;cluster-autoscaler&rdquo; addon which comes right out of the box with KubeOne and is particularly useful for production-ready clusters.</p><p>I also ensure I set the MTU for canal correctly, as things tend to get a bit icky if the MTU is wrong.</p><div class=expand><div class=expand-label style=cursor:pointer onclick='$h=$(this),$h.next("div").slideToggle(100,function(){$h.children("i").attr("class",function(){return $h.next("div").is(":visible")?"fas fa-chevron-down":"fas fa-chevron-right"})})'><i style=font-size:x-small class="fas fa-chevron-right"></i>
+<span>final kubeone.yaml</span></div><div class=expand-content style=display:none><pre tabindex=0><code>apiVersion: kubeone.io/v1beta1
+kind: KubeOneCluster
+
+versions:
+  kubernetes: &#39;1.23.1&#39;
+
+clusterNetwork:
+  cni:
+    canal:
+      mtu: 1400 # Hetzner specific 1450 bytes - 50 VXLAN bytes
+
+cloudProvider:
+  hetzner: {}
+  external: true
+
+addons:
+  enable: true
+  path: &#34;./addons&#34;
+  addons:
+    - name: cluster-autoscaler
+</code></pre></div></div><h2 id=reliability-tip-5-configure-canal-to-not-listen-on-the-public-network-interface>Reliability Tip 5: Configure Canal to not listen on the public network interface</h2><p>Well, technically not <code>canal</code> itself but <code>flanel</code> which is a part of <code>canal</code>. Remember: <code>canal</code> is just a combination of <code>calico</code> and <code>flanel</code> <sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup></p><p>The flanel backend which is shipped as part of your canal CNI installation is by default binding on your internet facing <code>eth0</code> port<sup id=fnref:4><a href=#fn:4 class=footnote-ref role=doc-noteref>4</a></sup>. This is absolutely not what you want!</p><p>I was made aware of the problem by this GitHub issue: <a href=https://github.com/hetznercloud/csi-driver/issues/204#issuecomment-849429229>hetznercloud/csi-driver#204</a></p><blockquote><p>Is it possible that your Kubernetes nodes use their public IPs (and interfaces) instead of a private network for communication between the nodes?
+&ndash; <em><a href=https://github.com/ekeih>Max Rosin (@ekeih)</a></em></p></blockquote><p>and a solution for the problem was pointed out in <a href=https://github.com/hetznercloud/csi-driver/issues/204#issuecomment-849567869>this comment</a>:</p><blockquote><p>In my setup I use -iface-regex=10.0.<em>.</em> in flannel daemonset
+&ndash; <em><a href=https://github.com/jekakm>Evgeniy Gurinovich (@jekakm)</a></em></p></blockquote><p>The fix can be applied relatively easy via <code>kubectl patch</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ kubectl patch daemonset --namespace kube-system canal --type<span style=color:#f92672>=</span>json -p<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;[{&#34;op&#34;: &#34;add&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/1/command/-&#34;, &#34;value&#34;: &#34;-iface-regex=10\\.0\\.*\\.*&#34;}]&#39;</span>
+</span></span><span style=display:flex><span>daemonset.apps/canal patched
+</span></span></code></pre></div><p>(It is totally possible to add a step to your CI/CD pipeline that applies the mitigation for you, after you created (or reconciled) your KubeOne cluster)</p><h2 id=reliability-tip-6-deploy-your-worker-nodes-programatically>Reliability Tip 6: Deploy your worker nodes programatically</h2><p>KubeOne comes with a <a href=https://github.com/kubermatic/machine-controller>machine-controller</a> that can programmatically deploy worker-nodes to hetzner online using the cluster-api<sup id=fnref:5><a href=#fn:5 class=footnote-ref role=doc-noteref>5</a></sup>.</p><p>KubeOne automagically creates a default <a href=https://cluster-api.sigs.k8s.io/developer/architecture/controllers/machine-deployment.html>machine-deployment</a> for you.</p><p>It&rsquo;s a good start, but we can do better.
+Honestly, I just wouldn&rsquo;t bother modifying the existing machine deployment and just get rid of it:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ kubectl --namespace kube-system delete machinedeployment prod-ready-pool1
+</span></span><span style=display:flex><span>machinedeployments.cluster.k8s.io/prod-ready-pool1 deleted
+</span></span></code></pre></div><p>Better create a new machinedeployment.yaml which you should add to your Git-Repo to keep your config in sync.</p><p>When we create our worker-nodes, we want to ensure:</p><ul><li>To set annotations for cluster-autoscaler correctly to dynamically scale our worker-nodes</li><li>Deploy our SSH keys to the worker-nodes, allowing easier troubleshooting</li><li>Our worker-nodes are placed in our virtual network</li><li>Labels are added to our worker-nodes, so the hetzner firewall can filter traffic to the worker-nodes as well</li></ul><p>In order for the machinedeployment to work correctly, we therefore need to know a few variables:</p><ul><li>The min and max count of worker-nodes</li><li>The cluster-name which is added as a label</li><li>The network-id to place the worker-nodes in the correct virtual network</li><li>The cluster-version as defined in our kubeone.yaml</li><li>The datacenter location (ideally the same as the API servers)</li></ul><p>Luckily terraform already provides us all information and we can obtain the terraform output in JSON format.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ terraform output -json &gt; output.json
+</span></span></code></pre></div><p>And now we can determine most of the variables by using a little <code>jq</code> magic:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>export AUTOSCALER_MIN<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>export AUTOSCALER_MAX<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span>export NETWORK_ID<span style=color:#f92672>=</span><span style=color:#e6db74>`</span>jq -r <span style=color:#e6db74>&#39;.kubeone_hosts.value.control_plane.network_id&#39;</span> output.json<span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>export CLUSTER_NAME<span style=color:#f92672>=</span><span style=color:#e6db74>`</span>jq -r <span style=color:#e6db74>&#39;.kubeone_hosts.value.control_plane.cluster_name&#39;</span> output.json<span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>export CLUSTER_VERSION<span style=color:#f92672>=</span><span style=color:#e6db74>`</span>yq e -j &lt; kubeone.yaml | jq -r <span style=color:#e6db74>&#39;.versions.kubernetes&#39;</span><span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>export DATACENTER_LOCATION<span style=color:#f92672>=</span><span style=color:#e6db74>`</span>jq -r <span style=color:#e6db74>&#39;.control_plane_info.value.location&#39;</span> output.json<span style=color:#e6db74>`</span>
+</span></span></code></pre></div><p>Finally, we can use a template of our machinedeployment and make use of <code>envsubst</code> to render our template<sup id=fnref:6><a href=#fn:6 class=footnote-ref role=doc-noteref>6</a></sup>:</p><p><div class=expand><div class=expand-label style=cursor:pointer onclick='$h=$(this),$h.next("div").slideToggle(100,function(){$h.children("i").attr("class",function(){return $h.next("div").is(":visible")?"fas fa-chevron-down":"fas fa-chevron-right"})})'><i style=font-size:x-small class="fas fa-chevron-right"></i>
+<span>machinedeployment.yaml.tpl</span></div><div class=expand-content style=display:none><pre tabindex=0><code>apiVersion: &#34;cluster.k8s.io/v1alpha1&#34;
+kind: MachineDeployment
+metadata:
+  name: &#34;${CLUSTER_NAME}-node-pool&#34;
+  namespace: &#34;kube-system&#34;
+  annotations:
+    cluster.k8s.io/cluster-api-autoscaler-node-group-min-size: &#34;${AUTOSCALER_MIN}&#34;
+    cluster.k8s.io/cluster-api-autoscaler-node-group-max-size: &#34;${AUTOSCALER_MAX}&#34;
+spec:
+  paused: false
+  replicas: ${AUTOSCALER_MIN}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 20%
+      maxUnavailable: 10%
+  minReadySeconds: 60
+  selector:
+    matchLabels:
+      node: &#34;${CLUSTER_NAME}&#34;
+  template:
+    metadata:
+      labels:
+        node: &#34;${CLUSTER_NAME}&#34;
+    spec:
+      providerSpec:
+        value:
+          cloudProvider: &#34;hetzner&#34;
+          cloudProviderSpec:
+            token:
+              secretKeyRef:
+                namespace: kube-system
+                name: cloud-provider-credentials
+                key: HZ_TOKEN
+            labels:
+              role: worker
+              cluster: &#34;${CLUSTER_NAME}&#34;
+            serverType: &#34;cpx31&#34;
+            location: &#34;${DATACENTER_LOCATION}&#34;
+            image: &#34;ubuntu-20.04&#34;
+            networks:
+              - &#34;${NETWORK_ID}&#34;
+          operatingSystem: &#34;ubuntu&#34;
+          operatingSystemSpec:
+            distUpgradeOnBoot: false
+          sshPublicKeys:
+            - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOO9DMiwRjCCWvMA9TKYxRApgQx3g+owxkq9jy1YyjGN cedi@mae
+      versions:
+        kubelet: &#34;${CLUSTER_VERSION}&#34;
+</code></pre></div></div></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>envsubst &lt; ./machinedeployment.yaml.tpl &gt; ./machinedeployment.yaml
+</span></span></code></pre></div><h2 id=further-reads--additional-links-and-ressources>Further Reads / Additional links and ressources</h2><ul><li><a href=https://www.terraform.io/language/meta-arguments/count>terraform.io/language/meta-arguments/count</a></li><li><a href=https://tomharrisonjr.com/terraform-count-is-a-miserable-hack-d58a6ffbf422>tomharrisonjr.com - Terraform count is a Miserable Hack</a></li><li><a href=https://github.com/hetznercloud/csi-driver/issues/204#issuecomment-849429229>GitHub.com - [hashicorp/terraform#3885] Changing count of instances destroys all of them</a></li><li><a href=https://www.weave.works/blog/the-definitive-guide-to-kubernetes-in-production>The Definitive Guide to Kubernetes in Production</a></li><li><a href=https://kasunindrasiri.medium.com/understanding-raft-distributed-consensus-242ec1d2f521>Understanding Distributed Consensus with Raft</a></li></ul><section class=footnotes role=doc-endnotes><hr><ol><li id=fn:1 role=doc-endnote><p><a href=https://kasunindrasiri.medium.com/understanding-raft-distributed-consensus-242ec1d2f521>Diego Ongaro and John Ousterhout, In Search of an Understandable Consensus Algorithm (Extended Version), Stanford University</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2 role=doc-endnote><p><a href=https://about.gitlab.com/releases/2020/05/22/gitlab-13-0-released/>GitLab 13.0 released with Gitaly Clusters, Epic Hierarchy on Roadmaps, and Auto Deploy to ECS</a>&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:3 role=doc-endnote><p><a href=https://www.suse.com/c/rancher_blog/comparing-kubernetes-cni-providers-flannel-calico-canal-and-weave/>Comparing Kubernetes CNI Providers: Flannel, Calico, Canal, and Weave, Rancher Blog, Suse</a>&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:4 role=doc-endnote><p><a href=https://github.com/flannel-io/flannel/blob/master/Documentation/configuration.md#key-command-line-options>flanel configuration, flanel documentation, GitHub</a>&#160;<a href=#fnref:4 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:5 role=doc-endnote><p><a href=https://cluster-api.sigs.k8s.io>Kubernetes Cluster API</a>&#160;<a href=#fnref:5 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:6 role=doc-endnote><p><a href=https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html>Invoking the envsubst program</a>&#160;<a href=#fnref:6 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></section></div><div class=article-tags><a class="badge badge-light" href=/tags/kubernetes/>kubernetes</a>
+<a class="badge badge-light" href=/tags/kubeone/>kubeone</a>
+<a class="badge badge-light" href=/tags/hetzner/>hetzner</a>
+<a class="badge badge-light" href=/tags/cloud/>cloud</a>
+<a class="badge badge-light" href=/tags/terraform/>terraform</a>
+<a class="badge badge-light" href=/tags/bash/>bash</a></div><div class="media author-card" itemscope itemtype=http://schema.org/Person><div class=media-body><h5 class=card-title itemprop=name><a href=https://cedi.dev/>Cedric Kienzler</a></h5><h6 class=card-subtitle>Senior Software Engineer - Azure Resiliency Engineering</h6><p class=card-text itemprop=description>My work primarily focuses on building, designing, and maintaining highly distributed systems at large scale</p><ul class=network-icon aria-hidden=true><li><a itemprop=sameAs href=https://github.com/cedi target=_blank rel=noopener><i class="fab fa-github"></i></a></li><li><a itemprop=sameAs href=https://twitter.com/c3di1 target=_blank rel=noopener><i class="fab fa-twitter"></i></a></li><li><a itemprop=sameAs href=https://www.linkedin.com/in/cekienzl/ target=_blank rel=noopener><i class="fab fa-linkedin"></i></a></li><li><a itemprop=sameAs href=https://www.instagram.com/c3di1 target=_blank rel=noopener><i class="fab fa-instagram"></i></a></li><li><a itemprop=sameAs href="https://500px.com/p/c_kienzler_photograpy?view=photos" target=_blank rel=noopener><i class="fab fa-500px"></i></a></li></ul></div></div><div class=article-widget><div class=hr-light></div><h3>Related</h3><ul><li><a href=/project/kubeone/>KubeOne</a></li><li><a href=/project/kkp/>Kubermatic Kubernetes Platform</a></li><li><a href=/project/kkpctl/>kkpctl</a></li><li><a href=/project/rc3/>rC3 World Backend</a></li></ul></div></div></article><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin=anonymous></script>
+<script>hljs.initHighlightingOnLoad()</script><script>const search_index_filename="/index.json",i18n={placeholder:"Search...",results:"results found",no_results:"No results found"},content_type={post:"Posts",project:"Projects",publication:"Publications",talk:"Talks"}</script><script id=search-hit-fuse-template type=text/x-template>
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script><script src=https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin=anonymous></script>
+<script src=/js/academia.min.77c1415c9386584bddb5d6c8ed7491f1.js></script><div class=container><footer class=site-footer><div class=container><div class="row align-items-center"><div class="col-md-6 mb-4 mb-md-0"><p class=mb-0>Copyright © 2022 by Cedric Kienzler &#183;
+Powered by
+<a href=https://gethugothemes.com target=_blank rel=noopener>Gethugothemes</a></p></div><div class=col-md-6><ul class="list-inline network-icon text-right mb-0"><li class=list-inline-item><a href=https://github.com/cedi target=_blank rel=noopener title="Find me on GitHub"><i class="fab fa-github" aria-hidden=true></i></a></li><li class=list-inline-item><a href=https://twitter.com/c3di1 target=_blank rel=noopener title="Find me on Twitter"><i class="fab fa-twitter" aria-hidden=true></i></a></li><li class=list-inline-item><a href=https://www.linkedin.com/in/cekienzl/ target=_blank rel=noopener title="Find me on LinkedIn"><i class="fab fa-linkedin" aria-hidden=true></i></a></li><li class=list-inline-item><a href=https://instagram.com/c3di1 target=_blank rel=noopener title="Find me on Instagram"><i class="fab fa-instagram" aria-hidden=true></i></a></li><li class=list-inline-item><a href="https://500px.com/p/c_kienzler_photograpy?view=photos" target=_blank rel=noopener title="Find me on 500px"><i class="fab fa-500px" aria-hidden=true></i></a></li></ul></div></div></div></footer></div><div id=modal class="modal fade" role=dialog><div class=modal-dialog><div class=modal-content><div class=modal-header><h5 class=modal-title>Cite</h5><button type=button class=close data-dismiss=modal aria-label=Close>
+<span aria-hidden=true>&#215;</span></button></div><div class=modal-body><pre><code class="tex hljs"></code></pre></div><div class=modal-footer><a class="btn btn-outline-primary my-1 js-copy-cite" href=# target=_blank><i class="fas fa-copy"></i> Copy</a>
+<a class="btn btn-outline-primary my-1 js-download-cite" href=# target=_blank><i class="fas fa-download"></i> Download</a><div id=modal-error></div></div></div></div></div></body></html>
