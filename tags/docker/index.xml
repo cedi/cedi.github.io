@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on cedi.dev</title><link>https://cedi.dev/tags/docker/</link><description>Recent content in Docker on cedi.dev</description><generator>Source Themes academia (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright &amp;copy; {year} by Cedric Kienzler</copyright><lastBuildDate>Fri, 15 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://cedi.dev/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>What the heck are devcontainers?</title><link>https://cedi.dev/post/devcontainer-pt1/</link><pubDate>Fri, 15 Apr 2022 00:00:00 +0000</pubDate><guid>https://cedi.dev/post/devcontainer-pt1/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Hi and welcome back to my blog.&lt;/p>
+&lt;p>I think it&amp;rsquo;s about time to talk about an amazing feature of VScode that I rarely see used in the wild. And honestly: I do not understand why few are using it.
+You might have guessed it from the title. The feature is called &amp;ldquo;devcontainers&amp;rdquo;.&lt;/p>
+&lt;p>But you might ask: &amp;ldquo;What are devcontainers?&amp;rdquo; and &amp;ldquo;Why should I care?&amp;rdquo;.&lt;/p>
+&lt;p>I&amp;rsquo;m about to explain devcontainers in a small series of blog-posts, starting with this one.&lt;/p>
+&lt;p>In this post I am going to talk about what devcontainers are, why you should care, and what the advantage of devcontainers are.
+After reading this I hope you want to add a devcontainer to every Git Repository you work with.&lt;/p>
+&lt;p>In a second part, I will continue our journey with devcontainers and talk about how to set-up a devcontainer and what resources are available to you when creating them.&lt;/p>
+&lt;h2 id="what-are-devcontainers">What are devcontainers?&lt;/h2>
+&lt;p>Technically, devcontainers are ordinary (Docker) containers.
+But it&amp;rsquo;s not &lt;em>any&lt;/em> Docker container. It&amp;rsquo;s a Docker container that is you virtualised development environment. You install all of your development tools (like compilers, code generators, doc generators, and so on) in the devcontainer instead of installing all that on your local machine.&lt;/p>
+&lt;p>And using devcontainers (using the &lt;code>devcontainer.json&lt;/code> config) you can even configure VScode. But not only configuration, the configuration can (and should) specify the extensions that will be automatically installed.&lt;/p>
+&lt;p>And the nice thing: If you have the &lt;a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">&lt;code>ms-vscode-remote.remote-containers&lt;/code>&lt;/a> extension installed and you open a folder in VScode that has a &lt;code>.devcontainer&lt;/code> folder inside of it, and that folder contains a &lt;code>devcontainer.json&lt;/code> and a &lt;code>Dockerfile&lt;/code> VScode will ask you if you want to reopen VScode in the devcontainer:&lt;/p>
+&lt;p>&lt;img src="images/devcontainer-reopen.png" alt="devcontainer-reopen">&lt;/p>
+&lt;p>If it doesn&amp;rsquo;t prompt you, you can select it from the command palette:&lt;/p>
+&lt;p>&lt;img src="images/reopen-command.png" alt="devcontainer-reopen">&lt;/p>
+&lt;p>You can give it a try right now. The &lt;a href="https://github.com/cedi/cedi.github.io/">GitHub Repository&lt;/a> hosting this blog comes with a &lt;a href="https://github.com/cedi/cedi.github.io/tree/main/.devcontainer">devcontainer&lt;/a>.&lt;/p>
+&lt;h2 id="why-should-you-care">Why should you care?&lt;/h2>
+&lt;p>If you&amp;rsquo;re anything like me, it&amp;rsquo;s likely you work with a multitude of programming languages, frameworks, and tools.
+You have dozens of repositories checked out and about enough VScode plugins installed, the VScode startup time is comparable to the startup time of VisualStudio 2022 Ultimate Edition.&lt;/p>
+&lt;p>But it doesn&amp;rsquo;t have to be like this.
+With Devcontainers you have the bare minimum VScode installation with the only little configuration or plugins. Startup times are blazingly fast.&lt;/p>
+&lt;p>You don&amp;rsquo;t have to worry about that ruby installation that you forgotten about because you tried to get Jekyll running before finally giving up and switching to Hugo.
+You don&amp;rsquo;t have to care if you have one codebase uses .NET 4 while the other codebase uses .NET Core 5.
+Because that is all taken care of inside of you devcontainer.&lt;/p>
+&lt;p>Imagine you&amp;rsquo;re a new-hire in your company or a vendor joining a new project, you have to install a dozen different compilers, frameworks, libraries, tools to test, and tools to refactor your code. How long does it take you to get everything setup and being ready to get started? A day, or two?
+Imagine you&amp;rsquo;re the Manager of a team and every new-hire or new contractor requires multiple days to get his workstation set-up.&lt;/p>
+&lt;p>The time wasted with setting up your development environment is almost unbearable. But the solution is simple enough: Put the entire development environment inside of a devcontainer.&lt;/p>
+&lt;p>The entire setup process would be installing&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="https://git-scm.com/downloads">Git&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.docker.com/get-docker/">Docker Desktop&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://code.visualstudio.com/download">VScode&lt;/a>&lt;/li>
+&lt;li>The &lt;a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">&lt;code>ms-vscode-remote.remote-containers&lt;/code>&lt;/a> extension&lt;/li>
+&lt;li>Clone the repository&lt;/li>
+&lt;li>open it in VScode&lt;/li>
+&lt;/ol>
+&lt;p>and boom — you are done!&lt;/p>
+&lt;p>Wouldn&amp;rsquo;t that be amazing?&lt;/p>
+&lt;p>Stay tuned for part 2, when we talk about how to set-up a devcontainer.&lt;/p>
+&lt;h2 id="codespaces">Codespaces&lt;/h2>
+&lt;p>The last reason for using Devcontainers is &lt;a href="https://github.com/features/codespaces">Codespaces&lt;/a>.
+If you never heard of Codespaces before, here is a quick summary from the &lt;a href="https://github.com/features/codespaces">GitHub Codespaces page&lt;/a>:&lt;/p>
+&lt;blockquote>
+&lt;p>Use the full power of Visual Studio Code, including the editor, terminal, debugger, version control, settings sync, and the entire ecosystem of extensions. Work in the browser or hand off to your desktop.&lt;/p>
+&lt;p>Spin up new dev environment for any sized project in seconds with prebuilt images. GitHub’s own 35GB dev image starts in under 10 seconds. Scale your cloud VMs up to 32 cores and 64GB of RAM. And with low-latency connections across four regions, you won’t even remember it’s not your local machine.&lt;/p>
+&lt;/blockquote>
+&lt;p>If your repository contains a Devcontainer and you’re hosting your Repository on GitHub, you can make use of Codespaces without any further setup required.
+No need to install anything on your local machine anymore — heck, you could even code from your iPad.&lt;/p></description></item></channel></rss>
