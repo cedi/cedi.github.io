@@ -17,6 +17,7 @@ date: "2022-03-21T00:00:00Z"
 lastmod: "2022-03-21T00:00:00Z"
 featured: true
 draft: false
+merge_request: https://github.com/cedi/cedi.github.io/pull/8
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
