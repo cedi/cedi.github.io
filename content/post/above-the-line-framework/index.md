@@ -1,7 +1,7 @@
 ---
 title: 'Above-the-line / Below-the-line framework'
-subtitle: 'A different view on your systems architecture'
-summary: 'Introduction into the "Above-the-line / Below-the-line framework and why you look at your systems architecture all wrong.'
+subtitle: 'A different view on your systems design'
+summary: 'Introduction into the "Above-the-line / Below-the-line" framework and why you look at your systems design mostly wrong.'
 authors:
 - cedi
 tags:
@@ -9,8 +9,8 @@ tags:
 - reliability
 categories:
 - SRE
-date: "2022-04-18T00:00:00Z"
-lastmod: "2022-04-18T00:00:00Z"
+date: "2022-04-24T16:48:00Z"
+lastmod: "2022-04-24T16:48:00Z"
 featured: true
 draft: false
 merge_request: https://github.com/cedi/cedi.github.io/pull/13

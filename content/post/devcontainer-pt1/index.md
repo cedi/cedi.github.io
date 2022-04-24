@@ -1,7 +1,7 @@
 ---
 title: 'What the heck are devcontainers?'
 subtitle: 'Lets talk about what devcontainers in VScode are, why they are cool, and why you should start using them today'
-summary: 'Safe yourself and others a ton of time tediously setting up development environments and finally start using devcontainers for VScode'
+summary: 'Safe yourself and others a ton of time tediously setting up development environments and finally start using devcontainers for VScode. Here is what you need to know!'
 authors:
 - cedi
 tags:
@@ -13,7 +13,7 @@ tags:
 categories:
 - coding
 date: "2022-04-15T00:00:00Z"
-lastmod: "2022-04-15T00:00:00Z"
+lastmod: "2022-04-24T16:48:00Z"
 featured: true
 draft: false
 merge_request: https://github.com/cedi/cedi.github.io/pull/12
