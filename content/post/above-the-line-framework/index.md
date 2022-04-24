@@ -9,8 +9,8 @@ tags:
 - reliability
 categories:
 - SRE
-date: "2022-04-24T16:48:00Z"
-lastmod: "2022-04-24T16:48:00Z"
+date: "2022-04-24T00:00:00Z"
+lastmod: "2022-04-24T00:00:00Z"
 featured: true
 draft: false
 merge_request: https://github.com/cedi/cedi.github.io/pull/13
