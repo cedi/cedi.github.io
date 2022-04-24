@@ -16,7 +16,7 @@ categories:
 date: "2022-04-18T00:00:00Z"
 lastmod: "2022-04-18T00:00:00Z"
 featured: true
-draft: false
+draft: true
 merge_request: https://github.com/cedi/cedi.github.io/pull/13
 
 # Featured image
