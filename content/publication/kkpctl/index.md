@@ -16,7 +16,7 @@ publication_types: ["2"]
 
 # Publication name and optional abbreviated publication name.
 publication: In Kubermatic Blog
-publication_short: In *STC*
+publication_short: Kubermatic Blog
 
 abstract: KKPCTL is a command line tool written by Cedric Kienzler in early 2021 which implements parts of the Kubermatic Kubernetes Platform (KKP) API and lets you access the API via your command line. The way to use it is similar to tools like kubectl. It’s an open source project hosted on https://github.com/cedi/kkpctl.
 
