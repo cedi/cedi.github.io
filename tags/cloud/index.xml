@@ -381,28 +381,28 @@ kubelet: &amp;#34;${CLUSTER_VERSION}&amp;#34;
 &lt;li>&lt;a href="https://www.weave.works/blog/the-definitive-guide-to-kubernetes-in-production">The Definitive Guide to Kubernetes in Production&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://kasunindrasiri.medium.com/understanding-raft-distributed-consensus-242ec1d2f521">Understanding Distributed Consensus with Raft&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;section class="footnotes" role="doc-endnotes">
+&lt;div class="footnotes" role="doc-endnotes">
 &lt;hr>
 &lt;ol>
-&lt;li id="fn:1" role="doc-endnote">
+&lt;li id="fn:1">
 &lt;p>&lt;a href="https://kasunindrasiri.medium.com/understanding-raft-distributed-consensus-242ec1d2f521">Diego Ongaro and John Ousterhout, In Search of an Understandable Consensus Algorithm (Extended Version), Stanford University&lt;/a>&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
 &lt;/li>
-&lt;li id="fn:2" role="doc-endnote">
+&lt;li id="fn:2">
 &lt;p>&lt;a href="https://about.gitlab.com/releases/2020/05/22/gitlab-13-0-released/">GitLab 13.0 released with Gitaly Clusters, Epic Hierarchy on Roadmaps, and Auto Deploy to ECS&lt;/a>&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
 &lt;/li>
-&lt;li id="fn:3" role="doc-endnote">
+&lt;li id="fn:3">
 &lt;p>&lt;a href="https://www.suse.com/c/rancher_blog/comparing-kubernetes-cni-providers-flannel-calico-canal-and-weave/">Comparing Kubernetes CNI Providers: Flannel, Calico, Canal, and Weave, Rancher Blog, Suse&lt;/a>&amp;#160;&lt;a href="#fnref:3" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
 &lt;/li>
-&lt;li id="fn:4" role="doc-endnote">
+&lt;li id="fn:4">
 &lt;p>&lt;a href="https://github.com/flannel-io/flannel/blob/master/Documentation/configuration.md#key-command-line-options">flanel configuration, flanel documentation, GitHub&lt;/a>&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
 &lt;/li>
-&lt;li id="fn:5" role="doc-endnote">
+&lt;li id="fn:5">
 &lt;p>&lt;a href="https://cluster-api.sigs.k8s.io">Kubernetes Cluster API&lt;/a>&amp;#160;&lt;a href="#fnref:5" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
 &lt;/li>
-&lt;li id="fn:6" role="doc-endnote">
+&lt;li id="fn:6">
 &lt;p>&lt;a href="https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html">Invoking the envsubst program&lt;/a>&amp;#160;&lt;a href="#fnref:6" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;/section></description></item><item><title>KubeOne</title><link>https://cedi.dev/project/kubeone/</link><pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate><guid>https://cedi.dev/project/kubeone/</guid><description>&lt;p>&lt;a href="https://www.kubermatic.com">Kubermatic&lt;/a> &lt;a href="https://github.com/kubermatic/kubeone">KubeOne&lt;/a> automates cluster operations on all your cloud, on-prem, edge, and IoT environments. KubeOne can install high-available (HA) master clusters as well single master clusters.&lt;/p>
+&lt;/div></description></item><item><title>KubeOne</title><link>https://cedi.dev/project/kubeone/</link><pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate><guid>https://cedi.dev/project/kubeone/</guid><description>&lt;p>&lt;a href="https://www.kubermatic.com">Kubermatic&lt;/a> &lt;a href="https://github.com/kubermatic/kubeone">KubeOne&lt;/a> automates cluster operations on all your cloud, on-prem, edge, and IoT environments. KubeOne can install high-available (HA) master clusters as well single master clusters.&lt;/p>
 &lt;p>All user documentation for the latest stable version is available at the &lt;a href="https://docs.kubermatic.com/kubeone/master/">KubeOne docs website&lt;/a>.&lt;/p></description></item><item><title>Kubermatic Kubernetes Platform</title><link>https://cedi.dev/project/kkp/</link><pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate><guid>https://cedi.dev/project/kkp/</guid><description>&lt;p>&lt;a href="https://www.kubermatic.com">Kubermatic&lt;/a> Kubernetes Platform] is in an &lt;a href="https://github.com/kubermatic/kubermatic">Kubermatic Kubernetes Platform&lt;/a> to centrally manage the global automation of thousands of Kubernetes clusters across multicloud, on-prem and edge with unparalleled density and resilience.&lt;/p>
 &lt;p>All user documentation is available at the &lt;a href="https://docs.kubermatic.com/kubermatic/master/">Kubermatic Kubernetes Platform docs website&lt;/a>.&lt;/p></description></item></channel></rss>

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cedi.dev</title><link>https://cedi.dev/authors/cedi/</link><description>Recent content on cedi.dev</description><generator>Source Themes academia (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright &amp;copy; {year} by Cedric Kienzler</copyright><atom:link href="https://cedi.dev/authors/cedi/index.xml" rel="self" type="application/rss+xml"/><item><title>Above-the-line / Below-the-line framework</title><link>https://cedi.dev/post/above-the-line-framework/</link><pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate><guid>https://cedi.dev/post/above-the-line-framework/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cedi.dev</title><link>https://cedi.dev/authors/cedi/</link><description>Recent content on cedi.dev</description><generator>Source Themes academia (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright &amp;copy; {year} by Cedric Kienzler</copyright><atom:link href="https://cedi.dev/authors/cedi/index.xml" rel="self" type="application/rss+xml"/><item><title>Understanding Alerting - How to come up with a good enough alerting strategy</title><link>https://cedi.dev/publication/alerting/</link><pubDate>Fri, 20 May 2022 00:00:00 +0000</pubDate><guid>https://cedi.dev/publication/alerting/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted --></description></item><item><title>Above-the-line / Below-the-line framework</title><link>https://cedi.dev/post/above-the-line-framework/</link><pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate><guid>https://cedi.dev/post/above-the-line-framework/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Welcome back to my blog!&lt;/p>
 &lt;p>In this article I want to challenge how you think about your systems design.
 The above-the-line / below-the-line framework might appear weird at first, since it is introducing some level of abstraction between you and the system, but I hope while reading trough the article and reflecting on it, you come to terms with the framework.
@@ -502,27 +503,27 @@ kubelet: &amp;#34;${CLUSTER_VERSION}&amp;#34;
 &lt;li>&lt;a href="https://www.weave.works/blog/the-definitive-guide-to-kubernetes-in-production">The Definitive Guide to Kubernetes in Production&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://kasunindrasiri.medium.com/understanding-raft-distributed-consensus-242ec1d2f521">Understanding Distributed Consensus with Raft&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;section class="footnotes" role="doc-endnotes">
+&lt;div class="footnotes" role="doc-endnotes">
 &lt;hr>
 &lt;ol>
-&lt;li id="fn:1" role="doc-endnote">
+&lt;li id="fn:1">
 &lt;p>&lt;a href="https://kasunindrasiri.medium.com/understanding-raft-distributed-consensus-242ec1d2f521">Diego Ongaro and John Ousterhout, In Search of an Understandable Consensus Algorithm (Extended Version), Stanford University&lt;/a>&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
 &lt;/li>
-&lt;li id="fn:2" role="doc-endnote">
+&lt;li id="fn:2">
 &lt;p>&lt;a href="https://about.gitlab.com/releases/2020/05/22/gitlab-13-0-released/">GitLab 13.0 released with Gitaly Clusters, Epic Hierarchy on Roadmaps, and Auto Deploy to ECS&lt;/a>&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
 &lt;/li>
-&lt;li id="fn:3" role="doc-endnote">
+&lt;li id="fn:3">
 &lt;p>&lt;a href="https://www.suse.com/c/rancher_blog/comparing-kubernetes-cni-providers-flannel-calico-canal-and-weave/">Comparing Kubernetes CNI Providers: Flannel, Calico, Canal, and Weave, Rancher Blog, Suse&lt;/a>&amp;#160;&lt;a href="#fnref:3" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
 &lt;/li>
-&lt;li id="fn:4" role="doc-endnote">
+&lt;li id="fn:4">
 &lt;p>&lt;a href="https://github.com/flannel-io/flannel/blob/master/Documentation/configuration.md#key-command-line-options">flanel configuration, flanel documentation, GitHub&lt;/a>&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
 &lt;/li>
-&lt;li id="fn:5" role="doc-endnote">
+&lt;li id="fn:5">
 &lt;p>&lt;a href="https://cluster-api.sigs.k8s.io">Kubernetes Cluster API&lt;/a>&amp;#160;&lt;a href="#fnref:5" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
 &lt;/li>
-&lt;li id="fn:6" role="doc-endnote">
+&lt;li id="fn:6">
 &lt;p>&lt;a href="https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html">Invoking the envsubst program&lt;/a>&amp;#160;&lt;a href="#fnref:6" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;/section></description></item><item><title>KKPCTL: The Command Line Tool for Kubermatic Kubernetes Platform</title><link>https://cedi.dev/publication/kkpctl/</link><pubDate>Tue, 05 Oct 2021 00:00:00 +0000</pubDate><guid>https://cedi.dev/publication/kkpctl/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/div></description></item><item><title>KKPCTL: The Command Line Tool for Kubermatic Kubernetes Platform</title><link>https://cedi.dev/publication/kkpctl/</link><pubDate>Tue, 05 Oct 2021 00:00:00 +0000</pubDate><guid>https://cedi.dev/publication/kkpctl/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;!-- raw HTML omitted --></description></item></channel></rss>
