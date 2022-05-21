@@ -21,7 +21,7 @@ publication_short: GPN20
 abstract: Have you ever considered that your incident from last night might actually be something very positive? No? Then you should watch this talk! I'm going to introduce you to some concepts in the domain of resiliency engineering and then have a look into how you can build an alerting strategy that doesn't page you unnecessarily at 3am. We will have a look into various topics inside the monitoring and alerting domain and how to connect them to make your monitoring and alerting solution better. We will not talk about particular tools or ready-to-use solutions but rather concepts how you can build a comprehensive system with any tool.
 
 # Summary. An optional shortened abstract.
-summary: Have you ever considered that your incident from last night might actually be something very positive? No? Then you should watch this talk! I'm going to introduce you to some concepts in the domain of resiliency engineering and then have a look into how you can build an alerting strategy that doesn't page you unnecessarily at 3am. We will have a look into various topics inside the monitoring and alerting domain and how to connect them to make your monitoring and alerting solution better. We will not talk about particular tools or ready-to-use solutions but rather concepts how you can build a comprehensive system with any tool.
+summary: Have you ever considered that your incident from last night might actually be something very positive? No? Then you should watch this talk! I'm going to introduce you to some concepts in the domain of resiliency engineering and then have a look into how you can build an alerting strategy that doesn't page you unnecessarily at 3am.
 
 tags:
 - monitoring
