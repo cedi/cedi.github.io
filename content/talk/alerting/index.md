@@ -64,7 +64,10 @@ projects:
 # - internal-project
 
 # Enable math on this page?
-math: true
+math: false
+
+aliases:
+  - /publication/alerting/
 ---
 
 {{% alert note %}}
