@@ -1,18 +1,27 @@
 # Impressum
 Angaben gemäß § 5 TMG
-<br/>
-Cedric Kienzler <br/>
-Elbgaustraße 73B<br/>
-22523 Hamburg <br/>
+
+
+Cedric Kienzler
+
+Elbgaustraße 73B
+
+22523 Hamburg
 
 ## Kontakt
-Telefon: 0176-20204039<br/>
-E-Mail: impressum@cedric-kienzler.de<br/>
 
-Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:<br/>
-Cedric Kienzler <br/>
-Elbgaustraße 73B<br/>
-22523 Hamburg <br/>
+Telefon: 0176-20204039
+
+E-Mail: impressum@cedric-kienzler.de
+
+
+Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
+
+Cedric Kienzler
+
+Elbgaustraße 73B
+
+22523 Hamburg
 
 ## Haftungsausschluss
 
