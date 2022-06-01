@@ -17,8 +17,11 @@ III. Informationen zur Datenverarbeitung
 Verantwortlicher Anbieter dieses Internetauftritts im datenschutzrechtlichen Sinne ist:
 
 Cedric Kienzler
+
 Elbgaustraße 73B
+
 22523 Hamburg
+
 Deutschland
 
 E-Mail: datenschutz@cedric-kienzler.de
