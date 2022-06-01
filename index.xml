@@ -1,1 +1,120 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cedi.dev</title><link>https://cedi.dev/</link><description>Recent content on cedi.dev</description><generator>Source Themes academia (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright &amp;copy; {year} by Cedric Kienzler</copyright><lastBuildDate>Fri, 20 May 2022 18:45:00 +0000</lastBuildDate><atom:link href="https://cedi.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>Projects</title><link>https://cedi.dev/project/</link><pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate><guid>https://cedi.dev/project/</guid><description/></item><item><title>Slides</title><link>https://cedi.dev/slides/</link><pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate><guid>https://cedi.dev/slides/</guid><description/></item><item><title>Courses</title><link>https://cedi.dev/courses/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cedi.dev/courses/</guid><description/></item><item><title>Posts</title><link>https://cedi.dev/post/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cedi.dev/post/</guid><description/></item><item><title>Publications</title><link>https://cedi.dev/publication/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cedi.dev/publication/</guid><description/></item><item><title>Recent Talks</title><link>https://cedi.dev/talk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cedi.dev/talk/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cedi.dev</title><link>https://cedi.dev/</link><description>Recent content on cedi.dev</description><generator>Source Themes academia (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright &amp;copy; {year} by Cedric Kienzler</copyright><lastBuildDate>Fri, 20 May 2022 18:45:00 +0000</lastBuildDate><atom:link href="https://cedi.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>Projects</title><link>https://cedi.dev/project/</link><pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate><guid>https://cedi.dev/project/</guid><description/></item><item><title>Slides</title><link>https://cedi.dev/slides/</link><pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate><guid>https://cedi.dev/slides/</guid><description/></item><item><title/><link>https://cedi.dev/datenschutz/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cedi.dev/datenschutz/</guid><description>&lt;h1 id="datenschutzerklärung">Datenschutzerklärung&lt;/h1>
+&lt;p>Personenbezogene Daten (nachfolgend zumeist nur „Daten“ genannt) werden von uns nur im Rahmen der Erforderlichkeit sowie zum Zwecke der Bereitstellung eines funktionsfähigen und nutzerfreundlichen Internetauftritts, inklusive seiner Inhalte und der dort angebotenen Leistungen, verarbeitet.&lt;/p>
+&lt;p>Gemäß Art. 4 Ziffer 1. der Verordnung (EU) 2016/679, also der Datenschutz-Grundverordnung (nachfolgend nur „DSGVO“ genannt), gilt als „Verarbeitung“ jeder mit oder ohne Hilfe automatisierter Verfahren ausgeführter Vorgang oder jede solche Vorgangsreihe im Zusammenhang mit personenbezogenen Daten, wie das Erheben, das Erfassen, die Organisation, das Ordnen, die Speicherung, die Anpassung oder Veränderung, das Auslesen, das Abfragen, die Verwendung, die Offenlegung durch Übermittlung, Verbreitung oder eine andere Form der Bereitstellung, den Abgleich oder die Verknüpfung, die Einschränkung, das Löschen oder die Vernichtung.&lt;/p>
+&lt;p>Mit der nachfolgenden Datenschutzerklärung informieren wir Sie insbesondere über Art, Umfang, Zweck, Dauer und Rechtsgrundlage der Verarbeitung personenbezogener Daten, soweit wir entweder allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung entscheiden. Zudem informieren wir Sie nachfolgend über die von uns zu Optimierungszwecken sowie zur Steigerung der Nutzungsqualität eingesetzten Fremdkomponenten, soweit hierdurch Dritte Daten in wiederum eigener Verantwortung verarbeiten.&lt;/p>
+&lt;p>Unsere Datenschutzerklärung ist wie folgt gegliedert:&lt;/p>
+&lt;p>I. Informationen über uns als Verantwortliche
+II. Rechte der Nutzer und Betroffenen
+III. Informationen zur Datenverarbeitung&lt;/p>
+&lt;h2 id="i-informationen-über-uns-als-verantwortliche">I. Informationen über uns als Verantwortliche&lt;/h2>
+&lt;p>Verantwortlicher Anbieter dieses Internetauftritts im datenschutzrechtlichen Sinne ist:&lt;/p>
+&lt;p>Cedric Kienzler&lt;/p>
+&lt;p>Elbgaustraße 73B&lt;/p>
+&lt;p>22523 Hamburg&lt;/p>
+&lt;p>Deutschland&lt;/p>
+&lt;p>E-Mail: &lt;a href="mailto:datenschutz@cedric-kienzler.de">datenschutz@cedric-kienzler.de&lt;/a>&lt;/p>
+&lt;h2 id="ii-rechte-der-nutzer-und-betroffenen">II. Rechte der Nutzer und Betroffenen&lt;/h2>
+&lt;p>Mit Blick auf die nachfolgend noch näher beschriebene Datenverarbeitung haben die Nutzer und Betroffenen das Recht&lt;/p>
+&lt;p>auf Bestätigung, ob sie betreffende Daten verarbeitet werden, auf Auskunft über die verarbeiteten Daten, auf weitere Informationen über die Datenverarbeitung sowie auf Kopien der Daten (vgl. auch Art. 15 DSGVO);
+auf Berichtigung oder Vervollständigung unrichtiger bzw. unvollständiger Daten (vgl. auch Art. 16 DSGVO);
+auf unverzügliche Löschung der sie betreffenden Daten (vgl. auch Art. 17 DSGVO), oder, alternativ, soweit eine weitere Verarbeitung gemäß Art. 17 Abs. 3 DSGVO erforderlich ist, auf Einschränkung der Verarbeitung nach Maßgabe von Art. 18 DSGVO;
+auf Erhalt der sie betreffenden und von ihnen bereitgestellten Daten und auf Übermittlung dieser Daten an andere Anbieter/Verantwortliche (vgl. auch Art. 20 DSGVO);
+auf Beschwerde gegenüber der Aufsichtsbehörde, sofern sie der Ansicht sind, dass die sie betreffenden Daten durch den Anbieter unter Verstoß gegen datenschutzrechtliche Bestimmungen verarbeitet werden (vgl. auch Art. 77 DSGVO).
+Darüber hinaus ist der Anbieter dazu verpflichtet, alle Empfänger, denen gegenüber Daten durch den Anbieter offengelegt worden sind, über jedwede Berichtigung oder Löschung von Daten oder die Einschränkung der Verarbeitung, die aufgrund der Artikel 16, 17 Abs. 1, 18 DSGVO erfolgt, zu unterrichten. Diese Verpflichtung besteht jedoch nicht, soweit diese Mitteilung unmöglich oder mit einem unverhältnismäßigen Aufwand verbunden ist. Unbeschadet dessen hat der Nutzer ein Recht auf Auskunft über diese Empfänger.&lt;/p>
+&lt;p>Ebenfalls haben die Nutzer und Betroffenen nach Art. 21 DSGVO das Recht auf Widerspruch gegen die künftige Verarbeitung der sie betreffenden Daten, sofern die Daten durch den Anbieter nach Maßgabe von Art. 6 Abs. 1 lit. f) DSGVO verarbeitet werden. Insbesondere ist ein Widerspruch gegen die Datenverarbeitung zum Zwecke der Direktwerbung statthaft.&lt;/p>
+&lt;h2 id="iii-informationen-zur-datenverarbeitung">III. Informationen zur Datenverarbeitung&lt;/h2>
+&lt;p>Ihre bei Nutzung unseres Internetauftritts verarbeiteten Daten werden gelöscht oder gesperrt, sobald der Zweck der Speicherung entfällt, der Löschung der Daten keine gesetzlichen Aufbewahrungspflichten entgegenstehen und nachfolgend keine anderslautenden Angaben zu einzelnen Verarbeitungsverfahren gemacht werden.&lt;/p>
+&lt;h3 id="serverdaten">Serverdaten&lt;/h3>
+&lt;p>Aus technischen Gründen, insbesondere zur Gewährleistung eines sicheren und stabilen Internetauftritts, werden Daten durch Ihren Internet-Browser an uns bzw. an unseren Webspace-Provider übermittelt. Mit diesen sog. Server-Logfiles werden u.a. Typ und Version Ihres Internetbrowsers, das Betriebssystem, die Website, von der aus Sie auf unseren Internetauftritt gewechselt haben (Referrer URL), die Website(s) unseres Internetauftritts, die Sie besuchen, Datum und Uhrzeit des jeweiligen Zugriffs sowie die IP-Adresse des Internetanschlusses, von dem aus die Nutzung unseres Internetauftritts erfolgt, erhoben.&lt;/p>
+&lt;p>Diese so erhobenen Daten werden vorrübergehend gespeichert, dies jedoch nicht gemeinsam mit anderen Daten von Ihnen.&lt;/p>
+&lt;p>Diese Speicherung erfolgt auf der Rechtsgrundlage von Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Verbesserung, Stabilität, Funktionalität und Sicherheit unseres Internetauftritts.&lt;/p>
+&lt;p>Die Daten werden spätestens nach sieben Tage wieder gelöscht, soweit keine weitere Aufbewahrung zu Beweiszwecken erforderlich ist. Andernfalls sind die Daten bis zur endgültigen Klärung eines Vorfalls ganz oder teilweise von der Löschung ausgenommen.&lt;/p>
+&lt;h3 id="google-fonts">Google Fonts&lt;/h3>
+&lt;p>In unserem Internetauftritt setzen wir Google Fonts zur Darstellung externer Schriftarten ein. Es handelt sich hierbei um einen Dienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, nachfolgend nur „Google“ genannt.&lt;/p>
+&lt;p>Um die Darstellung bestimmter Schriften in unserem Internetauftritt zu ermöglichen, wird bei Aufruf unseres Internetauftritts eine Verbindung zu dem Google-Server in den USA aufgebaut.&lt;/p>
+&lt;p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Optimierung und dem wirtschaftlichen Betrieb unseres Internetauftritts.&lt;/p>
+&lt;p>Durch die bei Aufruf unseres Internetauftritts hergestellte Verbindung zu Google kann Google ermitteln, von welcher Website Ihre Anfrage gesendet worden ist und an welche IP-Adresse die Darstellung der Schrift zu übermitteln ist.&lt;/p>
+&lt;p>Google bietet unter&lt;/p>
+&lt;p>&lt;a href="https://adssettings.google.com/authenticated">https://adssettings.google.com/authenticated&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://policies.google.com/privacy">https://policies.google.com/privacy&lt;/a>&lt;/p>
+&lt;p>weitere Informationen an und zwar insbesondere zu den Möglichkeiten der Unterbindung der Datennutzung.&lt;/p>
+&lt;h3 id="fontawesome">FontAwesome&lt;/h3>
+&lt;p>Um Schriften und visuelle Elemente unseres Internetauftritts darstellen zu können, setzen wir die externen Schriftarten von FontAwesome ein. Bei FontAwesome handelt es sich um einen Dienst der&lt;/p>
+&lt;p>Fonticons Inc., 6 Porter Road, Apartment 3R, Cambridge, MA 02140, USA, nachfolgend nur „FontAwesome“ genannt.&lt;/p>
+&lt;p>Bei dem Aufruf unseres Internetauftritts wird eine Verbindung zum Server von FontAwesome in den USA aufgebaut, um so die Darstellung von Schriften und visuellen Elemente zu ermöglichen und zu aktualisieren.&lt;/p>
+&lt;p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Optimierung und dem wirtschaftlichen Betrieb unseres Internetauftritts.&lt;/p>
+&lt;p>Durch die bei Aufruf unseres Internetauftritts hergestellte Verbindung zum Server von FontAwesome kann FontAwesome ermitteln, von welcher Website Ihre Anfrage gesendet worden ist und an welche IP-Adresse die Darstellung der Schrift zu übermitteln ist.&lt;/p>
+&lt;p>FontAwesome bietet unter&lt;/p>
+&lt;p>&lt;a href="https://fontawesome.com/privacy">https://fontawesome.com/privacy&lt;/a>&lt;/p>
+&lt;p>weitere Informationen an und zwar insbesondere zu den Möglichkeiten der Unterbindung der Datennutzung.&lt;/p>
+&lt;h3 id="youtube">YouTube&lt;/h3>
+&lt;p>In unserem Internetauftritt setzen wir YouTube ein. Hierbei handelt es sich um ein Videoportal der YouTube LLC., 901 Cherry Ave., 94066 San Bruno, CA, USA, nachfolgend nur „YouTube“ genannt.&lt;/p>
+&lt;p>YouTube ist ein Tochterunternehmen der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, nachfolgend nur „Google“ genannt.&lt;/p>
+&lt;p>Wir nutzen YouTube im Zusammenhang mit der Funktion „Erweiterter Datenschutzmodus“, um Ihnen Videos anzeigen zu können. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der Qualitätsverbesserung unseres Internetauftritts. Die Funktion „Erweiterter Datenschutzmodus“ bewirkt laut Angaben von YouTube, dass die nachfolgend noch näher bezeichneten Daten nur dann an den Server von YouTube übermittelt werden, wenn Sie ein Video auch tatsächlich starten.&lt;/p>
+&lt;p>Ohne diesen „Erweiterten Datenschutz“ wird eine Verbindung zum Server von YouTube in den USA hergestellt, sobald Sie eine unserer Internetseiten, auf der ein YouTube-Video eingebettet ist, aufrufen.&lt;/p>
+&lt;p>Diese Verbindung ist erforderlich, um das jeweilige Video auf unserer Internetseite über Ihren Internet-Browser darstellen zu können. Im Zuge dessen wird YouTube zumindest Ihre IP-Adresse, das Datum nebst Uhrzeit sowie die von Ihnen besuchte Internetseite erfassen und verarbeiten. Zudem wird eine Verbindung zu dem Werbenetzwerk „DoubleClick“ von Google hergestellt.&lt;/p>
+&lt;p>Sollten Sie gleichzeitig bei YouTube eingeloggt sein, weist YouTube die Verbindungsinformationen Ihrem YouTube-Konto zu. Wenn Sie das verhindern möchten, müssen Sie sich entweder vor dem Besuch unseres Internetauftritts bei YouTube ausloggen oder die entsprechenden Einstellungen in Ihrem YouTube-Benutzerkonto vornehmen.&lt;/p>
+&lt;p>Zum Zwecke der Funktionalität sowie zur Analyse des Nutzungsverhaltens speichert YouTube dauerhaft Cookies über Ihren Internet-Browser auf Ihrem Endgerät. Falls Sie mit dieser Verarbeitung nicht einverstanden sind, haben Sie die Möglichkeit, die Speicherung der Cookies durch eine Einstellung in Ihrem Internet-Browsers zu verhindern. Nähere Informationen hierzu finden Sie vorstehend unter „Cookies“.&lt;/p>
+&lt;p>Weitergehende Informationen über die Erhebung und Nutzung von Daten sowie Ihre diesbezüglichen Rechte und Schutzmöglichkeiten hält Google in den unter&lt;/p>
+&lt;p>&lt;a href="https://policies.google.com/privacy">https://policies.google.com/privacy&lt;/a>&lt;/p>
+&lt;p>abrufbaren Datenschutzhinweisen bereit.&lt;/p>
+&lt;h3 id="cloudflare">CloudFlare&lt;/h3>
+&lt;p>Zur Absicherung unseres Internetauftritts sowie zur Optimierung der Ladezeiten setzen wir den Dienst CloudFlare als sog. CDN (Content-Delivery-Network) ein. Es handelt sich hierbei um einen Dienst der Cloudflare Inc., 101 Townsend Street, San Francisco, California 94107, USA, nachfolgend nur „CloudFlare“ genannt.&lt;/p>
+&lt;p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in dem sicheren Betrieb unseres Internetauftritts sowie in dessen Optimierung.&lt;/p>
+&lt;p>Sofern Sie unseren Internetauftritt aufrufen, werden Ihre Anfragen über den Server von CloudFlare geleitet. Hierbei werden statistische Zugriffsdaten über den Besuch unseres Internetauftritts erhoben und durch CloudFlare ein Cookie über Ihren Internet-Browser auf Ihrem Endgerät gespeichert. Zu den Zugriffsdaten zählen&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Ihre IP-Adresse,&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>die von Ihnen aufgerufene(n) Internetseite(n) unseres Internetauftritts,&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Typ und Version des von Ihnen genutzten Internet - Browsers,&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>das von Ihnen genutzte Betriebssystem,&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>die Internetseite, von der sie auf unseren Internetauftritt gewechselt haben (Referrer- URL),&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Ihre Verweildauer auf unserem Internetauftritt und&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>die Häufigkeit des Aufrufs unserer Internetseiten.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Die Daten werden durch CloudFlare zum Zwecke statistischer Auswertungen der Zugriffe sowie zur Sicherheit und Optimierung des Angebots verwendet.&lt;/p>
+&lt;p>Sofern Sie mit dieser Verarbeitung nicht einverstanden sind, haben Sie die Möglichkeit, die Installation der Cookies durch die entsprechenden Einstellungen in Ihrem Internet-Browser zu verhindern. Einzelheiten hierzu finden Sie vorstehend unter dem Punkt „Cookies“.&lt;/p>
+&lt;p>CloudFlare bietet unter&lt;/p>
+&lt;p>&lt;a href="https://www.cloudflare.com/privacypolicy/">https://www.cloudflare.com/privacypolicy/&lt;/a>&lt;/p>
+&lt;p>weitere Informationen zur Erhebung und Nutzung der Daten sowie zu Ihren Rechten und Möglichkeiten zum Schutz Ihrer Privatsphäre an.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a href="https://www.ratgeberrecht.eu/leistungen/muster-datenschutzerklaerung.html">Muster-Datenschutzerklärung&lt;/a> der &lt;a href="https://www.ratgeberrecht.eu/datenschutz/datenschutzerklaerung-generator-dsgvo.html">Anwaltskanzlei Weiß &amp;amp; Partner&lt;/a>&lt;/p>
+&lt;/blockquote></description></item><item><title/><link>https://cedi.dev/impressum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cedi.dev/impressum/</guid><description>&lt;h1 id="impressum">Impressum&lt;/h1>
+&lt;p>Angaben gemäß § 5 TMG&lt;/p>
+&lt;p>Cedric Kienzler&lt;/p>
+&lt;p>Elbgaustraße 73B&lt;/p>
+&lt;p>22523 Hamburg&lt;/p>
+&lt;h2 id="kontakt">Kontakt&lt;/h2>
+&lt;p>Telefon: 0176-20204039&lt;/p>
+&lt;p>E-Mail: &lt;a href="mailto:impressum@cedric-kienzler.de">impressum@cedric-kienzler.de&lt;/a>&lt;/p>
+&lt;p>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:&lt;/p>
+&lt;p>Cedric Kienzler&lt;/p>
+&lt;p>Elbgaustraße 73B&lt;/p>
+&lt;p>22523 Hamburg&lt;/p>
+&lt;h2 id="haftungsausschluss">Haftungsausschluss&lt;/h2>
+&lt;h3 id="haftung-für-inhalte">Haftung für Inhalte&lt;/h3>
+&lt;p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.&lt;/p>
+&lt;h3 id="haftung-für-links">Haftung für Links&lt;/h3>
+&lt;p>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.&lt;/p>
+&lt;h3 id="urheberrecht">Urheberrecht&lt;/h3>
+&lt;p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.&lt;/p>
+&lt;h3 id="datenschutz">Datenschutz&lt;/h3>
+&lt;p>Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder eMail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.
+Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
+Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit ausdrücklich widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.&lt;/p>
+&lt;blockquote>
+&lt;p>Impressum vom &lt;a href="https://www.impressum-generator.de/">Impressum Generator&lt;/a> der &lt;a href="https://www.kanzlei-hasselbach.de/">Kanzlei Hasselbach, Rechtsanwälte für Arbeitsrecht und Familienrecht&lt;/a>&lt;/p>
+&lt;/blockquote></description></item><item><title>Courses</title><link>https://cedi.dev/courses/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cedi.dev/courses/</guid><description/></item><item><title>Posts</title><link>https://cedi.dev/post/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cedi.dev/post/</guid><description/></item><item><title>Publications</title><link>https://cedi.dev/publication/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cedi.dev/publication/</guid><description/></item><item><title>Recent Talks</title><link>https://cedi.dev/talk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://cedi.dev/talk/</guid><description/></item></channel></rss>
