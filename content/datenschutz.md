@@ -24,7 +24,7 @@ Elbgaustraße 73B
 
 Deutschland
 
-E-Mail: datenschutz@cedric-kienzler.de
+E-Mail: datenschutz@cedi.dev
 
 
 ## II. Rechte der Nutzer und Betroffenen
