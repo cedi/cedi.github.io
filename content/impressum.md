@@ -12,8 +12,7 @@ Elbgaustraße 73B
 
 Telefon: 0176-20204039
 
-E-Mail: impressum@cedric-kienzler.de
-
+E-Mail: impressum@cedi.dev
 
 Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
 
