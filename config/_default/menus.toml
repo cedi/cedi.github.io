@@ -23,19 +23,12 @@
   url = "#experience"
   weight = 40
 
-[[main]]
+[[policy]]
   name = "Impressum"
   url = "/impressum"
   weight = 50
 
-[[main]]
+[[policy]]
   name = "Datenschutz"
   url = "/datenschutz"
   weight = 60
-
-# Link to a PDF of your resume/CV from the menu.
-# To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
-# [[main]]
-#    name = "CV"
-#    url = "files/Cedric_Kienzler_CV.pdf"
-#    weight = 70

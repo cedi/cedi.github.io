@@ -65,6 +65,9 @@ social:
 - icon: 500px
   icon_pack: fab
   link: https://500px.com/p/c_kienzler_photograpy?view=photos
+- icon: mastodon
+  icon_pack: fab
+  link: https://chaos.social/@cedi
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
 email: ""

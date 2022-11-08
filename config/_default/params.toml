@@ -23,6 +23,8 @@ sharing_image = ""
 # Twitter username (without @). Used when a vistor shares your site on Twitter.
 twitter = "c3di1"
 
+mastodon = ["https://chaos.social/@cedi"]
+
 # Diplay a logo in navigation bar rather than title (optional).
 #   To enable, place an image in `static/img/` and reference its filename below. To disable, set the value to "".
 logo = ""
@@ -46,7 +48,7 @@ privacy_pack = false
 #   Examples: "Mon, Jan 2, 2006" or "2006-01-02"
 date_format = "Jan 2, 2006"
 #   Examples: "3:04 pm" or "15:04"
-time_format = "3:04 PM"
+time_format = "15:04"
 
 ############################
 ##  Contact Widget setup  ##
@@ -65,6 +67,7 @@ map = 0
 contact_links = [
   {icon = "github", icon_pack = "fab", name = "Find me on GitHub", link = "https://github.com/cedi"},
   {icon = "twitter", icon_pack = "fab", name = "Find me on Twitter", link = "https://twitter.com/c3di1"},
+  {icon = "mastodon", icon_pack = "fab", name = "Find me on Mastodon", link = "https://chaos.social/@cedi"},
   {icon = "linkedin", icon_pack = "fab", name = "Find me on LinkedIn", link = "https://www.linkedin.com/in/cekienzl/"},
   {icon = "instagram", icon_pack = "fab", name = "Find me on Instagram", link = "https://instagram.com/c3di1"},
   {icon = "500px", icon_pack = "fab", name = "Find me on 500px", link = "https://500px.com/p/c_kienzler_photograpy?view=photos"},
@@ -92,7 +95,7 @@ gravatar = false
 menu_align_right = true
 
 # Show estimated reading time for posts? (true/false)
-reading_time = false
+reading_time = true
 
 # Display comment count (if commenting enabled in config.toml)? (true/false)
 comment_count = false

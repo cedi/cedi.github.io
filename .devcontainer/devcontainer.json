@@ -6,37 +6,36 @@
 		"dockerfile": "Dockerfile",
 		"args": {
 			"VARIANT": "1.18",
-			"HUGO_VERSION": "0.92.1",
 		}
 	},
-	"runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
-
+	"runArgs": [
+		"--cap-add=SYS_PTRACE",
+		"--security-opt",
+		"seccomp=unconfined"
+	],
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
 		"terminal.integrated.shell.linux": "/bin/bash",
 		"git.autofetch": true,
 		"editor.renderFinalNewline": true,
-		"editor.codeLens": true
+		"editor.codeLens": true,
+		"editor.formatOnSave": false
 	},
-
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-azuretools.vscode-docker",
 		"davidanson.vscode-markdownlint",
-        "shardulm94.trailing-spaces",
+		"shardulm94.trailing-spaces",
 		"Tabnine.tabnine-vscode",
 		"github.vscode-pull-request-github",
 		"eamodio.gitlens",
 		"rusnasonov.vscode-hugo",
 		"streetsidesoftware.code-spell-checker"
 	],
-
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [9000],
-
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "go version",
-
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	//"remoteUser": "vscode"
 }
