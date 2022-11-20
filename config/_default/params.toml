@@ -23,7 +23,7 @@ sharing_image = ""
 # Twitter username (without @). Used when a vistor shares your site on Twitter.
 twitter = "c3di1"
 
-mastodon = ["https://chaos.social/@cedi"]
+mastodon = ["https://chaos.social/@cedi", "https://hachyderm.io/@cedi"]
 
 # Diplay a logo in navigation bar rather than title (optional).
 #   To enable, place an image in `static/img/` and reference its filename below. To disable, set the value to "".
