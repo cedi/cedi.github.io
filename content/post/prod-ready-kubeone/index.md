@@ -267,9 +267,9 @@ resource "hcloud_load_balancer_target" "load_balancer_target_cp3" {
 {{% /expand %}}
 <br/>
 
-As pointed out by [EarthlingDavey](https://github.com/EarthlingDavey) in [#20](https://github.com/cedi/cedi.github.io/issues/20) this also has some implications for the output.tf, requiring us to remove the `count` meta-argument there as well.
+As pointed out by [EarthlingDavey][36] in [#20][37] this also has some implications for the output.tf, requiring us to remove the `count` meta-argument there as well.
 
-We must up first fix the `ssh_command` ressource from lines [26-28](https://github.com/kubermatic/kubeone/blob/56f84d7c6c98760042a37aea2614fac3c783812c/examples/terraform/hetzner/output.tf#L26-L28) and also the `kubeone_hosts` from line [38-47](https://github.com/kubermatic/kubeone/blob/56f84d7c6c98760042a37aea2614fac3c783812c/examples/terraform/hetzner/output.tf#L30-L47)
+We must up first fix the `ssh_command` ressource from lines [26-28][38] and also the `kubeone_hosts` from line [38-47][39]
 
 {{% expand "output.tf before" %}}
 output "ssh_commands" {
@@ -336,7 +336,6 @@ output "kubeone_hosts" {
   }
 }
 {{% /expand %}}
-
 
 ## Reliability Tip 3: Use terraform remote backends
 
@@ -616,3 +615,8 @@ envsubst < ./machinedeployment.yaml.tpl > ./machinedeployment.yaml
 [33]: https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html
 [34]: https://tomharrisonjr.com/terraform-count-is-a-miserable-hack-d58a6ffbf422
 [35]: https://www.weave.works/blog/the-definitive-guide-to-kubernetes-in-production
+[36]: https://github.com/EarthlingDavey
+[37]: https://github.com/cedi/cedi.github.io/issues/20
+[38]: https://github.com/kubermatic/kubeone/blob/56f84d7c6c98760042a37aea2614fac3c783812c/examples/terraform/hetzner/output.tf#L26-L28
+[39]: https://github.com/kubermatic/kubeone/blob/56f84d7c6c98760042a37aea2614fac3c783812c/examples/terraform/hetzner/output.tf#L30-L47
+[40]:
