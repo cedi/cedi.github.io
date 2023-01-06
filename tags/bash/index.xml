@@ -508,6 +508,7 @@ kubelet: &amp;#34;${CLUSTER_VERSION}&amp;#34;
 &lt;li>&lt;a href="https://www.weave.works/blog/the-definitive-guide-to-kubernetes-in-production">The Definitive Guide to Kubernetes in Production&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://kasunindrasiri.medium.com/understanding-raft-distributed-consensus-242ec1d2f521">Understanding Distributed Consensus with Raft&lt;/a>&lt;/li>
 &lt;/ul>
+&lt;p>[40]:&lt;/p>
 &lt;div class="footnotes" role="doc-endnotes">
 &lt;hr>
 &lt;ol>
