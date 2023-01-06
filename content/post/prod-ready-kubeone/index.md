@@ -14,7 +14,7 @@ tags:
 categories:
 - kubernetes
 date: "2022-03-21T00:00:00Z"
-lastmod: "2022-03-21T00:00:00Z"
+lastmod: "2023-01-06T12:06:00Z"
 featured: true
 draft: false
 merge_request: https://github.com/cedi/cedi.github.io/pull/8
@@ -266,6 +266,77 @@ resource "hcloud_load_balancer_target" "load_balancer_target_cp3" {
 
 {{% /expand %}}
 <br/>
+
+As pointed out by [EarthlingDavey](https://github.com/EarthlingDavey) in [#20](https://github.com/cedi/cedi.github.io/issues/20) this also has some implications for the output.tf, requiring us to remove the `count` meta-argument there as well.
+
+We must up first fix the `ssh_command` ressource from lines [26-28](https://github.com/kubermatic/kubeone/blob/56f84d7c6c98760042a37aea2614fac3c783812c/examples/terraform/hetzner/output.tf#L26-L28) and also the `kubeone_hosts` from line [38-47](https://github.com/kubermatic/kubeone/blob/56f84d7c6c98760042a37aea2614fac3c783812c/examples/terraform/hetzner/output.tf#L30-L47)
+
+{{% expand "output.tf before" %}}
+output "ssh_commands" {
+  value = formatlist("ssh ${var.ssh_username}@%s", hcloud_server.control_plane.*.ipv4_address)
+}
+
+output "kubeone_hosts" {
+  description = "Control plane endpoints to SSH to"
+
+  value = {
+    control_plane = {
+      hostnames            = hcloud_server.control_plane.*.name
+      cluster_name         = var.cluster_name
+      cloud_provider       = "hetzner"
+      private_address      = hcloud_server_network.control_plane.*.ip
+      public_address       = hcloud_server.control_plane.*.ipv4_address
+      network_id           = hcloud_network.net.id
+      ssh_agent_socket     = var.ssh_agent_socket
+      ssh_port             = var.ssh_port
+      ssh_private_key_file = var.ssh_private_key_file
+      ssh_user             = var.ssh_username
+    }
+  }
+}
+{{% /expand %}}
+
+{{% expand "output.tf after" %}}
+output "ssh_commands" {
+  value = [
+    "ssh ${var.ssh_username}@hcloud_server.control_plane_1.ipv4_address",
+    "ssh ${var.ssh_username}@hcloud_server.control_plane_2.ipv4_address",
+    "ssh ${var.ssh_username}@hcloud_server.control_plane_3.ipv4_address"
+  ]
+}
+
+output "kubeone_hosts" {
+  description = "Control plane endpoints to SSH to"
+
+  value = {
+    control_plane = {
+      cluster_name         = var.cluster_name
+      cloud_provider       = "hetzner"
+      network_id           = hcloud_network.net.id
+      ssh_agent_socket     = var.ssh_agent_socket
+      ssh_port             = var.ssh_port
+      ssh_private_key_file = var.ssh_private_key_file
+      ssh_user             = var.ssh_username
+      hostnames = [
+        hcloud_server.control_plane_1.name,
+        hcloud_server.control_plane_2.name,
+        hcloud_server.control_plane_3.name
+      ]
+      private_address = [
+        hcloud_server_network.control_plane_1.ip,
+        hcloud_server_network.control_plane_2.ip,
+        hcloud_server_network.control_plane_3.ip
+      ]
+      public_address = [
+        hcloud_server.control_plane_1.ipv4_address,
+        hcloud_server.control_plane_2.ipv4_address,
+        hcloud_server.control_plane_3.ipv4_address
+      ]
+    }
+  }
+}
+{{% /expand %}}
+
 
 ## Reliability Tip 3: Use terraform remote backends
 
