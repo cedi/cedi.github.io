@@ -240,6 +240,84 @@ hcloud_server.control_plane_3
 &lt;/div>
 &lt;/div>
 &lt;!-- raw HTML omitted -->&lt;/p>
+&lt;p>As pointed out by &lt;a href="https://github.com/EarthlingDavey">EarthlingDavey&lt;/a> in &lt;a href="https://github.com/cedi/cedi.github.io/issues/20">#20&lt;/a> this also has some implications for the output.tf, requiring us to remove the &lt;code>count&lt;/code> meta-argument there as well.&lt;/p>
+&lt;p>We must up first fix the &lt;code>ssh_command&lt;/code> ressource from lines &lt;a href="https://github.com/kubermatic/kubeone/blob/56f84d7c6c98760042a37aea2614fac3c783812c/examples/terraform/hetzner/output.tf#L26-L28">26-28&lt;/a> and also the &lt;code>kubeone_hosts&lt;/code> from line &lt;a href="https://github.com/kubermatic/kubeone/blob/56f84d7c6c98760042a37aea2614fac3c783812c/examples/terraform/hetzner/output.tf#L30-L47">38-47&lt;/a>&lt;/p>
+&lt;div class="expand">
+&lt;div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+&lt;i style="font-size:x-small;" class="fas fa-chevron-right">&lt;/i>
+&lt;span>
+output.tf before
+&lt;/span>
+&lt;/div>
+&lt;div class="expand-content" style="display: none;">
+&lt;p>output &amp;ldquo;ssh_commands&amp;rdquo; {
+value = formatlist(&amp;ldquo;ssh ${var.ssh_username}@%s&amp;rdquo;, hcloud_server.control_plane.*.ipv4_address)
+}&lt;/p>
+&lt;p>output &amp;ldquo;kubeone_hosts&amp;rdquo; {
+description = &amp;ldquo;Control plane endpoints to SSH to&amp;rdquo;&lt;/p>
+&lt;p>value = {
+control_plane = {
+hostnames = hcloud_server.control_plane.&lt;em>.name
+cluster_name = var.cluster_name
+cloud_provider = &amp;ldquo;hetzner&amp;rdquo;
+private_address = hcloud_server_network.control_plane.&lt;/em>.ip
+public_address = hcloud_server.control_plane.*.ipv4_address
+network_id = hcloud_network.net.id
+ssh_agent_socket = var.ssh_agent_socket
+ssh_port = var.ssh_port
+ssh_private_key_file = var.ssh_private_key_file
+ssh_user = var.ssh_username
+}
+}
+}&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div class="expand">
+&lt;div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+&lt;i style="font-size:x-small;" class="fas fa-chevron-right">&lt;/i>
+&lt;span>
+output.tf after
+&lt;/span>
+&lt;/div>
+&lt;div class="expand-content" style="display: none;">
+&lt;p>output &amp;ldquo;ssh_commands&amp;rdquo; {
+value = [
+&amp;ldquo;ssh ${var.ssh_username}@hcloud_server.control_plane_1.ipv4_address&amp;rdquo;,
+&amp;ldquo;ssh ${var.ssh_username}@hcloud_server.control_plane_2.ipv4_address&amp;rdquo;,
+&amp;ldquo;ssh ${var.ssh_username}@hcloud_server.control_plane_3.ipv4_address&amp;rdquo;
+]
+}&lt;/p>
+&lt;p>output &amp;ldquo;kubeone_hosts&amp;rdquo; {
+description = &amp;ldquo;Control plane endpoints to SSH to&amp;rdquo;&lt;/p>
+&lt;p>value = {
+control_plane = {
+cluster_name = var.cluster_name
+cloud_provider = &amp;ldquo;hetzner&amp;rdquo;
+network_id = hcloud_network.net.id
+ssh_agent_socket = var.ssh_agent_socket
+ssh_port = var.ssh_port
+ssh_private_key_file = var.ssh_private_key_file
+ssh_user = var.ssh_username
+hostnames = [
+hcloud_server.control_plane_1.name,
+hcloud_server.control_plane_2.name,
+hcloud_server.control_plane_3.name
+]
+private_address = [
+hcloud_server_network.control_plane_1.ip,
+hcloud_server_network.control_plane_2.ip,
+hcloud_server_network.control_plane_3.ip
+]
+public_address = [
+hcloud_server.control_plane_1.ipv4_address,
+hcloud_server.control_plane_2.ipv4_address,
+hcloud_server.control_plane_3.ipv4_address
+]
+}
+}
+}&lt;/p>
+&lt;/div>
+&lt;/div>
 &lt;h2 id="reliability-tip-3-use-terraform-remote-backends">Reliability Tip 3: Use terraform remote backends&lt;/h2>
 &lt;p>I&amp;rsquo;m almost certain, every single one of you ran &lt;code>terraform apply&lt;/code> at least once on their local machine. I mean, after all, that is how terraform is supposed to be used, right?&lt;/p>
 &lt;p>And the sad truth is, I&amp;rsquo;ve seen a lot of production environments that where built exactly like that: Someone ran &lt;code>terraform apply&lt;/code> on their local machine. And hey, now we can advertise our infrastructure as &amp;ldquo;infrastructure as code&amp;rdquo;. &lt;em>Technically&lt;/em> this migt be correct but it is certainly not what you would expect.&lt;/p>
