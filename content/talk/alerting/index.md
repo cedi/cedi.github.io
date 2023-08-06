@@ -6,7 +6,7 @@ authors:
 event: 20. Gulaschprogrammiernacht
 event_url: https://entropia.de/GPN20
 
-location: Karlsruhe, Germany
+location: Zentrum für Kunst und Medien, Karlsruhe, Germany
 
 summary: Have you ever considered that your incident from last night might actually be something very positive? No? Then you should watch this talk! I'm going to introduce you to some concepts in the domain of resiliency engineering and then have a look into how you can build an alerting strategy that doesn't page you unnecessarily at 3am.
 

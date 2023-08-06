@@ -6,7 +6,7 @@ authors:
 event: DENOG 14
 event_url: https://www.denog.de/de/meetings/denog14/index.html
 
-location: Hamburg, Germany
+location: Bucerius Law School, Hamburg, Germany
 
 summary: Hilfe, ich werde befördert - was du von einer Karriere als Senior+ Engineer, Tech Lead oder (schluck!) Teamleiter erwarten kannst oder wie man sich darauf vorbereitet. Und warum das manchmal gar nicht so doof ist.
 

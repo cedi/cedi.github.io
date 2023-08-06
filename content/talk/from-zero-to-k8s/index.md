@@ -6,7 +6,7 @@ authors:
 event: GPN21
 event_url: https://entropia.de/GPN21
 
-location: Karlsruhe, Germany
+location: Zentrum für Kunst und Medien, Karlsruhe, Germany
 
 summary: Die Welt der Container-Orchestrierung ist für Einsteiger oft zunächst abschreckend! Aber in diesem Vortrag werden wir uns auf eine Reise durch die Entwicklung des Infrastrukturmanagements begeben, von "bare metal" und virtuellen Maschinen bis hin zur modernen Welt der Container und ihrer Orchestrierung.
 
@@ -29,7 +29,7 @@ tags:
 - cloud
 
 # Is this a featured talk? (true/false)
-featured: true
+featured: false
 
 image:
   caption: ''

@@ -6,7 +6,7 @@ authors:
 event: GPN21
 event_url: https://entropia.de/GPN21
 
-location: Karlsruhe, Germany
+location: Zentrum für Kunst und Medien, Karlsruhe, Germany
 
 summary: In today's rapidly evolving technology landscape, robust and scalable observability is crucial for maintaining reliable, high-performance systems. This talk delves into an advanced observability stack, known as the LGTM stack—Loki, Grafana, Tempo, and Mimir—that surpasses the limitations of traditional Prometheus-based solutions while maintaining compatibility with existing query languages and alert configurations. We will explore the core principles of OpenTelemetry, its seamless integration into the LGTM stack, and the significant benefits it brings to monitoring and tracing capabilities.
 

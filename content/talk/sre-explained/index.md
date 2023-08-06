@@ -6,7 +6,7 @@ authors:
 event: GPN21
 event_url: https://entropia.de/GPN21
 
-location: Karlsruhe, Germany
+location: Zentrum für Kunst und Medien, Karlsruhe, Germany
 
 summary: As the software development landscape continues to evolve, the roles of Site Reliability Engineering (SRE), DevOps, and Platform Engineering often leave people puzzled about their distinctions and interrelations. In this engaging 30-minute talk, we'll clarify these concepts by delving into the world of SRE, examining its unique position at the intersection of DevOps and Platform Engineering.
 

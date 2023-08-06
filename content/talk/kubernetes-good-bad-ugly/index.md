@@ -6,7 +6,7 @@ authors:
 event: 20. Gulaschprogrammiernacht
 event_url: https://entropia.de/GPN20
 
-location: Karlsruhe, Germany
+location: Zentrum für Kunst und Medien, Karlsruhe, Germany
 
 summary: In diesem Talk wird es darum gehen eine kleine Einführung in Kubernetes zu geben, ausgeschmückt mit Anekdoten aus der Praxis und absoluten anti-patterns die es zu vermeiden gilt
 
