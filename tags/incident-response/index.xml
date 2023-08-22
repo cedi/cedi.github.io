@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>resiliency on cedi.dev</title><link>https://cedi.dev/tags/resiliency/</link><description>Recent content in resiliency on cedi.dev</description><generator>Source Themes academia (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright &amp;copy; {year} by Cedric Kienzler</copyright><lastBuildDate>Tue, 22 Aug 2023 20:00:00 +0000</lastBuildDate><atom:link href="https://cedi.dev/tags/resiliency/index.xml" rel="self" type="application/rss+xml"/><item><title>Breaking Clouds</title><link>https://cedi.dev/post/breaking-clouds/</link><pubDate>Tue, 22 Aug 2023 20:00:00 +0000</pubDate><guid>https://cedi.dev/post/breaking-clouds/</guid><description>&lt;p>Cloud infrastructure is a necessity in our modern digital world. However, understanding and preparing for failures in cloud infrastructure is critical for reliability of our services. Failures can be viewed as learning opportunities and to improve our system design. It can inform proactive problem-solving, fostering effective incident response, and guiding future design challenges. &lt;a href="https://en.wikipedia.org/wiki/Chaos_engineering">Chaos Engineering&lt;/a> plays a vital role in testing for resilience of our system.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>incident-response on cedi.dev</title><link>https://cedi.dev/tags/incident-response/</link><description>Recent content in incident-response on cedi.dev</description><generator>Source Themes academia (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright &amp;copy; {year} by Cedric Kienzler</copyright><lastBuildDate>Tue, 22 Aug 2023 20:00:00 +0000</lastBuildDate><atom:link href="https://cedi.dev/tags/incident-response/index.xml" rel="self" type="application/rss+xml"/><item><title>Breaking Clouds</title><link>https://cedi.dev/post/breaking-clouds/</link><pubDate>Tue, 22 Aug 2023 20:00:00 +0000</pubDate><guid>https://cedi.dev/post/breaking-clouds/</guid><description>&lt;p>Cloud infrastructure is a necessity in our modern digital world. However, understanding and preparing for failures in cloud infrastructure is critical for reliability of our services. Failures can be viewed as learning opportunities and to improve our system design. It can inform proactive problem-solving, fostering effective incident response, and guiding future design challenges. &lt;a href="https://en.wikipedia.org/wiki/Chaos_engineering">Chaos Engineering&lt;/a> plays a vital role in testing for resilience of our system.&lt;/p>
 &lt;h2 id="the-cloud-as-our-new-reality">The cloud as our new reality&lt;/h2>
 &lt;p>Cloud Infrastructure has become an integral part of our modern digital landscape. It’s the foundation that supports a majority of the digital services used by millions of people every day. From social media platforms to online video conferencing enabling hybrid work. Even sectors like healthcare or education, cloud infrastructure plays a vital role these days.
 Due to the cost-effectiveness and easy accessibility it has become easier and easier building more and more complex systems with ease and minimal knowledge required. Where once tens of infrastructure engineers maintained dozens of servers in a rack, nowadays any single developer can spin up vast infrastructure landscapes with intricate dependencies on public cloud-providers such as Azure or GCP.&lt;/p>
@@ -67,76 +67,4 @@ In this case, despite the postmortem being blameless, it wasn’t sanction-less.
 Conversely, a truly sanction-less postmortem would dig deeper in why the already existing QA processes did not detect the issue earlier and would have allowed to gate this release. Maybe we would have found out that deadlines were too tight and engineers overworked and could not spend enough time on quality assurance. We could have identified that promises were made towards customers in regards to the availability of the feature creating time-pressure. This finding would allow us to re-think the communication strategy for new features to customers or the way we prioritize our feature backlog.&lt;/p>
 &lt;h2 id="conclusion">Conclusion&lt;/h2>
 &lt;p>Building a resilient service involves accepting and navigating through the unpredictability of cloud infrastructure, recognizing failures as stepping stones to improve and even to utilize approaches such as chaos engineering to build confidence in your resiliency.
-As we continue to operate our service, each failure should be viewed as an opportunity for learning and enhancing our systems. Thus, ensuring the resilience of our digital reality is not merely about combating unpredictability, but harnessing it to create stronger and more reliable services.&lt;/p></description></item><item><title>Site Reliability Engineering Explained: An Exploration of DevOps, Platform Engineering, and SRE</title><link>https://cedi.dev/talk/sre-explained/</link><pubDate>Sat, 10 Jun 2023 10:35:00 +0000</pubDate><guid>https://cedi.dev/talk/sre-explained/</guid><description/></item><item><title>Understanding Alerting - How to come up with a good enough alerting strategy</title><link>https://cedi.dev/talk/alerting/</link><pubDate>Fri, 20 May 2022 13:00:00 +0000</pubDate><guid>https://cedi.dev/talk/alerting/</guid><description>&lt;!-- raw HTML omitted --></description></item><item><title>Above-the-line / Below-the-line framework</title><link>https://cedi.dev/post/above-the-line-framework/</link><pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate><guid>https://cedi.dev/post/above-the-line-framework/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Welcome back to my blog!&lt;/p>
-&lt;p>In this article I want to challenge how you think about your systems design.
-The above-the-line / below-the-line framework might appear weird at first, since it is introducing some level of abstraction between you and the system, but I hope while reading trough the article and reflecting on it, you come to terms with the framework.
-If you accept it, it will allow you to write better documentation, communicate better about a system architecture, and come up with better monitoring for it.&lt;/p>
-&lt;p>I hope you will find this article helpful! If you do - please consider sharing it to your co-workers and friends!&lt;/p>
-&lt;h2 id="modelling-a-system">Modelling a system&lt;/h2>
-&lt;p>When you are performing any kind of systems-design, you will produce diagrams such as the one below. I would argue, most readers of this are familiar with some sort or another of such diagrams and use them almost daily as part of their job.
-A typical systems consists of software components running on various servers and clusters behind layers of load balancers and routers, using databases running in close proximity to the application, connecting to 3rd party APIs over the internet, and presenting results to other systems or users.
-&lt;img src="images/system.png" alt="system">&lt;/p>
-&lt;p>And there is absolutely nothing wrong with this systems design overview. Except maybe that it is on a very high level.&lt;/p>
-&lt;p>But you need some amount of supporting infrastructure in order to run your designed system. Maybe you&amp;rsquo;re depending on a cloud-provider, but most certainly your application code and pipeline definitions exists in repositories. Pipelines are executed by pipeline runners on some other infrastructure. You have additional deployment tools, helper scripts, and so on.&lt;/p>
-&lt;p>For simplicity let’s focus on the least amount of supporting infrastructure needed: Version Control Servers, Testing Tools, Pipelines, and issue-trackers.
-I think we quickly end up with something like this:
-&lt;img src="images/overview.png" alt="overview">&lt;/p>
-&lt;p>Yay - now we successfully managed to map out the most important parts of our system. We have the system itself as well as the supporting infrastructure.&lt;/p>
-&lt;p>Looks good, right?&lt;/p>
-&lt;h2 id="interacting-with-a-system">Interacting with a system&lt;/h2>
-&lt;p>Now let’s have a look at the different individuals involved in building, supporting, and using the system. These are the developers, SREs, QA engineers, and program managers.&lt;/p>
-&lt;p>They all have different backgrounds and might have different intentions when interacting with the system. While the PMs want to push for new features, QA might push for fewer bugs and the SREs might push for higher reliability and resiliency.&lt;/p>
-&lt;p>But how exactly are they going to interact with the system?&lt;/p>
-&lt;p>We experience this every day in our jobs. The developers will write code that they push to the repositories in our VCS based on feature-requests of but-tickets in the ticket-system, the SREs will observe the systems state via the monitoring tools to inform decisions about improving reliability, DevOps might improve upon the CI/CD pipelines by editing the YAML files which they push to the VCS for the pipeline-system to pick them up. The QA engineers use the web-frontend of the deployment tool to kick-off a pipeline run deploying to a test-environment, perform their tests using a vast inventory of testing tools and test descriptions. And then there are our PMs who will write JIRA-Tickets to request new features.&lt;/p>
-&lt;p>Sounds familiar, doesn&amp;rsquo;t it?
-&lt;img src="images/people.png" alt="people">&lt;/p>
-&lt;p>And everyone working in this area knows that there is a problem. The great disconnect between QA who thinks the developers can&amp;rsquo;t write bug-free code, the PMs who think the SREs are unreasonable to push back on a release on a Friday evening because the error budget is exhausted for the month … .&lt;/p>
-&lt;p>After all, everyone here knows this meme and to some extend relate to it, am I right?:
-&lt;img src="images/meme.jpg" alt="how project managers, developers, qa, sysadmin, designers see each other">&lt;/p>
-&lt;p>But why is that?&lt;/p>
-&lt;p>Because everyone understands the system differently. Everyone has a different mental-model of how the system works. And how it will fail.
-No one has a complete understanding of the system.
-No one knows exactly how it will fail.
-Everyone has different experiences with how the system failed in the past, or how similar systems failed in the past.
-This lays in the very nature of every only so slightly complex system. And systems in the area of computer-systems are always complex ones.&lt;/p>
-&lt;p>&lt;img src="images/mentalmodels.png" alt="mental models">&lt;/p>
-&lt;h2 id="the-_above-the-line--below-the-line_-framework">The &lt;em>above the line / below the line&lt;/em> framework&lt;/h2>
-&lt;p>After looking at a system itself and the different people interacting with a system, it is time to combine the two into one model and call with the above the line / below the line framework.&lt;/p>
-&lt;p>We call it that, because we draw a line and put the people interacting with the system and their different mental models and intentions above this line and our beloved complex system below this line.&lt;/p>
-&lt;p>&lt;img src="images/above-the-line-below-the-line.png" alt="above-the-line/below-the-line">&lt;/p>
-&lt;p>We call this (green) line the &lt;em>line of representation&lt;/em>, because whenever we interact with our system, we interact with a representation of our system.&lt;/p>
-&lt;p>The consequence of this framework is, that everything &amp;ldquo;below the line&amp;rdquo; is interfered from the mental models of the individuals and therefore that the system itself does not exist in the physical world.
-We cannot see, touch, or directly control our system.
-The only way we can interact with our system is trough the representation layer.&lt;/p>
-&lt;p>I think unconsciously we know this already.&lt;/p>
-&lt;p>Why else would we rely on &amp;ldquo;infrastructure as code&amp;rdquo;? And why else would we rather commit our CI/CD Pipeline definition and configurations as YAML files than using a bulky UI (looking at you Jenkins)?
-We choose a representation that is familiar to us to define our systems state to make it easier to work with.
-It is easier for us to inform our mental model based on a known representation. And the other way round, it is easy to translate our mental-model into a representation that is familiar to us.&lt;/p>
-&lt;p>One very important consequence of this model is, that every time someone makes any change to a system, the change is based on the persons mental model of the system at a certain point in time.&lt;/p>
-&lt;p>But the data which informs our mental model becomes stale very quickly.
-We know that code and configuration changes over time. The same is true for the requirements of our system.
-Even the hardware on which system is running changes over time and become less reliable because of bit-rot, degrading optical transceivers, or other variables.
-And finally 3rd party application behavior changes over time thanks to updates, causing a change in the access pattern of your drives or how it uses the network.&lt;/p>
-&lt;p>We have to accept and live with a constantly changing system.&lt;/p>
-&lt;p>Every time a system surprises us, that is because our mental model is flawed and or information became stale.&lt;/p>
-&lt;h2 id="challenges">Challenges&lt;/h2>
-&lt;p>We can&amp;rsquo;t talk about this framework without talking about challenges that arise as a consequence of this system.&lt;/p>
-&lt;p>I think the most important two are&lt;/p>
-&lt;ol>
-&lt;li>Every individual working with a system must develop and maintain a good-enough mental model of the system.&lt;/li>
-&lt;li>Every individual working with a system must develop and maintain a good-enough understanding of other individuals mental-models of the system.&lt;/li>
-&lt;/ol>
-&lt;p>For new-hires we have the Onboarding-phase in which a new-hire is expected to learn everything about the system. During this phase we build our initial mental-model of the system.&lt;/p>
-&lt;p>For everyone else we have knowledge-sharing-sessions or something like that.
-We have architecture-deep-dive sessions with our peers, or conduct systems-design meetings when planning for big-changes.
-And finally we review each-others merge requests.&lt;/p>
-&lt;p>We don&amp;rsquo;t do all this for the sake of spotting someone else’s mistake.&lt;/p>
-&lt;p>Instead we validate each others assumptions about how the system behaves and therefore refine each-others mental-models about the system.&lt;/p>
-&lt;p>What might appears to us as a &amp;ldquo;design-flaw&amp;rdquo; or &amp;ldquo;error&amp;rdquo; in someone else’s design or code-change might not be because they &amp;ldquo;did a mistake&amp;rdquo; but because their mental-model of how the system works and or fails was flawed.&lt;/p>
-&lt;p>As mentioned above:&lt;/p>
-&lt;blockquote>
-&lt;p>Every time a system surprises us, that is because our mental model is flawed and or information became stale.&lt;/p>
-&lt;/blockquote>
-&lt;p>This is also true for reviews. If we are surprised by a suggestion to change the design or code, that is likely because our own mental-model isn’t aligned with the mental-model of the person which suggestion you are reviewing.&lt;/p>
-&lt;p>In my opinion, frequent architecture or design reviews, as well as active participation in merge request reviews are crucial, because this helps us to inform each-other about our mental-models and it makes it easier to get a feeling and understanding of how others form their mental-model.&lt;/p></description></item></channel></rss>
+As we continue to operate our service, each failure should be viewed as an opportunity for learning and enhancing our systems. Thus, ensuring the resilience of our digital reality is not merely about combating unpredictability, but harnessing it to create stronger and more reliable services.&lt;/p></description></item></channel></rss>
