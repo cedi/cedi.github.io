@@ -12,10 +12,10 @@ tags:
 - incident-response
 categories:
 - SRE
-date: "2023-08-23T20:00:00Z"
-lastmod: "2022-08-23T20:00:00Z"
+date: "2023-08-22T20:00:00Z"
+lastmod: "2022-08-22T22:14:00Z"
 featured: true
-draft: true
+draft: false
 merge_request: https://github.com/cedi/cedi.github.io/pull/25
 
 # Featured image
