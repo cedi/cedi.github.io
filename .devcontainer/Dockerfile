@@ -2,7 +2,7 @@
 ARG VARIANT="1"
 FROM mcr.microsoft.com/vscode/devcontainers/go:0-${VARIANT}
 
-ENV H_VERSION "0.108.0"
+ENV H_VERSION "0.116.1"
 
 RUN mkdir -p /usr/local/src
 RUN  \
