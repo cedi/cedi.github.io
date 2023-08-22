@@ -34,28 +34,30 @@ image:
 projects: []
 ---
 
-Cloud infrastructure is a necessity in our modern digital world. However, understanding and preparing for failures in cloud infrastructure is critical for reliability of our services. Failures can be viewed as learning opportunities and to improve our system design. It can inform proactive problem-solving, fostering effective incident response, and guiding future design challenges.[Chaos Engineering][1] plays a vital role in testing for resilience of our system.
+Cloud infrastructure is a necessity in our modern digital world. However, understanding and preparing for failures in cloud infrastructure is critical for reliability of our services. Failures can be viewed as learning opportunities and to improve our system design. It can inform proactive problem-solving, fostering effective incident response, and guiding future design challenges. [Chaos Engineering][1] plays a vital role in testing for resilience of our system.
 
 ## The cloud as our new reality
 
 Cloud Infrastructure has become an integral part of our modern digital landscape. It’s the foundation that supports a majority of the digital services used by millions of people every day. From social media platforms to online video conferencing enabling hybrid work. Even sectors like healthcare or education, cloud infrastructure plays a vital role these days.
 Due to the cost-effectiveness and easy accessibility it has become easier and easier building more and more complex systems with ease and minimal knowledge required. Where once tens of infrastructure engineers maintained dozens of servers in a rack, nowadays any single developer can spin up vast infrastructure landscapes with intricate dependencies on public cloud-providers such as Azure or GCP.
 
-However this comes with the expectation of reliability and resilience. In this context, reliability means that cloud services should be available and function correctly when users need them. Resilience means that these services can quickly recover from any disruption or failure.
+However this comes with the expectation of reliability and resilience. In this context, reliability means that cloud services should be available and function correctly when users need them.
+Resilience means that these services can quickly recover from any disruption or failure.
 Given our modern reality, a significant part of our everyday lives is now “in the cloud”. We rely on it through our entire live.
-From communication both private and professional, the digital workplace, as well as entertainment, and even  critical services such as healthcare set the expectations high when it comes to reliability and resilience.
+From communication both private and professional, the digital workplace, as well as entertainment, and even critical services such as healthcare set the expectations high when it comes to reliability and resilience.
 
 This is why understanding and preparing for potential failures in cloud infrastructure is so critical.
 
 ## Exploring failures
 
 Failure modes, or commonly just called "failures", describe the various ways in which a system, or service fails.
-Failure modes are as diverse as the landscape of modern cloud infrastructure. They can range from Hardware to Software to Network and even Human Failure[^1].
-I think Hardware, Software, and Network failures are quite self explanatory: These involve the failure of hardware, like servers, routers, or storage devices, or bugs and glitches in the software that cause system malfunctions. Network errors can be both: your Switch might break or a the implementation for the forwarding plane on your switch might glitch in certain conditions. But the effect is always the same: Users seeing errors, dropped connections, degraded system performance or intermittent problems of all sorts.
-But to me, the most interesting failure modes are failures that involve the human factor. These are failures that happen when humans are involved in a process, like during incident response, and they make mistakes. Human factors are responsible for an entire new spectrum of failure modes. From unplugging the wrong cable in the data center during a routine maintenance to configuring something that just does not work, and even executing the a destructive command in the wrong terminal window connected to the wrong server (Looking at you[GitLab][2]).
+Failure modes are as diverse as the landscape of modern cloud infrastructure itself. They can range from Hardware to Software and even Human Failure[^1].
+I think Hardware, Software failures are quite self explanatory: These involve the failure of hardware, like servers, routers, or storage devices, or bugs and glitches in the software that cause system malfunctions. But the effect is always the same: Users seeing errors, dropped connections, degraded system performance or intermittent problems of all sorts.
+But to me, the most interesting failure modes are failures that involve the human factor. These are failures that happen when humans are involved in a process, like during incident response for example, and they make a mistake.
+Human factors are responsible for an entire new spectrum of failure modes. From unplugging the wrong cable in the data center during a routine maintenance to configuring something that just does not work to executing the a destructive command in the wrong terminal window connected to the wrong server (Looking at you [GitLab][2]).
 
 By considering how individual components might fail we can develop a better design that is resilient to those failures.
-We can use the[Above the line/Below the line framework][3] to better understand the relationship between what the system actually is and how we think of it. We can remember that incidents inform us how the system actually behaves[^1] and how our assumptions about it where wrong. And gauging this delta enables us to take proactive measures to prevent such failures in the future, or at least make them less likely.
+We can use the [Above the line/Below the line framework][3] to better understand the relationship between what the system actually is and how we think of it. We can remember that incidents inform us how the system actually behaves[^1] and how our assumptions about it where wrong. And gauging this delta enables us to take proactive measures to prevent such failures in the future, or at least make them less likely.
 If you are a software developer you are probably familiar with the process of Pull Request reviews. They are a great tool and serve multiple functions that might not be obvious at first. The obvious benefit of Pull Request is that the code is screened to be bug free. But it also ensures that the mental model of the person who submits the pull request was correct and the correct assumptions were made when changing the code to not cause any unwanted side effects. And finally, it also serves as a vessel to update the mental model of the person who reviews the pull request by forcing that person to understand how the system behavior will change by this code change.
 
 Enough talking about Pull Requests and back to the topic of resiliency engineering. When we have an understanding of how a system might fail, we can take better informed decisions and have streamlined incident response processes in place help speeding up recovery. It enables engineers to more quickly diagnose and address the root cause of an incident with less friction.
