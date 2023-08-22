@@ -22,7 +22,7 @@ merge_request: https://github.com/cedi/cedi.github.io/pull/25
 # To use, add an image named `featured.jpg/png` to your page's folder.
 # Focal point options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
 image:
-  caption: 
+  caption:
   focal_point: ""
   preview_only: false
 
@@ -34,37 +34,44 @@ image:
 projects: []
 ---
 
-Cloud infrastructure is a necessity in our modern digital world. However, understanding and preparing for failures in cloud infrastructure is critical for reliability of our services. Failures can be viewed as learning opportunities and to improve our system design. It can inform proactive problem-solving, fostering effective incident response, and guiding future design challenges. Chaos Engineering plays a vital role in testing for resilience of our system.
+Cloud infrastructure is a necessity in our modern digital world. However, understanding and preparing for failures in cloud infrastructure is critical for reliability of our services. Failures can be viewed as learning opportunities and to improve our system design. It can inform proactive problem-solving, fostering effective incident response, and guiding future design challenges. [Chaos Engineering](https://en.wikipedia.org/wiki/Chaos_engineering) plays a vital role in testing for resilience of our system.
 
 ## The cloud as our new reality
 
 Cloud Infrastructure has become an integral part of our modern digital landscape. It’s the foundation that supports a majority of the digital services used by millions of people every day. From social media platforms to online video conferencing enabling hybrid work. Even sectors like healthcare or education, cloud infrastructure plays a vital role these days.
-Due to the cost-effectiveness and easy accessibility it has become easier and easier building more and more complex systems with ease and minimal knowledge required. Where once tens of infrastructure engineers maintained dozens of servers in a rack, nowadays any single developer can spin up vast infrastructure landscapes with intricate dependencies on public cloud-providers such as Azure or GCP. 
+Due to the cost-effectiveness and easy accessibility it has become easier and easier building more and more complex systems with ease and minimal knowledge required. Where once tens of infrastructure engineers maintained dozens of servers in a rack, nowadays any single developer can spin up vast infrastructure landscapes with intricate dependencies on public cloud-providers such as Azure or GCP.
 
 However this comes with the expectation of reliability and resilience. In this context, reliability means that cloud services should be available and function correctly when users need them. Resilience means that these services can quickly recover from any disruption or failure.
 Given our modern reality, a significant part of our everyday lives is now “in the cloud”. We rely on it through our entire live.
-From communication both private and professional, the digital workplace, as well as entertainment, and even  critical services such as healthcare set the expectations high when it comes to reliability and resilience. 
+From communication both private and professional, the digital workplace, as well as entertainment, and even  critical services such as healthcare set the expectations high when it comes to reliability and resilience.
 
 This is why understanding and preparing for potential failures in cloud infrastructure is so critical.
 
 ## Exploring failures
 
-Failure modes, or commonly just called failures, describe the various ways in which a system, or service might fail. 
-Failure modes are as diverse as the landscape of modern cloud infrastructure. They can range from Hardware to Software to Network and even Human Failure. 
+[^1]: https://en.wikipedia.org/wiki/Human_reliability
+
+Failure modes, or commonly just called "failures", describe the various ways in which a system, or service fails.
+Failure modes are as diverse as the landscape of modern cloud infrastructure. They can range from Hardware to Software to Network and even Human Failure[^1].
 I think Hardware, Software, and Network failures are quite self explanatory: These involve the failure of hardware, like servers, routers, or storage devices, or bugs and glitches in the software that cause system malfunctions. Network errors can be both: your Switch might break or a the implementation for the forwarding plane on your switch might glitch in certain conditions. But the effect is always the same: Users seeing errors, dropped connections, degraded system performance or intermittent problems of all sorts.
-But what to me the most interesting group of failures is are failures involving the human factor. They are what happens when humans somewhere in the system make a mistake. Human factors are responsible for an entire new spectrum of failure modes. From unplugging the wrong cable in the data center to configuring something that does not work, or even executing the wrong command on the wrong machine accidentally deleting the entire production database (Looking at you [GitLab](TODO: Link to GitLab Outage)).
+But to me, the most interesting failure modes are failures that involve the human factor. These are failures that happen when humans are involved in a process, like during incident response, and they make mistakes. Human factors are responsible for an entire new spectrum of failure modes. From unplugging the wrong cable in the data center during a routine maintenance to configuring something that just does not work, and even executing the a destructive command in the wrong terminal window connected to the wrong server (Looking at you [GitLab](https://about.gitlab.com/blog/2017/02/01/gitlab-dot-com-database-incident/#third-incident)).
 
-By considering how individual components might fail we can develop a better design that resilient to those failures.
-We can use the [Above the line/Below the line framework](TODO) to better understand the relationship between what the system actually is and how we think of it. We can remember that incidents inform us how the system actually behaves and how our assumptions about it where wrong. And gauging this delta enables us to take proactive measures to prevent such failures in the future, or at least make them less likely. If you are a software developer, this is why you do Pull Request reviews and don’t just push your code directly to production. If you are a systems engineer working with configuration and are unfamiliar with pull request workflows: This is your sign to store your configuration in Git and leverage the advantages of pull request reviews.
-Additionally when we have an understanding of how a system might fail, we can take better informed decisions and have streamlined incident response processes in place help speeding up recovery. It enables engineers to more quickly diagnose and address the root cause of an incident with less friction. 
+By considering how individual components might fail we can develop a better design that is resilient to those failures.
+We can use the [Above the line/Below the line framework](post/above-the-line-framework/) to better understand the relationship between what the system actually is and how we think of it. We can remember that incidents inform us how the system actually behaves[^2] and how our assumptions about it where wrong. And gauging this delta enables us to take proactive measures to prevent such failures in the future, or at least make them less likely.
+If you are a software developer you are probably familiar with the process of Pull Request reviews. They are a great tool and serve multiple functions that might not be obvious at first. The obvious benefit of Pull Request is that the code is screened to be bug free. But it also ensures that the mental model of the person who submits the pull request was correct and the correct assumptions were made when changing the code to not cause any unwanted side effects. And finally, it also serves as a vessel to update the mental model of the person who reviews the pull request by forcing that person to understand how the system behavior will change by this code change.
 
-## Failures as Learning Opportunities 
+Enough talking about Pull Requests and back to the topic of resiliency engineering. When we have an understanding of how a system might fail, we can take better informed decisions and have streamlined incident response processes in place help speeding up recovery. It enables engineers to more quickly diagnose and address the root cause of an incident with less friction.
 
-While system failure is often viewed as a negative, it’s time to challenge this perspective. Instead we should consider these disruptions as an opportunity to improve our own mental model about how the system works (see [Above the line/Below the line Framework](TODO: Link to above the line framework)) and inform our decisions going forward helping us to improve our infrastructure. Each failure, in it’s own unique way, can help us building a better version of our service. In the following section I want to present you with a few ways you can learn from failure.
+[^2]: https://youtu.be/Oev_PJm2yUQ?t=108
+
+## Failures as Learning Opportunities
+
+While system failure is often viewed as a negative, it’s time to challenge this perspective[^3]. Instead we should consider these disruptions as an opportunity to improve our own mental model about how the system works (see [Above the line/Below the line framework](post/above-the-line-framework/)) and inform our decisions going forward helping us to improve our infrastructure. Each failure, in it’s own unique way, can help us building a better version of our service. In the following section I want to present you with a few ways you can learn from failure.
+[^3]: post/above-the-line-framework/
 
 ### Unveil hidden weaknesses
 
-As we have learned from the [Above the line/Below the line Framework](TODO: Link), failures are what happens when the system behaves differently than we think it will behave. So each incident gauges the delta of our understanding. When our mental model of the system behavior gets better, we can eventually find bugs or procedural and structural failures in our code. This allows us to make the improvements needed to arrive at a more resilient system.
+I don't want to repeat myself and bore you, but once again: As we have learned from the [Above the line/Below the line framework](post/above-the-line-framework/), failures are what happens when the system behaves differently than we think it will behave. So each incident gauges the delta of our understanding. When our mental model of the system behavior gets better, we can eventually find bugs or procedural and structural failures in our code. This allows us to make the improvements needed to arrive at a more resilient system.
 
 ### Put your resilience to the test
 
@@ -72,7 +79,10 @@ Each failure can be seen as an unscheduled drill for your system’s resilience 
 
 ### Sharpen your Incident Response
 
-Failures are the real-world stage on which your carefully crafted play of incident response procedures are executed. You can reason about incident response processes as much as you want but there is nothing that tests the effectiveness of communication protocols and channels as well as the teams collaboration and agility in identifying mitigating and the root-cause than a real incident when real money and real customer demand is on the line. Tabletop exercises of incident drills are a good way to validate some of you processes, but the critically and fire during a real production outage is the ultimate test. Each stumble and misstep during the incident response procedure is a chance to fine-tune your approach, ultimately minimizing the fallout and TTM metric (explanation of TTM, or at least a link to an explanation) of future incidents.
+Failures are the real-world stage on which your carefully crafted play of incident response procedures are executed. You can reason about incident response processes as much as you want but there is nothing that tests the effectiveness of communication protocols as well as the teams collaboration and agility during identifying and mitigating a real incident when real money and real customer demand is on the line.
+While tabletop exercises of incident drills are a good way to validate some of you processes, the critically and fire during a real production outage is the ultimate test. Each stumble and misstep during the incident response procedure is a chance to fine-tune your approach, ultimately minimizing the fallout and and optimization of your TTx metrics[^4] of future incidents.
+
+[^4]: https://dzone.com/articles/what-are-mttx-metrics-good-for-lets-find-out
 
 ### Guiding future design
 
@@ -92,24 +102,34 @@ Effective incident response requires three major pillars:
 2. Rapid Mitigation
 3. Clear lines of communication
 
-To allow for a fast detection we require solid monitoring of our infrastructure and proper instrumentation of our application. 
-Once we discovered that something went wrong we have to focus on mitigating the issue. Clear lines of communication tremendously help in coordinating remediation measures across teams and dependent services.
+Lets break these three items down further:
+
+1. To allow for a fast detection we require solid monitoring of our infrastructure and proper instrumentation of our application.
+2. Once we discovered that something went wrong we have to focus on mitigating the issue.
+3. Clear lines of communication tremendously help in coordinating remediation measures across teams and dependent services.
 
 Incident Management is a highly complex topic in it’s own and deserves it’s own blog-post in the future. Stay tuned.
 
 ### Effective Recovery
 
-Recovering effectively again is a delicate topic and requires in-depth knowledge about the type of service and the specific infrastructure. There is no “one-size-fits-all” solution to improve recovery time (often referred to “TTM” or “Time to mitigate).
-However, one key concept that we can talk about here is “graceful degradation”. When designing complex distributed systems, we can design our system in a way, that even in the event of a failure of one sub-component or micro-serve, the system maintains functionality with reduced capacity or functionality and prevent a total system collapse. Designing a complex system for graceful degradation can significantly limit the blast-radius of an incident.
-However, you might have guessed it already: graceful degradation is a complex process in it’s own and there are entire book written about designing distributed systems and handling failures.
+Recovering effectively again is a delicate topic and requires in-depth knowledge about the type of service and the specific infrastructure.
+There is no “one-size-fits-all” solution to improve recovery time (often referred to “TTM” or “Time to mitigate[^4]).
+
+However, one key concept that we can talk about here is “graceful degradation”. When designing complex, distributed, systems, we can design our system in a way, that even in the event of a failure of one sub-component or micro-serve, the system maintains functionality with reduced capacity or functionality and prevent a total system collapse.
+Designing a complex system for graceful degradation can significantly limit the blast-radius of an incident.
+However, you might have guessed it already: graceful degradation is a complex process in it’s own and there are entire book written about designing distributed systems and handling failures[^5].
+[^5]: https://link.springer.com/book/10.1007/978-3-319-02429-5
 
 ### Post-Incident Analysis
 
 Once the issue is under control and the incident is mitigated, we can get the post-incident analysis process started.
-The post-mortem process is where we can take time to reflect and learn from the failure and implement measures to prevent similar failures in the future.
+The post-mortem process[^6] is where we can take time to reflect and learn from the failure and implement measures to prevent similar failures in the future.
+[^6]: https://www.atlassian.com/incident-management/postmortem
 
-During the post-mortem analysis we try to understand the exact cause and progression of the incident. However we should refrain from finding a scapegoat. Post-mortem processes must be blameless to be effective.
+During the post-mortem analysis we try to understand the exact cause and progression of the incident. However we should refrain from finding a scapegoat. Post-mortem processes must be blameless to be effective[^7].
 Every aspect of an incident, from it’s start to finish must be evaluated in great detail. This through examination provides insights into our system, the exact failure mode that occurred, it can give us some insights into how this failure mode can be prevented in the future and last but not least it highlights opportunities for improving the incident management process.
+
+[^7]: https://youtu.be/emTzpdPgg7Q?t=1035
 
 #### The power of blameless postmortem culture
 
@@ -117,10 +137,11 @@ A blameless postmortem, as the term suggests, is one where to focus is not on po
 
 While the concept of blameless postmortem culture is gaining industry-wide recognition, another vital element of a healthy postmortem process is sanctionlessness. Sanctionless postmortems not only refrains from attributing blame but also from negative repercussions for those involved in the incident. It acknowledges that while humans make errors, these errors are merely symptoms of a systemic weakness.
 
-To explain this, let’s consider an incident caused by a junior engineer wo deployed faulty code. In a blameless postmortem we would focus on understanding how the code made it through the review and was not caught in our QA processes and was allowed to progress through our release gates. Rather than blaming the junior engineer for pushing bad code we recognize the gaps in the code review process and the need for better testing procedures.
-However, let’s assume following this postmortem management enforces new checklists demanding more rigorous testing protocols and stricter gating of releases. Everyone wanting to deploy must comply with this vast list of action items ensuring the release is acceptable.
-In this case, despite the postmortem being blameless, it wasn’t sanction-less. The negative consequences are now having to comply with overly long and dreadful checklists fostering a fear-driven culture, inhibiting honest communication since no-one wants to follow even tighter protocols.
-Conversely, a truly sanction-less postmortem would dig deeper in why the already existing QA processes did not detect the issue earlier and would have allowed to gate this release. Maybe we would have found out that deadlines were too tight and engineers overworked and could not spend enough time on quality assurance. We could have identified that promises were made towards customers in regards to the availability of the feature creating the time-pressure. This finding would allow us to re-think the communication strategy for new features to customers or the way we prioritize our feature backlog.
+To explain this, let’s consider an incident caused by a junior engineer wo deployed faulty code.
+n a blameless postmortem we would focus on understanding how the code made it through the review and was not caught during the QA processes and was allowed to progress through all of our release gates. Rather than simply blaming the junior engineer for pushing bad code we recognize the gaps in the process and the need for better testing procedures.
+However, let’s assume following this postmortem management enforces new checklists, demanding more rigorous testing protocols and stricter gating of releases. Everyone who wants to deploy code changes now must comply with this vast list of action items ensuring the release is acceptable.
+In this case, despite the postmortem being blameless, it wasn’t sanction-less. The negative consequences are that now everyone has to comply with overly long and dreadful checklists fostering a fear-driven culture, inhibiting honest communication since no-one wants to follow even tighter protocols.
+Conversely, a truly sanction-less postmortem would dig deeper in why the already existing QA processes did not detect the issue earlier and would have allowed to gate this release. Maybe we would have found out that deadlines were too tight and engineers overworked and could not spend enough time on quality assurance. We could have identified that promises were made towards customers in regards to the availability of the feature creating time-pressure. This finding would allow us to re-think the communication strategy for new features to customers or the way we prioritize our feature backlog.
 
 ## Conclusion
 
