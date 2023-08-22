@@ -12,8 +12,8 @@ tags:
 - incident-response
 categories:
 - SRE
-date: "2023-08-01T00:00:00Z"
-lastmod: "2022-08-01T00:00:00Z"
+date: "2023-08-23T20:00:00Z"
+lastmod: "2022-08-23T20:00:00Z"
 featured: true
 draft: true
 merge_request: https://github.com/cedi/cedi.github.io/pull/25
