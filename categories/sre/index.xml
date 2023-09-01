@@ -70,7 +70,7 @@ Conversely, a truly sanction-less postmortem would dig deeper in why the already
 As we continue to operate our service, each failure should be viewed as an opportunity for learning and enhancing our systems. Thus, ensuring the resilience of our digital reality is not merely about combating unpredictability, but harnessing it to create stronger and more reliable services.&lt;/p></description></item><item><title>Above-the-line / Below-the-line framework</title><link>https://cedi.dev/post/above-the-line-framework/</link><pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate><guid>https://cedi.dev/post/above-the-line-framework/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Welcome back to my blog!&lt;/p>
 &lt;p>In this article I want to challenge how you think about your systems design.
-The above-the-line / below-the-line framework might appear weird at first, since it is introducing some level of abstraction between you and the system, but I hope while reading trough the article and reflecting on it, you come to terms with the framework.
+The above-the-line / below-the-line framework was famously created, published, and popularised by &lt;a href="https://en.wikipedia.org/wiki/Richard_Cook_(safety_researcher)">Dr. Richard Cook&lt;/a> in the &lt;a href="https://snafucatchers.github.io/#2_3_The_above-the-line/below-the-line_framework">SNAFUcatchers Stella Report&lt;/a>. It might appear weird at first, since it is introducing some level of abstraction between you and the system, but I hope while reading trough the article and reflecting on it, you come to terms with the framework.
 If you accept it, it will allow you to write better documentation, communicate better about a system architecture, and come up with better monitoring for it.&lt;/p>
 &lt;p>I hope you will find this article helpful! If you do - please consider sharing it to your co-workers and friends!&lt;/p>
 &lt;h2 id="modelling-a-system">Modelling a system&lt;/h2>
@@ -139,4 +139,10 @@ And finally we review each-others merge requests.&lt;/p>
 &lt;p>Every time a system surprises us, that is because our mental model is flawed and or information became stale.&lt;/p>
 &lt;/blockquote>
 &lt;p>This is also true for reviews. If we are surprised by a suggestion to change the design or code, that is likely because our own mental-model isn’t aligned with the mental-model of the person which suggestion you are reviewing.&lt;/p>
-&lt;p>In my opinion, frequent architecture or design reviews, as well as active participation in merge request reviews are crucial, because this helps us to inform each-other about our mental-models and it makes it easier to get a feeling and understanding of how others form their mental-model.&lt;/p></description></item></channel></rss>
+&lt;p>In my opinion, frequent architecture or design reviews, as well as active participation in merge request reviews are crucial, because this helps us to inform each-other about our mental-models and it makes it easier to get a feeling and understanding of how others form their mental-model.&lt;/p>
+&lt;h2 id="attribution">Attribution&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://en.wikipedia.org/wiki/Richard_Cook_(safety_researcher)">Dr. Richard Cook&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://snafucatchers.github.io/#2_3_The_above-the-line/below-the-line_framework">SNAFUcatchers Stella Report&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://queue.acm.org/detail.cfm?id=3380777">Above the Line, Below the Line. The resilience of Internet-facing systems relies on what is below the line of representation.&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>
