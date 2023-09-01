@@ -11,7 +11,7 @@ categories:
 - SRE
 date: "2022-04-24T00:00:00Z"
 lastmod: "2023-09-01T00:00:00Z"
-featured: true
+featured: false
 draft: false
 merge_request: https://github.com/cedi/cedi.github.io/pull/13
 
