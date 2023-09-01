@@ -10,7 +10,7 @@ tags:
 categories:
 - SRE
 date: "2022-04-24T00:00:00Z"
-lastmod: "2022-04-24T00:00:00Z"
+lastmod: "2023-09-01T00:00:00Z"
 featured: true
 draft: false
 merge_request: https://github.com/cedi/cedi.github.io/pull/13
@@ -38,7 +38,7 @@ gallery_item: []
 Welcome back to my blog!
 
 In this article I want to challenge how you think about your systems design.
-The above-the-line / below-the-line framework might appear weird at first, since it is introducing some level of abstraction between you and the system, but I hope while reading trough the article and reflecting on it, you come to terms with the framework.
+The above-the-line / below-the-line framework was famously created, published, and popularised by [Dr. Richard Cook](https://en.wikipedia.org/wiki/Richard_Cook_(safety_researcher)) in the [SNAFUcatchers Stella Report](https://snafucatchers.github.io/#2_3_The_above-the-line/below-the-line_framework). It might appear weird at first, since it is introducing some level of abstraction between you and the system, but I hope while reading trough the article and reflecting on it, you come to terms with the framework.
 If you accept it, it will allow you to write better documentation, communicate better about a system architecture, and come up with better monitoring for it.
 
 I hope you will find this article helpful! If you do - please consider sharing it to your co-workers and friends!
@@ -148,6 +148,13 @@ As mentioned above:
 This is also true for reviews. If we are surprised by a suggestion to change the design or code, that is likely because our own mental-model isn’t aligned with the mental-model of the person which suggestion you are reviewing.
 
 In my opinion, frequent architecture or design reviews, as well as active participation in merge request reviews are crucial, because this helps us to inform each-other about our mental-models and it makes it easier to get a feeling and understanding of how others form their mental-model.
+
+## Attribution
+
+
+* [Dr. Richard Cook](https://en.wikipedia.org/wiki/Richard_Cook_(safety_researcher))
+* [SNAFUcatchers Stella Report](https://snafucatchers.github.io/#2_3_The_above-the-line/below-the-line_framework)
+* [Above the Line, Below the Line. The resilience of Internet-facing systems relies on what is below the line of representation.](https://queue.acm.org/detail.cfm?id=3380777)
 
 [1]: https://snafucatchers.github.io/
 [2]: https://sre.google/sre-book/service-level-objectives/
