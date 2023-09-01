@@ -148,4 +148,4 @@ As we continue to operate our service, each failure should be viewed as an oppor
 [7]: https://youtu.be/emTzpdPgg7Q?t=1035
 [8]: https://en.wikipedia.org/wiki/Chaos_engineering
 [9]: https://about.gitlab.com/blog/2017/02/01/gitlab-dot-com-database-incident/#third-incident
-[10]: post/above-the-line-framework/
+[10]: https://cedi.dev/post/above-the-line-framework/)https://cedi.dev/post/above-the-line-framework/
