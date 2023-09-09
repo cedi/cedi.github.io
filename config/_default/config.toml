@@ -2,7 +2,7 @@
 # Documentation: https://sourcethemes.com/academic/
 
 title = "cedi.dev"
-baseURL = "https://cedi.dev/"
+baseURL = "/"
 copyright = "Copyright &copy; {year} by Cedric Kienzler"
 
 ############################
