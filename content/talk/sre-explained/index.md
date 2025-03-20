@@ -1,4 +1,5 @@
 ---
+share: false
 title: "Site Reliability Engineering Explained: An Exploration of DevOps, Platform Engineering, and SRE"
 authors:
 - cedi

@@ -1,4 +1,5 @@
 ---
+share: false
 title: "Understanding Alerting - How to come up with a good enough alerting strategy"
 authors:
 - cedi

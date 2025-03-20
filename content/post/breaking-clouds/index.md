@@ -1,4 +1,5 @@
 ---
+share: false
 title: 'Breaking Clouds'
 subtitle: 'When the virtual sky falls'
 summary: 'Cloud infrastructure is a necessity in our modern digital world. However, understanding and preparing for failures in cloud infrastructure is critical for reliability of our services. Failures can be viewed as learning opportunities and to improve our system design. It can inform proactive problem-solving, fostering effective incident response, and guiding future design challenges. Chaos Engineering plays a vital role in testing for resilience of our system.'

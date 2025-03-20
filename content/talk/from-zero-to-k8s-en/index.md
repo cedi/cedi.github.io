@@ -1,4 +1,5 @@
 ---
+share: false
 title: From 0 to Kubernetes. An introduction to container orchestration with practical answers to common questions like "why?" Or "when?"
 authors:
 - cedi

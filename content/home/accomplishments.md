@@ -27,21 +27,7 @@ date_format = "Jan 2006"
   date_start = "2018-01-01"
   date_end = "2019-06-01"
   description = """
-  Oversaw and orchestrated the event organisation as the representative of the network team towards the event's project management, including sponsor aquisation, budget management, and logistic for a highly reliable fault tolerant network for one of the largest hacker events in Germany.
-  
-  • Lead a Team of 15 volunteers with various skills and levels to build and run the network infrastructure
-  
-  • Planned and controlled the budget
-  
-  • Acquired sponsors for network hardware and BGP interconnectivity
-  
-  • Wrote a SDN Controller in python3 using netconf, SNMPv3, and jinja2 for a heterogenous infrastructure to distribute the network in 5 lecture halls, two big hackcenters and the “OpenCodes” Art exhibition
-  
-  • Created extensive documentation during all stages of the project to ensure a reliable network
-  
-  • Worked together with 3rd party service providers to provide fiber connectivity as well as multi-homed BGP connectivity to the venue
-  
-  • Monitored the whole network infrastructure using Prometheus and Grafana
+  Led the network infrastructure team of over 15 volunteers with a diverse background for one of the largest CCC events in Germany after the Chaos Communication Congress, acting as the primary representative towards event management, handling sponsor acquisition, multi-homed BGP connectivity, budget management, and logistics for a fault-tolerant network.
   """
 
 [[item]]
@@ -53,17 +39,9 @@ date_format = "Jan 2006"
   date_start = "2021-12-01"
   date_end = "2021-12-31"
   description = """
-  Offered support to the [rc3.world](https://rc3.world/2021/world) backend team as part of the [rC3 infrastructure team](https://infra.rc3.world), overseeing and maintaining a Kubernetes Cluster as well as the a complex, multi-staged, Elixir deployment hosting the remote congress experience.
-  
-  • Orchestrated a highly available Elixir Application using Kubernetes, Kustomize, Helm, ArgoCD, ingress-nginx, cert-manager, kube-prometheus-stack, and many more
-
-  • Enhanced the Dockerfile layout to use a multi-stage docker build proceess ensuring a small and optimized image ran in production
-
-  • Built and maintained a multi-stage GitLab CI Pipeline to compile, verify, and deploy documentation for the Elexir application that powered the world backend to the congress 2D world
-
-  • Coordination of deployments in close collaboration with the leadership team (PL) of the event ensuring minimal disruption during peak hours
-
-  • 24h on-call responsibility during the whole event to resolve incidents with the infrastructure and the deployments quickly
+  Supported the rc3.world backend team as part of the rC3 infrastructure team, overseeing and maintaining a Kubernetes cluster and a complex multi-staged Elixir deployment hosting the remote congress experience.
+  * __Orchestrated a highly available Elixir Application using Kubernetes__, Kustomize, Helm, ArgoCD, ingressnginx, cert-manager, and the kube-prometheus-stack.
+  * __Optimised build & deployment process__ by enhancing the Dockerfile layout to use a multi-stage build process, ensuring a smaller and more efficient production image.
+  * __Built and maintained a multi-stage GitLab CI pipeline__ to compile, verify, and deploy documentation for the Elixir application powering the event.
   """
-
 +++

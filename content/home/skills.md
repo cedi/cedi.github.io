@@ -17,20 +17,36 @@ subtitle = "I AM REALLY GOOD AT"
 [[feature]]
   icon = "chart-line"
   icon_pack = "fas"
-  name = "Reliability Engineering"
-  
+  name = "Site Reliability Engineering"
+  description = "Designing, operating, and improving highly available, large-scale distributed systems."
+
 [[feature]]
   icon = "cloud"
   icon_pack = "fas"
-  name = "Kubernetes"
-  
-[[feature]]
-  icon = "searchengin"
-  icon_pack = "fab"
-  name = "Incident Response"
+  name = "Kubernetes & Cloud-Native"
+  description = "Deep expertise in Kubernetes, cloud platforms, and container orchestration."
 
 [[feature]]
-  icon = "cloudscale"
-  icon_pack = "fab"
-  name = "Working at scale"
+  icon = "exclamation-triangle"
+  icon_pack = "fas"
+  name = "Incident Response & Chaos Engineering"
+  description = "Building fault-tolerant systems through failure injection and incident mitigation."
+
+[[feature]]
+  icon = "cogs"
+  icon_pack = "fas"
+  name = "Automation & Infrastructure as Code"
+  description = "Scaling operations with CI/CD, GitOps, and infrastructure automation."
+
+[[feature]]
+  icon = "database"
+  icon_pack = "fas"
+  name = "Observability & Monitoring"
+  description = "Implementing SLIs, SLOs, and full-stack observability with the LGTM Stack."
+
+[[feature]]
+  icon = "server"
+  icon_pack = "fas"
+  name = "Scalable Systems & Platform Engineering"
+  description = "Building robust platforms that scale across thousands of services and workloads."
 +++

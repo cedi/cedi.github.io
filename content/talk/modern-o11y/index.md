@@ -1,4 +1,5 @@
 ---
+share: false
 title: "Modern Observability - Scalable Observability with the LGTM Stack: Harnessing the Power of Loki, Grafana, Tempo, and Mimir"
 authors:
 - cedi

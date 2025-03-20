@@ -1,4 +1,5 @@
 ---
+share: false
 title: "From 0 to Kubernetes. Eine Einführung zur Container-Orchestrierung mit praktischen Antworten auf die häufigsten Fragen wie “warum?” Oder “wann?”"
 authors:
 - cedi

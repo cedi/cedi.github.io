@@ -1,4 +1,5 @@
 ---
+share: false
 title: "Hilfe, ich bin Manager - und jetzt? Oder auch: Wie man in der IT Karriere machen kann."
 authors:
 - cedi

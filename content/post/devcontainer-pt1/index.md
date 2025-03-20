@@ -1,4 +1,5 @@
 ---
+share: false
 title: 'What the heck are devcontainers?'
 subtitle: 'Lets talk about what devcontainers in VScode are, why they are cool, and why you should start using them today'
 summary: 'Safe yourself and others a ton of time tediously setting up development environments and finally start using devcontainers for VScode. Here is what you need to know!'

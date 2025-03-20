@@ -38,4 +38,4 @@ hero_media = "user-2.png"
   label = "Know more"
 
 +++
-## My name is **Cedric Kienzler** and I'm a **Senior Software Engineer** specializing in resiliency engineering **at scale**
+## I'm __Cedric Kienzler__, a Senior Site Reliability Engineering Tech Lead, specializing in building resilient, large-scale distributed systems.

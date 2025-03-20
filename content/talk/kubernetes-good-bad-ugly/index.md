@@ -1,4 +1,5 @@
 ---
+share: false
 title: "Kubernetes - The good, the bad, the ugly"
 authors:
 - cedi

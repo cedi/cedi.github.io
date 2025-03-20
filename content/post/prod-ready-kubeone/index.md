@@ -1,4 +1,5 @@
 ---
+share: false
 title: 'Bootstrapping a production ready Kubernetes on Hetzner Cloud'
 subtitle: '6 tips for creating a production ready Kubernetes cluster using KubeOne with Canal CNI on Hetzner Cloud'
 summary: Bootstrapping a production ready Kubernetes cluster using Terraform and KubeOne on Hetzner Cloud running Canal CNI
