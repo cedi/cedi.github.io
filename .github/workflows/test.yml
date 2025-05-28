@@ -39,24 +39,7 @@ jobs:
         # docs: https://gohugo.io/hugo-pipes/minification/
         run: hugo --minify
 
-      - name: Upload static site artifacts
-        shell: bash
-        run: |
-          # Fetch GitHub OIDC token
-          TOKEN=$(curl -sSfL -X POST \
-            -H "Authorization: bearer $ACTIONS_RUNTIME_TOKEN" \
-            -H "Accept: application/json; api-version=2.0" \
-            "https://api.github.com/actions/oidc/token?audience=your-api" \
-            | jq -r '.value')
-
-          # Prepare curl arguments
-          CURL_ARGS=()
-          for file in dist/*; do
-            [ -f "$file" ] || continue
-            CURL_ARGS+=("-F" "files[]=@${file}")
-          done
-
-          # Upload to your REST API
-          curl -X POST https://static-pages.sphinx-map.ts.net/upload \
-            -H "Authorization: Bearer $TOKEN" \
-            "${CURL_ARGS[@]}"
+      - uses: SpechtLabs/StaticPages-Upload@main
+        with:
+          apiUrl: https://staticpages.cedi.dev
+          dir: public/
